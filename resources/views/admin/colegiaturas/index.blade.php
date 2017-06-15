@@ -31,7 +31,7 @@
 
 					<td><a href="{{route('admin.colegiaturas.edit', $colegiatura->id)}}" class="btn btn-primary">Editar
 					</a> <a href="{{route('admin.colegiaturas.destroy', $colegiatura->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
-					<a href="#" class="btn btn-primary">Imprimir
+					<a href="{{route('admin.pdf', $colegiatura->id)}}" class="btn btn-primary">Imprimir
 					</a>
 					</td>
 				</tr>

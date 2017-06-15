@@ -64,6 +64,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
 		'as' => 'admin.colegiaturas.consultagrado'
 		]);
 
+		Route::get('pdf/{id}', [
+			'uses' 	=>	'PdfsController@index',
+			'as'		=>	'admin.pdf'
+		]);
+
 });
 
 		Route::get('admin/auth/login',[
