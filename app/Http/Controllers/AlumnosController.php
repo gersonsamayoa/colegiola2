@@ -48,6 +48,7 @@ class AlumnosController extends Controller
         ->orderBy('nombre')->lists('nombres', 'id');
 
         return view('admin.alumnos.create')->with('carreras', $carreras);
+        /*Comment*/
     }
 
     /**
