@@ -25,13 +25,28 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('codigopersonal', 'Codigo Personal')!!}
-	{!!Form::text('codigopersonal',null,['class'=>'form-control','placeholder'=> 'Codigo Personal', 'required'])!!}
+	{!!Form::label('encargado', 'Encargado')!!}
+	{!!Form::text('encargado',null,['class'=>'form-control','placeholder'=> 'Encargado', 'required'])!!}
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('carrera_id', 'Carrera')!!}
-	{!!Form::select('carrera_id', $carreras, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione una Carrera', 'required'])!!}
+	{!!Form::label('telefono', 'Telefono')!!}
+	{!!Form::text('telefono',null,['class'=>'form-control','placeholder'=> '####-####', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('carnet', 'Carnet')!!}
+	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carnet', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('nivel_id', 'Nivel')!!}
+	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required', 'id'=>'Nivel'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('grado_id', 'Grado')!!}
+	{!!Form::select('grado_id', $grados, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Grado', 'required'])!!}
 	</div>
 
 	<div class="form-group">

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Carreras extends Migration
+class Niveles extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class Carreras extends Migration
      */
     public function up()
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('niveles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 120);
-            $table->string('grado');
             $table->timestamps();
             });
     }
@@ -27,6 +26,6 @@ class Carreras extends Migration
      */
     public function down()
     {
-       Schema::drop('carreras');
+       Schema::drop('niveles');
     }
 }

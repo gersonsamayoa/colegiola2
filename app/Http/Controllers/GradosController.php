@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Carrera;
+use App\grado;
+use App\nivel;
 use Laracasts\Flash\Flash;
 
-class CarrerasController extends Controller
+class GradosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,8 @@ class CarrerasController extends Controller
      */
     public function index()
     {
-        $carreras= carrera::orderBy('id', 'ASC')->paginate(4);
-        return view('admin.carreras.index')->with ('carreras', $carreras);
+      $grados= grado::orderby ('nivel_id', 'ASC')->paginate(4);
+      return view('admin.grados.index')->with('grados', $grados);
     }
 
     /**
@@ -29,7 +30,8 @@ class CarrerasController extends Controller
      */
     public function create()
     {
-        return view('admin.carreras.create');
+      $niveles=Nivel::orderby('nombre','ASC')->lists('nombre', 'id');
+      return view('admin.grados.create', compact('niveles'));
     }
 
     /**
@@ -40,10 +42,10 @@ class CarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        $carrera=new  carrera($request->all());
-        $carrera->save();
-        flash::Success('Carrera Guardada Exitosamente');
-        return redirect()->route('admin.carreras.index');
+      $grados=new grado($request->all());
+      $grados->save();
+      flash('Grado Guardado Exitosamente')->success()->important();
+      return redirect()->route('admin.grados.index');
     }
 
     /**
@@ -65,8 +67,10 @@ class CarrerasController extends Controller
      */
     public function edit($id)
     {
-        $carrera=Carrera::Find($id);
-        return view('admin.carreras.edit')->with('carrera', $carrera);
+      $niveles=Nivel::orderby('nombre','ASC')->lists('nombre', 'id');
+      $grados=Grado::Find($id);
+
+      return view('admin.grados.edit', compact('grados', 'niveles'));
     }
 
     /**
@@ -78,12 +82,12 @@ class CarrerasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carrera=Carrera::Find($id);
-        $carrera->Fill($request->all());
-        $carrera->save();
+      $grados=grado::Find($id);
+      $grados->Fill($request->all());
+      $grados->save();
 
-        Flash::warning('La carrera '. $carrera->nombre . ' ha sido editada con éxito');
-        return redirect()->route('admin.carreras.index');
+      flash('El Grado '. $grados->nombre . ' ha sido editado con éxito')->warning()->important();
+      return redirect()->route('admin.grados.index');
     }
 
     /**
@@ -94,10 +98,10 @@ class CarrerasController extends Controller
      */
     public function destroy($id)
     {
-       $carrera= Carrera::Find($id);
-       $carrera->delete();
+      $grados= grado::Find($id);
+      $grados->delete();
 
-       Flash::error('Carrera ' . $carrera->nombre . ' ha sido borrado de forma exitosa');
-       return redirect()->route('admin.carreras.index');
+      flash('El Grado ' . $grados->nombre . ' ha sido borrado de forma exitosa')->error()->important();
+      return redirect()->route('admin.grados.index');
     }
 }

@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\mes;
+use App\nivel;
 use Laracasts\Flash\Flash;
 
-class MesesController extends Controller
+class NivelesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class MesesController extends Controller
      */
     public function index()
     {
-        $meses= mes::orderBy('id', 'ASC')->paginate(4);
-        return view('admin.meses.index')->with ('meses', $meses);
+        $niveles=nivel::orderby('nombre', 'ASC')->paginate(4);
+        return view('admin.niveles.index')->with('niveles', $niveles);
     }
 
     /**
@@ -29,7 +29,7 @@ class MesesController extends Controller
      */
     public function create()
     {
-        return view('admin.meses.create');
+        return view('admin.niveles.create');
     }
 
     /**
@@ -40,10 +40,10 @@ class MesesController extends Controller
      */
     public function store(Request $request)
     {
-        $meses=new  mes($request->all());
-        $meses->save();
-        flash('Mes Guardado Exitosamente')->success()->important();
-        return redirect()->route('admin.meses.index');
+      $niveles=new nivel($request->all());
+      $niveles->save();
+      flash('Nivel Guardado Exitosamente')->success()->important();
+      return redirect()->route('admin.niveles.index');
     }
 
     /**
@@ -65,9 +65,9 @@ class MesesController extends Controller
      */
     public function edit($id)
     {
-        $meses=mes::Find($id);
-        return view('admin.meses.edit')->with('meses', $meses);
-      }
+      $niveles=nivel::Find($id);
+      return view('admin.niveles.edit')->with('niveles', $niveles);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -78,13 +78,12 @@ class MesesController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $niveles=nivel::Find($id);
+      $niveles->Fill($request->all());
+      $niveles->save();
 
-        $meses=mes::Find($id);
-        $meses->Fill($request->all());
-        $meses->save();
-
-        flash('El Mes '. $meses->nombre . ' ha sido editada con éxito')->warning()->important();
-        return redirect()->route('admin.meses.index');
+      flash('El Nivel '. $niveles->nombre . ' ha sido editada con éxito')->warning()->important();
+      return redirect()->route('admin.niveles.index');
     }
 
     /**
@@ -95,11 +94,10 @@ class MesesController extends Controller
      */
     public function destroy($id)
     {
+      $niveles= nivel::Find($id);
+      $niveles->delete();
 
-       $meses= mes::Find($id);
-       $meses->delete();
-
-       flash('El Pago ' . $meses->nombre . ' ha sido borrado de forma exitosa')->error()->important();
-       return redirect()->route('admin.meses.index');
+      flash('El Nivel ' . $niveles->nombre . ' ha sido eliminado de forma exitosa')->error()->important();
+      return redirect()->route('admin.niveles.index');
     }
 }

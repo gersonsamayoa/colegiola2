@@ -16,18 +16,36 @@ Route::get('/', ['as'=>'index', function
     return view('welcome');
 }]);
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
+Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 	Route::get('/', ['as'=>'admin.index', function
 	() {
     return view('welcome');
 	}]);
 
-	Route::resource('carreras', 'CarrerasController');
-	Route::get('carreras/{id}/destroy', [
-		'uses'	=>'CarrerasController@destroy',
-		'as' 	=>'admin.carreras.destroy'
+	Route::resource('niveles', 'NivelesController');
+	Route::get('niveles/{id}/destroy', [
+		'uses'	=>'NivelesController@destroy',
+		'as' 	=>'admin.niveles.destroy'
 		]);
+
+    Route::resource('grados', 'GradosController');
+  	Route::get('grados/{id}/destroy', [
+  		'uses'	=>'GradosController@destroy',
+  		'as' 	=>'admin.grados.destroy'
+  		]);
+
+      Route::resource('cursos', 'CursosController');
+    	Route::get('cursos/{id}/destroy', [
+    		'uses'	=>'CursosController@destroy',
+    		'as' 	=>'admin.cursos.destroy'
+    		]);
+
+		Route::resource('meses', 'MesesController');
+		Route::get('meses/{id}/destroy', [
+			'uses'	=>'MesesController@destroy',
+			'as' 	=>'admin.meses.destroy'
+			]);
 
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
@@ -41,8 +59,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
 		'as'	=>'admin.alumnos.destroy'
 		]);
 
-
 	Route::resource('colegiaturas', 'ColegiaturasController');
+/*Ruta del Js Dropdown*/
+  Route::get('alumnos/create/{id}', 'AlumnosController@getGrados');
 
 	Route::get('colegiaturas/{id}/details', [
 	'uses' => 'ColegiaturasController@detalles',

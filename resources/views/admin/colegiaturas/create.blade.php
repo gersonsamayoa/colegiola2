@@ -27,13 +27,23 @@
 	</div>
 
 	<div class="form-group">
+	{!!Form::label('nombre', 'Nombre')!!}
+	{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
+	</div>
+
+	<div class="form-group">
 	{!!Form::label('numerodocumento', 'Número de Documento')!!}
 	{!!Form::text('numerodocumento',null,['class'=>'form-control','placeholder'=> 'Número de documento', 'required'])!!}
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('mes', 'Mes')!!}
-	{!!Form::select('mes', [''=>'Seleccione un pago','Inscripción'=>'Inscripción','Enero'=>'Enero','Febrero'=>'Febrero','Marzo'=>'Marzo','Abril'=>'Abril','Mayo'=>'Mayo','Junio'=>'Junio','Julio'=>'Julio','Agosto'=>'Agosto','Septiembre'=>'Septiembre','Octubre'=>'Octubre','Graduación'=>'Graduación'],null,['class'=>'form-control', 'required'])!!}
+	{!!Form::label('numerofactura', 'Número de Factura')!!}
+	{!!Form::text('numerofactura',null,['class'=>'form-control','placeholder'=> 'Número de Factura', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('mes_id', 'Mes')!!}
+	{!!Form::select('mes_id', $meses, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Mes', 'required'])!!}
 	</div>
 
 	<div class="form-group">

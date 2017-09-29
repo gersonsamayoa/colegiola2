@@ -30,8 +30,9 @@ class FakeDataSeeder extends Seeder
       alumno::create([
         'nombres'=> $faker->firstname,
         'apellidos'=>$faker->lastname,
+        'encargado'=>$faker->name,
+        'telefono'=>$faker->tollFreePhoneNumber,
         'codigopersonal'=>$faker->word,
-        'grado'=>$faker->randomElement($array = array ('primero','segundo','tercero', 'cuarto', 'quinto', 'sexto')),
         'carrera_id'=>array_rand($this->carreras)
       ]);
       }

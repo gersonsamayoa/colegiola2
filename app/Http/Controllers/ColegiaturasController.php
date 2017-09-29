@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\MesRequest;
 use App\Http\Controllers\Controller;
 use App\alumno;
+use App\mes;
 use App\colegiatura;
 use Laracasts\Flash\Flash;
 use App\carrera;
+use App\grado;
 
 class ColegiaturasController extends Controller
 {
@@ -30,8 +33,10 @@ class ColegiaturasController extends Controller
      */
     public function create($id)
     {
+      $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
+
       $alumno=Alumno::Find($id);
-      return view('admin.colegiaturas.create', compact('alumno'));
+      return view('admin.colegiaturas.create', compact('alumno', 'meses'));
     }
 
     /**
@@ -42,12 +47,10 @@ class ColegiaturasController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $colegiaturas= new colegiatura($request->all());
-
         $colegiaturas->save();
-        flash::Success('Colegiatura Guardada Exitosamente');
+        
+        flash('Colegiatura Guardada Exitosamente')->success()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
     }
 
@@ -70,10 +73,11 @@ class ColegiaturasController extends Controller
      */
     public function edit($id)
     {
+        $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
         $colegiaturas=colegiatura::Find($id);
         $alumno=Alumno::Find($colegiaturas->alumno_id);
 
-        return view('admin.colegiaturas.edit', compact('colegiaturas', 'alumno'));
+        return view('admin.colegiaturas.edit', compact('colegiaturas', 'alumno', 'meses'));
     }
 
     /**
@@ -89,7 +93,7 @@ class ColegiaturasController extends Controller
         $colegiaturas->Fill($request->all());
         $colegiaturas->save();
 
-        Flash::warning('La colegiatura se ha sido editada con éxito');
+        flash('La colegiatura se ha sido editada con éxito')->warning()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
     }
 
@@ -104,7 +108,7 @@ class ColegiaturasController extends Controller
         $colegiaturas= colegiatura::Find($id);
         $colegiaturas->delete();
 
-        Flash::error('La colegiatura ha sido borrado de forma exitosa');
+        flash('La colegiatura ha sido borrado de forma exitosa')->error()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
     }
 
@@ -123,12 +127,21 @@ class ColegiaturasController extends Controller
 
    public function consultagrado(Request $request)
   {
-    $carreras=Carrera::selectRaw('CONCAT(grado, " ", nombre) as nombres, id')
-    ->lists('nombres', 'id');
-    $alumnos=alumno::buscar($request->carrera_id)->get();
-    $colegiaturas= colegiatura::orderby('alumno_id','ASC')->get();
+    $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");
+    $grados=grado::orderby('nombre','ASC')->lists('nombre','id');
+    if ($request->grado_id){
+    $alumnos=alumno::buscar($request->grado_id)->get();
+    $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();
     $groupcolegiaturas=$alumnos->groupby('nombres');
+    }
+    else {
+      {
+        $alumnos=alumno::Search($request->nombres)->get();
+        $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();
+        $groupcolegiaturas=$alumnos->groupby('nombres');
+      }
+    }
 
-    return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'carreras'));
+    return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
   }
 }

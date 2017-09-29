@@ -15,10 +15,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     @if(Auth::user())
       <ul class="nav navbar-nav">
-        <li><a href="{{route('admin.carreras.index')}}">Carreras <span class="sr-only">(current)</span></a></li>
-        <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
-       <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>
-        <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta x Grado</a></li>
+        <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
+          <li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>
+          <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
+          <li><a href="{{route('admin.cursos.index')}}">Cursos</a></li>
+          <li><a href="{{route('admin.meses.index')}}">Meses</a></li>
+          <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta x Grado</a></li>
+          <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 

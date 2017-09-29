@@ -1,16 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\AlumnoRequest;
 use App\Http\Controllers\Controller;
-use App\Carrera;
-use App\Alumno;
+use App\alumno;
+use App\grado;
+use App\nivel;
 use Laracasts\Flash\Flash;
-
 
 class AlumnosController extends Controller
 {
@@ -21,18 +18,19 @@ class AlumnosController extends Controller
      */
     public function index(Request $request)
     {
-      $carreras=Carrera::selectRaw('CONCAT(grado, " ", nombre) as nombres, id')
-      ->lists('nombres', 'id');
+      $grados=grado::orderby('nombre','ASC')->lists('nombre','id');
+      $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(4);
 
-        if($request->nombres){
-          $alumnos= alumno::search($request->nombres)->orderBy('id', 'ASC')->paginate(4);
-            /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-            return view('admin.alumnos.index', compact('alumnos', 'carreras'));
-        }else{
-          $alumnos= alumno::buscar($request->carrera_id)->paginate(4);
+      if($request->nombres){
+        $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->paginate(4);
           /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-          return view('admin.alumnos.index', compact('alumnos', 'carreras'));
-        }
+          return view('admin.alumnos.index', compact('alumnos', 'grados'));
+      }else{
+        $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->paginate(4);
+        /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
+        return view('admin.alumnos.index', compact('alumnos', 'grados'));
+      }
+      return view('admin.alumnos.index', compact('alumnos'));
 
     }
 
@@ -43,13 +41,21 @@ class AlumnosController extends Controller
      */
     public function create()
     {
+        $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
+        $grados=grado::orderBy('nombre','ASC')->lists('nombre', 'id');
 
-        $carreras=Carrera::selectRaw('CONCAT(grado, " ", nombre) as nombres, id')
-        ->orderBy('nombre')->lists('nombres', 'id');
-
-        return view('admin.alumnos.create')->with('carreras', $carreras);
-        /*Comment*/
+        return view('admin.alumnos.create', compact('niveles', 'grados'));
     }
+
+    /*Metodo para llenar combos anidados*/
+    public function getGrados(Request $request, $id)
+    {
+      if($request->ajax()){
+        $grados=grado::grados($id);
+        return response()->json($grados);
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,10 +65,17 @@ class AlumnosController extends Controller
      */
     public function store(AlumnoRequest $request)
     {
-        $alumno= new alumno($request->all());
+
+        $alumno= new alumno();
+        $alumno->nombres=$request->nombres;
+        $alumno->apellidos=$request->apellidos;
+        $alumno->encargado=$request->encargado;
+        $alumno->telefono=$request->telefono;
+        $alumno->carnet=$request->carnet;
+        $alumno->grado_id=$request->grado_id;
         $alumno->save();
 
-        flash::Success('Alumno Guardado Exitosamente');
+        flash('Alumno Guardado Exitosamente')->success()->important();
         return redirect()->route('admin.alumnos.index');
     }
 
@@ -86,10 +99,11 @@ class AlumnosController extends Controller
     public function edit($id)
     {
         $alumno=Alumno::Find($id);
-        $carreras=Carrera::selectRaw('CONCAT(grado, " ", nombre) as nombres, id')
-        ->orderBy('nombre')->lists('nombres', 'id');
+        $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
+        $grados=grado::orderBy('nombre','ASC')->lists('nombre', 'id');
 
-        return view('admin.alumnos.edit', compact('alumno', 'carreras'));
+
+        return view('admin.alumnos.edit', compact('alumno', 'grados', 'niveles'));
     }
 
     /**
@@ -105,7 +119,7 @@ class AlumnosController extends Controller
         $alumno->Fill($request->all());
         $alumno->save();
 
-        Flash::warning('La alumno '. $alumno->nombres . ' ' . $alumno->apellidos . ' ha sido editada con éxito');
+        flash('La alumno '. $alumno->nombres . ' ' . $alumno->apellidos . ' ha sido editada con éxito')->warning()->important();
 
         return redirect()->route('admin.alumnos.index');
     }
@@ -121,7 +135,8 @@ class AlumnosController extends Controller
         $alumno= alumno::Find($id);
        $alumno->delete();
 
-       Flash::error('Alumno ' . $alumno->nombre . ' ha sido eliminado de forma exitosa');
+       flash('Alumno ' . $alumno->nombre . ' ha sido eliminado de forma exitosa')->error()->important();
        return redirect()->route('admin.alumnos.index');
     }
+
 }

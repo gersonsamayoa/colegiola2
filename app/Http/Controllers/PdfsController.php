@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Alumno;
-use App\Colegiatura;
+use App\alumno;
+use App\colegiatura;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class PdfsController extends Controller

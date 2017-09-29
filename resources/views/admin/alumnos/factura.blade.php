@@ -20,7 +20,7 @@
           <td>{{date("d-m-Y", strtotime($colegiaturas->fecha))}}</td>
           <td>{{$colegiaturas->nit}}</td>
           <td>{{$colegiaturas->numerodocumento}}</td>
-          <td>{{$colegiaturas->mes}}</td>
+          <td>{{$colegiaturas->mes->nombre}}</td>
           <td>Q{{number_format($colegiaturas->monto, '2','.' , ',')}}</td>
           <td>{{$colegiaturas->descripcion}}</td>
           <td>{{$colegiaturas->alumno->nombres}}</td>

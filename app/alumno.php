@@ -8,11 +8,11 @@ class alumno extends Model
 {
     protected $table ="alumnos";
 
-    protected $fillable =['nombres','apellidos','codigopersonal', 'carrera_id'];
+    protected $fillable =['nombres','apellidos','encargado', 'telefono','carnet', 'grado_id'];
 
-    public function carrera()
+    public function grado()
     {
-    	return $this->belongsTo('App\carrera');
+    	return $this->belongsTo('App\grado');
     }
 
     public function colegiaturas()
@@ -25,9 +25,14 @@ class alumno extends Model
         return $query->where('nombres', 'LIKE', "%$nombres%");
     }
 
-    public function scopeBuscar($query, $carrera_id)
+    public function scopeBuscar($query, $grado_id)
     {
-      return $query->where('carrera_id', 'LIKE', "%$carrera_id%");
+      return $query->where('grado_id', 'LIKE', "%$grado_id%");
+    }
+
+    public function calificaciones()
+    {
+    	return $this->hasMany('App\calificacion');
     }
 
 }
