@@ -16,7 +16,7 @@
 {!!Form::close()!!}
 <br><br><br>
 @include('flash::message')
-	<table class="table table-bordered table-condensed">
+	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
 			<th>Apellidos</th>

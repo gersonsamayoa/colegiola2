@@ -14,10 +14,11 @@ class Calificaciones extends Migration
     {
       Schema::create('calificaciones', function (Blueprint $table){
         $table->increments('id');
-        $table->float('Bim1', 4,2);
-        $table->float('Bim2', 4,2);
-        $table->float('Bim3', 4,2);
-        $table->float('Bim4', 4,2);
+        $table->float('bim1', 4,2)->nullable();
+        $table->float('bim2', 4,2)->nullable();
+        $table->float('bim3', 4,2)->nullable();
+        $table->float('bim4', 4,2)->nullable();
+        $table->float('promedio', 4,2)->nullable();
         $table->integer('alumno_id')->unsigned();
         $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
         $table->integer('curso_id')->unsigned();

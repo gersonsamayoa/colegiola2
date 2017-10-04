@@ -30,8 +30,10 @@
 					<td>{{$curso->id}}</td>
 					<td>{{$curso->nombre}}</td>
 					<td>{{$curso->grado->nombre}}</td>
-					<td><a href="{{route('admin.cursos.edit', $curso->id)}}" class="btn btn-primary">Editar
-					</a> <a href="{{route('admin.cursos.destroy', $curso->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
+					<td>
+						<a href="{{route('admin.calificaciones.listCalificaciones', $curso->id)}}" class="btn btn-info">Ingresar Notas</a>
+						<a href="{{route('admin.cursos.edit', $curso->id)}}" class="btn btn-primary">Editar</a>
+					 <a href="{{route('admin.cursos.destroy', $curso->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
 				</tr>
 			@endforeach
 		</tbody>

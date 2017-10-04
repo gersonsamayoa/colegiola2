@@ -8,9 +8,10 @@
 <body>
 @include('admin.partials.nav')
 	<div class="container">
-	<h1>@yield('title')</h1>
+	<h2>@yield('title')</h2>
+	<h2>@yield('subtitle')</h2>
 	</div>
-	
+
 <section class="container">
 	@yield('content')
 </section>

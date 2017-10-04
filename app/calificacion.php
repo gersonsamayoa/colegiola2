@@ -8,7 +8,7 @@ class calificacion extends Model
 {
   protected $table ="calificaciones";
 
-  protected $fillable =['Bim1','Bim2','Bim3','Bim4', 'alumno_id', 'curso_id'];
+  protected $fillable =['bim1','bim2','bim3','bim4', 'promedio', 'alumno_id', 'curso_id'];
 
   public function alumno()
   {

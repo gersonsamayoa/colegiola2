@@ -34,7 +34,6 @@ class ColegiaturasController extends Controller
     public function create($id)
     {
       $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
-
       $alumno=Alumno::Find($id);
       return view('admin.colegiaturas.create', compact('alumno', 'meses'));
     }
@@ -49,7 +48,7 @@ class ColegiaturasController extends Controller
     {
         $colegiaturas= new colegiatura($request->all());
         $colegiaturas->save();
-        
+
         flash('Colegiatura Guardada Exitosamente')->success()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
     }
