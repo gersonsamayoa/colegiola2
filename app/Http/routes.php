@@ -61,61 +61,61 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 
 
-/*Ruta del Js Dropdown*/
-  Route::get('alumnos/create/{id}', 'AlumnosController@getGrados');
+		/*Ruta del Js Dropdown*/
+  	Route::get('alumnos/create/{id}', 'AlumnosController@getGrados');
 
-	/*Rutas para listado de calificaciones*/
-
-
-
-
+		/*Rutas para listado de calificaciones*/
 		Route::get('calificaciones/{id}', [
 			'uses'	=>'CalificacionesController@listCalificaciones',
 			'as' 	=>'admin.calificaciones.listCalificaciones'
 			]);
 
-
-		Route::resource('calificaciones', 'CalificacionesController');
-
-		Route::post('calificaciones/{idcurso}{idalumno}', [
+			Route::post('calificaciones/{idcurso}{idalumno}', [
 				'uses'=>'CalificacionesController@store',
 				'as'=>'admin.calificaciones.store'
 			]);
 
+			Route::put('calificaciones/{idcurso}{idalumno}', [
+					'uses'=>'CalificacionesController@update',
+					'as'=>'admin.calificaciones.update'
+				]);
+
+				Route::get('calificaciones/{idalumno}{idcurso}/destroy', [
+					'uses'	=>'CalificacionesController@destroy',
+					'as'	=>'admin.calificaciones.destroy'
+					]);
+
+				/*Rutas para listado de Colegiaturas*/
+
+				Route::resource('colegiaturas', 'ColegiaturasController');
+
+				Route::get('colegiaturas/{id}/details', [
+				'uses' => 'ColegiaturasController@detalles',
+				'as' => 'admin.colegiaturas.detalles'
+				]);
+
+				Route::get('colegiaturas/{id}/create', [
+				'uses' => 'ColegiaturasController@create',
+				'as' => 'admin.colegiaturas.create'
+				]);
+
+				Route::get('colegiaturas/{id}/destroy', [
+					'uses'	=>'ColegiaturasController@destroy',
+					'as'	=>'admin.colegiaturas.destroy'
+					]);
+
+					Route::get('colegiaturas/{id}/consultagrado', [
+					'uses' => 'ColegiaturasController@consultagrado',
+					'as' => 'admin.colegiaturas.consultagrado'
+					]);
 
 
 
-	/*Rutas para listado de Colegiaturas*/
-
-	Route::resource('colegiaturas', 'ColegiaturasController');
-
-	Route::get('colegiaturas/{id}/details', [
-	'uses' => 'ColegiaturasController@detalles',
-	'as' => 'admin.colegiaturas.detalles'
-	]);
-
-	Route::get('colegiaturas/{id}/create', [
-	'uses' => 'ColegiaturasController@create',
-	'as' => 'admin.colegiaturas.create'
-	]);
-
-	Route::get('colegiaturas/{id}/destroy', [
-		'uses'	=>'ColegiaturasController@destroy',
-		'as'	=>'admin.colegiaturas.destroy'
-		]);
-
-		Route::get('colegiaturas/{id}/consultagrado', [
-		'uses' => 'ColegiaturasController@consultagrado',
-		'as' => 'admin.colegiaturas.consultagrado'
-		]);
-
-
-
-	/*Rutas para la Factura*/
-		Route::get('pdf/{id}', [
-			'uses' 	=>	'PdfsController@index',
-			'as'		=>	'admin.pdf'
-		]);
+				/*Rutas para la Factura*/
+					Route::get('pdf/{id}', [
+						'uses' 	=>	'PdfsController@index',
+						'as'		=>	'admin.pdf'
+					]);
 
 });
 

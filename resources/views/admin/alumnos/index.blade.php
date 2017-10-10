@@ -19,13 +19,13 @@
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
-			<th>Apellidos</th>
-			<th>Nombres</th>
+			<th class="col-sm-2">Apellidos</th>
+			<th class="col-sm-1">Nombres</th>
 			<th>Carnet</th>
-			<th>Encargado</th>
+			<th class="col-sm-1">Encargado</th>
 			<th>Telefono</th>
-			<th>Grado</th>
-			<th>Acción</th>
+			<th class="col-sm-3">Grado</th>
+			<th class="col-sm-3">Acción</th>
 		</thead>
 		<tbody>
 			@foreach($alumnos as $alumno)

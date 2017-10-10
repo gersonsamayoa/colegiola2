@@ -19,6 +19,7 @@
 <script src="{{asset ('plugins/jquery/jquery.js')}}"></script>
 <script src="{{asset ('plugins/jquery/dropdown.js')}}"></script>
 <script src="{{asset ('plugins/bootstrap/js/bootstrap.js')}}"></script>
+	@yield('scripts')
 
 </body>
 

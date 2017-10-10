@@ -8,7 +8,7 @@ class alumno extends Model
 {
     protected $table ="alumnos";
 
-    protected $fillable =['nombres','apellidos','encargado', 'telefono','carnet', 'grado_id'];
+    protected $fillable =['id', 'nombres','apellidos','encargado', 'telefono','carnet', 'grado_id'];
 
     public function grado()
     {
@@ -30,9 +30,9 @@ class alumno extends Model
       return $query->where('grado_id', 'LIKE', "%$grado_id%");
     }
 
-    public function calificaciones()
+    public function cursos()
     {
-    	return $this->hasMany('App\calificacion');
+    	return $this->belongsToMany('App\curso')->withPivot('bim1', 'bim2', 'bim3', 'bim4', 'promedio')->withTimestamps();
     }
 
 }

@@ -5,19 +5,19 @@
 <a href="{{route('admin.colegiaturas.create', $alumno->id)}}" class="btn btn-info">Nuevo Pago</a>
 <hr>
 @include('flash::message')
-	<table class="table table-striped">
+	<table class="table table-striped ">
 		<thead>
 			<th>ID</th>
-			<th>Fecha</th>
-			<th>Nit</th>
-			<th>Nombre</th>
-			<th width="5">Num. de Documento</th>
-			<th width="5">Num. de Factura</th>
-			<th>Mes</th>
-			<th>Monto</th>
-			<th>Descripción</th>
-			<th>Alumno</th>
-			<th>Operaciones</th>
+			<th class="col-sm-1">Fecha</th>
+			<th class="col-sm-1">Nit</th>
+			<th class="col-sm-1">Nombre</th>
+			<th class="col-sm-1">Num. de Documento</th>
+			<th class="col-sm-1">Num. de Factura</th>
+			<th class="col-sm-1">Mes</th>
+			<th class="col-sm-1">Monto</th>
+			<th class="col-sm-1">Descripción</th>
+			<th class="col-sm-1">Alumno</th>
+			<th class="col-sm-3">Operaciones</th>
 		</thead>
 		<tbody>
 			@foreach($colegiaturas as $colegiatura)
