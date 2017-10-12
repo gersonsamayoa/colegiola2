@@ -26,5 +26,12 @@ class curso extends Model
     return $this->belongsToMany('App\alumno')->withPivot('bim1', 'bim2', 'bim3', 'bim4', 'promedio')->withTimestamps();
   }
 
+  public function alumnos_cursos()
+  {
+    return $this->hasMany('App\alumno_curso');
+  }
+
+
+
 
 }

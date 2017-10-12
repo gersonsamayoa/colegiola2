@@ -8,7 +8,7 @@ class grado extends Model
 {
     protected $table ="grados";
 
-    protected $fillable =['nombre', 'nivel_id'];
+    protected $fillable =['nombre', 'cantidadbimestres', 'nivel_id'];
 
     public function alumnos()
     {
@@ -27,5 +27,9 @@ class grado extends Model
 
     public static function grados($id){
       return grado::where('nivel_id', '=', $id)->orderBy('nombre','ASC')->get();
+    }
+
+    public static function grados2($id){
+      return grado::orderBy('nombre','ASC')->get();
     }
 }

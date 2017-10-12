@@ -14,4 +14,9 @@ class alumno_curso extends Model
   {
     return $this->belongsTo('App\alumno');
   }
+
+  public function curso()
+  {
+    return $this->belongsTo('App\curso');
+  }
 }

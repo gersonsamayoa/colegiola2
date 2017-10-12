@@ -52,7 +52,15 @@ class AlumnosController extends Controller
     {
       if($request->ajax()){
         $grados=grado::grados($id);
-        return response()->json($grados);
+            return response()->json($grados);
+        }
+    }
+
+    public function getGrados2(Request $request, $id)
+    {
+      if($request->ajax()){
+        $grados=grado::grados2($id);
+            return response()->json($grados);
         }
     }
 

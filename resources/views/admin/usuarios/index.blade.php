@@ -5,7 +5,7 @@
 <hr>
 @include('flash::message')
 
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>ID</th>
 			<th>Nombre</th>
@@ -26,11 +26,11 @@
 					<span class="label label-primary">{{$user->type}}</span>
 					@endif
 					</td>
-					
-					<td><a href="{{route('admin.usuarios.edit', $user->id)}}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a> 
+
+					<td><a href="{{route('admin.usuarios.edit', $user->id)}}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
 
 					<a href="{{ route('admin.usuarios.destroy', $user->id)}}" onclick="return confirm('¿Seguro que desaes eliminarlo?')" class="btn btn-danger"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></a></td>
-				
+
 				</tr>
 			@endforeach
 		</tbody>

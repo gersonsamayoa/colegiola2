@@ -9,6 +9,11 @@
 </div>
 
 <div class="form-group">
+  {!!Form::label('cantidadbimestres', 'Cantidad de bimestres')!!}
+  {!!Form::text('cantidadbimestres', $grados->cantidadbimestres,['class'=>'form-control', 'placeholder'=>'Cantidad de Bimestres','required'])!!}
+</div>
+
+<div class="form-group">
 {!!Form::label('nivel_id', 'Nivel')!!}
 {!!Form::select('nivel_id', $niveles, $grados->nivel_id, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required'])!!}
 </div>

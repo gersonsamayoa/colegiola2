@@ -59,10 +59,9 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 		'as'	=>'admin.alumnos.destroy'
 		]);
 
-
-
 		/*Ruta del Js Dropdown*/
   	Route::get('alumnos/create/{id}', 'AlumnosController@getGrados');
+		Route::get('alumnos/create2/{id}', 'AlumnosController@getGrados2');
 
 		/*Rutas para listado de calificaciones*/
 		Route::get('calificaciones/{id}', [
@@ -83,6 +82,19 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 				Route::get('calificaciones/{idalumno}{idcurso}/destroy', [
 					'uses'	=>'CalificacionesController@destroy',
 					'as'	=>'admin.calificaciones.destroy'
+					]);
+
+					/*Ruta para Boleta de Calificaciones*/
+
+					Route::get('boleta/{idalumno}', [
+						'uses' 	=>	'BoletaController@index',
+						'as'		=>	'admin.boleta'
+					]);
+
+					/*Ruta para imprimir boleta de calificaciones*/
+					Route::get('boleta/{idalumno}/imprimir', [
+						'uses'	=> 	'BoletaController@imprimir',
+						'as'		=>	'admin.boleta.imprimir'
 					]);
 
 				/*Rutas para listado de Colegiaturas*/
@@ -108,8 +120,6 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 					'uses' => 'ColegiaturasController@consultagrado',
 					'as' => 'admin.colegiaturas.consultagrado'
 					]);
-
-
 
 				/*Rutas para la Factura*/
 					Route::get('pdf/{id}', [

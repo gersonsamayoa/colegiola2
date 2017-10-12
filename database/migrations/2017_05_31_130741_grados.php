@@ -15,6 +15,7 @@ class Grados extends Migration
         Schema::create('grados', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 120);
+            $table->integer('cantidadbimestres');
             $table->integer('nivel_id')->unsigned();
             $table->foreign('nivel_id')->references('id')->on('niveles')->onDelete('cascade');
             $table->timestamps();

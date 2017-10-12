@@ -16,7 +16,7 @@
 {!!Form::close()!!}
 <br><br><br>
 @include('flash::message')
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>ID</th>
 			<th class="col-sm-2">Apellidos</th>
@@ -37,15 +37,17 @@
 					<td>{{$alumno->encargado}}</td>
 					<td>{{$alumno->telefono}}</td>
 					<td width=400>{{$alumno->grado->nombre}}</td>
-					<td><a href="{{route('admin.alumnos.edit', $alumno->id)}}" alt="Agregar" class="btn btn-primary">Editar
-					</a> <a href="{{route('admin.alumnos.destroy', $alumno->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
-					<a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" class="btn btn-info">Colegiaturas</a>
+					<td>
+						<a href="{{route('admin.alumnos.edit', $alumno->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">
+						</a>
+						<a href="{{route('admin.alumnos.destroy', $alumno->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>
+						<a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" class="btn btn-info glyphicon glyphicon-usd" title="Colegiaturas"></a>
+						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Boleta de Calificaciones"></a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 
-	</table>
 
 	{!!$alumnos->render()!!}
 

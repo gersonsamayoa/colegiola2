@@ -5,7 +5,7 @@
 <a href="{{route('admin.colegiaturas.create', $alumno->id)}}" class="btn btn-info">Nuevo Pago</a>
 <hr>
 @include('flash::message')
-	<table class="table table-striped ">
+	<table class="table  table-hover">
 		<thead>
 			<th>ID</th>
 			<th class="col-sm-1">Fecha</th>

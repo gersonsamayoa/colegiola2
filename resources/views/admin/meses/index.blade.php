@@ -4,7 +4,7 @@
 <a href="{{route('admin.meses.create')}}" class="btn btn-info">Nuevo Mes</a>
 <hr>
 @include('flash::message')
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>ID</th>
 			<th>Mes</th>

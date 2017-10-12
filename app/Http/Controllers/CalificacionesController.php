@@ -66,7 +66,13 @@ class CalificacionesController extends Controller
      */
     public function store(Request $request, $cursoid, $alumnoid)
     {
+
         $alumnos=alumno::find($alumnoid);
+        $grados=grado::find($alumnos->grado_id);
+
+        /*Calculo del Promedio con base a cantidad de bimestres del grado*/
+        $request->promedio=($request->bim1+$request->bim2+$request->bim3+$request->bim4)/$grados->cantidadbimestres;
+
         $alumnos->cursos()->attach($cursoid, ['bim1' => $request->bim1, 'bim2' => $request->bim2, 'bim3' => $request->bim3, 'bim4' => $request->bim4, 'promedio' => $request->promedio]);
 
 
@@ -107,6 +113,8 @@ class CalificacionesController extends Controller
     public function update(Request $request, $cursoid, $alumnoid)
     {
       $alumnos=alumno::find($alumnoid);
+      $grados=grado::find($alumnos->grado_id);
+      $request->promedio=($request->bim1+$request->bim2+$request->bim3+$request->bim4)/$grados->cantidadbimestres;
       $cursos=$alumnos->cursos()->where('curso_id', $cursoid)->first();
       $cursos->pivot->bim1=$request->bim1;
       $cursos->pivot->bim2=$request->bim2;

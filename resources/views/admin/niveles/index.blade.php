@@ -4,7 +4,7 @@
 <a href="{{route('admin.niveles.create')}}" class="btn btn-info">Nuevo Nivel</a>
 <hr>
 @include('flash::message')
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>ID</th>
 			<th>Nivel</th>
