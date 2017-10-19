@@ -237,21 +237,6 @@
 
 @section('scripts')
 <script>
-$(document).ready(function(){
-	$('.btn-delete2').click(function(e){
-		e.preventDefault();
-		var row=$(this).parents('tr');
-		var alumnoid= row.data('alumnoid');
-		var cursoid=row.data('cursoid');
-		var form=$('#form-delete');
-		var url=form.attr('action').replace(':ALUMNOID',alumnoid). replace(':CURSOID', cursoid);
-		var data=form.serialize();
-		row.fadeOut();
-		$.post(url,data, function(result)
-		{
-			alert(result);
-		});
-	});
-});
+
 </script>
 @endsection

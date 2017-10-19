@@ -44,8 +44,6 @@ class CalificacionesController extends Controller
 
 
         return view('admin.calificaciones.index', compact('cursos', 'grados', 'alumnos', 'cursosalumnosasignados', 'cursos_alumnos'));
-
-
     }
 
     /**

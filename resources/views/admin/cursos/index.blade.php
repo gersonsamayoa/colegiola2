@@ -2,7 +2,7 @@
 @section('title', 'Listado de Cursos')
 @section('content')
 
-{!!Form::open(['route'=>'admin.cursos.index','method'=>'GET', ])!!}
+{!!Form::model(Request::only(['Nivel', 'grado_id']),['route'=>'admin.cursos.index','method'=>'GET', ])!!}
 <div class="form-group">
 {!!Form::label('nivel_id', 'Nivel')!!}
 {!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'id'=>'Nivel'])!!}
@@ -43,5 +43,5 @@
 	<a href="{{route('admin.cursos.create')}}" class="btn btn-info">Nuevo Curso</a>
 	<hr>
 
-	{!!$cursos->render()!!}
+	{!!$cursos->appends(Request::only(['Nivel', 'grado_id']))->render()!!}
 	@endsection
