@@ -7,7 +7,7 @@
 
 <h3 class="text-center">Alumnos con notas</h3>
 @if($grados->cantidadbimestres==4)
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>Carnet</th>
 			<th>Alumno</th>
@@ -65,7 +65,7 @@
 		</tbody>
 	</table>
 	@else
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>Carnet</th>
 			<th>Alumno</th>
@@ -121,7 +121,7 @@
 
 @if($grados->cantidadbimestres==4)
 	<h3 class="text-center">Alumnos sin  notas</h3>
-	<table class="table table-striped">
+	<table class="table table-striped table-hover">
 		<thead>
 			<th>Carnet</th>
 			<th>Alumno</th>
@@ -177,7 +177,7 @@
 </table>
 @else
 <h3 class="text-center">Alumnos sin  notas</h3>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
 	<thead>
 		<th>Carnet</th>
 		<th>Alumno</th>

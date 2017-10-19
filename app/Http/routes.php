@@ -91,10 +91,21 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 						'as'		=>	'admin.boleta'
 					]);
 
+					Route::get('grado/{idgrado}', [
+						'uses' 	=>	'BoletaController@BoletaPorGrado',
+						'as'		=>	'admin.grados.boleta'
+					]);
+
 					/*Ruta para imprimir boleta de calificaciones*/
-					Route::get('boleta/{idalumno}/imprimir', [
+					Route::get('boleta/imprimir/{idalumno}', [
 						'uses'	=> 	'BoletaController@imprimir',
 						'as'		=>	'admin.boleta.imprimir'
+					]);
+
+					/*Ruta para imprimir boleta de calificaciones por grado*/
+					Route::get('grado/imprimir/{idgrado}',[
+						'uses'	=>	'BoletaController@ImprimirPorGrado',
+						'as'	=>	'admin.grados.imprimir'
 					]);
 
 				/*Rutas para listado de Colegiaturas*/

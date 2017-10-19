@@ -20,7 +20,8 @@
 					<td>{{$grado->cantidadbimestres}}</td>
 					<td>{{$grado->nivel->nombre}}</td>
 					<td><a href="{{route('admin.grados.edit', $grado->id)}}" class="btn btn-primary">Editar
-					</a> <a href="{{route('admin.grados.destroy', $grado->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
+					</a> <a href="{{route('admin.grados.destroy', $grado->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
+					<a href="{{route('admin.grados.boleta', $grado->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Imprimir Boletas de Calificaciones"></a></td>
 				</tr>
 			@endforeach
 		</tbody>

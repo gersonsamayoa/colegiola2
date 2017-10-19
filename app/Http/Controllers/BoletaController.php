@@ -8,8 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\alumno;
 use App\grado;
+use App\curso;
 use App\alumno_curso;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection as Collection;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
@@ -22,26 +24,72 @@ class BoletaController extends Controller
      */
     public function index($idalumno)
     {
+        $totalpromedio=0;
+        $totalcursos=0;
         $alumnos=alumno::find($idalumno);
         $grados=grado::find($alumnos->grado_id);
 
         $alumnos2=alumno_curso::where('alumno_id', $idalumno)->get();
+        foreach ($alumnos2 as $alumno) {
+            $totalpromedio=$totalpromedio+$alumno->promedio;
+            $totalcursos=$totalcursos+1;
+        }
 
-        return view('admin.calificaciones.boleta', compact('alumnos', 'grados', 'alumnos2'));
+        $totalpromedio=$totalpromedio/$totalcursos;
+
+        return view('admin.calificaciones.boleta', compact('alumnos', 'grados', 'alumnos2', 'totalpromedio'));
     }
 
     public function imprimir($idalumno)
     {
-      $alumnos=alumno::find($idalumno);
-      $grados=grado::find($alumnos->grado_id);
-      $alumnos2=alumno_curso::where('alumno_id', $idalumno)->get();
+        $totalpromedio=0;
+        $totalcursos=0;
+        $alumnos=alumno::find($idalumno);
+        $grados=grado::find($alumnos->grado_id);
+        $alumnos2=alumno_curso::where('alumno_id', $idalumno)->get();
+        foreach ($alumnos2 as $alumno) {
+            $totalpromedio=$totalpromedio+$alumno->promedio;
+            $totalcursos=$totalcursos+1;
+        }
 
-     $pdf=new PDF();
+        $totalpromedio=$totalpromedio/$totalcursos;
+
+        $pdf=new PDF();
 
 
-      $pdf=PDF::loadview('admin.calificaciones.boletapdf',compact('alumnos', 'grados', 'alumnos2'));
+        $pdf=PDF::loadview('admin.calificaciones.boletapdf',compact('alumnos', 'grados', 'alumnos2', 'totalpromedio'));
   
-      return $pdf->stream('archivo.pdf');
+        return $pdf->stream('archivo.pdf');
+    }
+
+    public function BoletaporGrado($idgrado)
+    {
+        $totalpromedio=0;
+        $totalcursos=0;
+        $grados=grado::find($idgrado);
+        $alumnos=alumno::where('grado_id', $idgrado)->get();
+
+        $alumnos2=alumno_curso::orderby('curso_id')->get();
+
+        return view('admin.calificaciones.boletaporgrado', compact('alumnos',
+            'alumnos2', 'grados', 'totalpromedio', 'totalcursos'));
+    }
+
+    public function ImprimirPorGrado($idgrado)
+    {
+        $totalpromedio=0;
+        $totalcursos=0;
+        $grados=grado::find($idgrado);
+        $alumnos=alumno::where('grado_id', $idgrado)->get();
+
+        $alumnos2=alumno_curso::orderby('curso_id')->get();
+
+        $pdf=new PDF();
+
+        $pdf=PDF::loadview('admin.calificaciones.boletaporgradopdf',compact('alumnos',
+            'alumnos2', 'grados', 'totalpromedio', 'totalcursos'));
+  
+        return $pdf->stream('archivo.pdf');
     }
 
     /**
