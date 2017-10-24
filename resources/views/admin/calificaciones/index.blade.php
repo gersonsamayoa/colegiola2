@@ -7,26 +7,24 @@
 
 <h3 class="text-center">Alumnos con notas</h3>
 @if($grados->cantidadbimestres==4)
-	<table class="table table-striped table-hover">
+<table class="table table-striped table-hover">
 		<thead>
-			<th>Carnet</th>
+			<th>Alumno_id</th>
 			<th>Alumno</th>
-      <th>Curso_id</th>
-					<th class="col-sm-1">Bim1</th>
-					<th class="col-sm-1">Bim2</th>
-		      <th class="col-sm-1">Bim3</th>
-					<th class="col-sm-1">Bim4</th>
-		      <th class="col-sm-1">Promedio</th>
-      <th>Acción</th>
+      		<th>Curso_id</th>
+			<th class="col-sm-1">Bim1</th>
+			<th class="col-sm-1">Bim2</th>
+		    <th class="col-sm-1">Bim3</th>
+			<th class="col-sm-1">Bim4</th>
+		    <th class="col-sm-1">Promedio</th>
+      		<th>Acción</th>
 		</thead>
 		<tbody>
-
-		@foreach($cursosalumnosasignados as $cursoalumnoasignado)
-
-				@if($cursoalumnoasignado->curso_id==$cursos->id)
-					{!!Form::open(['route'=>['admin.calificaciones.update', $cursoalumnoasignado->curso_id, $cursoalumnoasignado->alumno_id], 'method'=>'PUT']) !!}
-					 <tr data-alumnoid="{{$cursoalumnoasignado->alumno_id}}" data-cursoid="{{$cursoalumnoasignado->curso_id}}">
-					<td>{{$cursoalumnoasignado->carnet}}</td>
+			@foreach($cursosalumnosasignados as $cursoalumnoasignado)
+			@if($cursoalumnoasignado->curso_id==$cursos->id)
+				{!!Form::open(['route'=>['admin.calificaciones.update', $cursoalumnoasignado->curso_id, $cursoalumnoasignado->alumno_id], 'method'=>'PUT']) !!}
+					
+					<td>{{$cursoalumnoasignado->alumno_id}}</td>
 					<td>{{$cursoalumnoasignado->nombres . " " . $cursoalumnoasignado->apellidos}}</td>
 					<td>{{$cursoalumnoasignado->curso_id}}</td>
 
@@ -47,41 +45,41 @@
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::label('promedio',$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::label($cursoalumnoasignado->promedio ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td>
 						<div class="form-group">
 						{!!Form::submit('Editar',['class'=>'btn btn-info'])!!}
-						{!!Form::close()!!}
-						<a href="{{route('admin.calificaciones.destroy', [$cursoalumnoasignado->alumno_id,$cursoalumnoasignado->curso_id])}}"  onclick="return confirm('Seguro que quiere eliminar esta calificación?')" class="btn btn-danger btn-delete">Eliminar</a>
+				{!!Form::close()!!}
+						<a href="{{route('admin.calificaciones.destroy', ['alumnoid'=>$cursoalumnoasignado->alumno_id,'curso_id'=> $cursoalumnoasignado->curso_id])}}"  onclick="return confirm('Seguro que quiere eliminar esta calificación?')" class="btn btn-danger btn-delete">Eliminar</a>
 						</div>
-
 					</td>
-
 				</tr>
-				@endif
-			@endforeach
-		</tbody>
-	</table>
-	@else
+			@endif
+		@endforeach
+	</tbody>
+</table>
+	<div class="form-group pull-right">
+		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+		{!!Form::close()!!}
+	</div>
+@else
 	<table class="table table-striped table-hover">
 		<thead>
 			<th>Carnet</th>
 			<th>Alumno</th>
-      <th>Curso_id</th>
-					<th class="col-sm-1">Bim1</th>
-					<th class="col-sm-1">Bim2</th>
-		      <th class="col-sm-1">Bim3</th>
-		      <th class="col-sm-1">Promedio</th>
-      <th>Acción</th>
+      		<th>Curso_id</th>
+			<th class="col-sm-1">Bim1</th>
+			<th class="col-sm-1">Bim2</th>
+		    <th class="col-sm-1">Bim3</th>
+		    <th class="col-sm-1">Promedio</th>
+      		<th>Acción</th>
 		</thead>
 		<tbody>
-
 		@foreach($cursosalumnosasignados as $cursoalumnoasignado)
-
-				@if($cursoalumnoasignado->curso_id==$cursos->id)
-					{!!Form::open(['route'=>['admin.calificaciones.update', $cursoalumnoasignado->curso_id, $cursoalumnoasignado->alumno_id], 'method'=>'PUT']) !!}
+			@if($cursoalumnoasignado->curso_id==$cursos->id)
+				{!!Form::open(['route'=>['admin.calificaciones.update', $cursoalumnoasignado->curso_id, $cursoalumnoasignado->alumno_id], 'method'=>'PUT']) !!}
 					 <tr data-alumnoid="{{$cursoalumnoasignado->alumno_id}}" data-cursoid="{{$cursoalumnoasignado->curso_id}}">
 					<td>{{$cursoalumnoasignado->carnet}}</td>
 					<td>{{$cursoalumnoasignado->nombres . " " . $cursoalumnoasignado->apellidos}}</td>
@@ -107,132 +105,116 @@
 						<div class="form-group">
 						{!!Form::submit('Editar',['class'=>'btn btn-info'])!!}
 						{!!Form::close()!!}
-						<a href="{{route('admin.calificaciones.destroy', [$cursoalumnoasignado->alumno_id,$cursoalumnoasignado->curso_id])}}"  onclick="return confirm('Seguro que quiere eliminar esta calificación?')" class="btn btn-danger btn-delete">Eliminar</a>
+						<a href="{{route('admin.calificaciones.destroy', ['alumnoid'=>$cursoalumnoasignado->alumno_id,'curso_id'=> $cursoalumnoasignado->curso_id])}}"  onclick="return confirm('Seguro que quiere eliminar esta calificación?')" class="btn btn-danger btn-delete">Eliminar</a>
 						</div>
-
 					</td>
-
 				</tr>
-				@endif
-			@endforeach
-		</tbody>
-	</table>
-	@endif
+			@endif
+		@endforeach
+	</tbody>
+</table>
+@endif
 
 @if($grados->cantidadbimestres==4)
 	<h3 class="text-center">Alumnos sin  notas</h3>
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Carnet</th>
+			<th>Alumno_id</th>
 			<th>Alumno</th>
 			<th>Curso_id</th>
 			<th class="col-sm-1">Bim1</th>
 			<th class="col-sm-1">Bim2</th>
 			<th class="col-sm-1">Bim3</th>
 			<th class="col-sm-1">Bim4</th>
-			<th>Acción</th>
 		</thead>
 		<tbody>
-	<tr>
-	@foreach($cursos_alumnos as $curso_alumno)
+		<tr>
+		{!!Form::open(['route'=>['admin.calificaciones.store', $cursos->id], 'method'=>'POST'])!!}
+		@foreach($cursos_alumnos as $curso_alumno)
+			@if($curso_alumno->grado_id==$grados->id)
+				<td><div class="form-group">
+				{!!Form::text('alumno_id[]',$curso_alumno->id,['class'=>'form-control', 'readonly'])!!}
+				</div></td>
+				
+				<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
 
-					@if($curso_alumno->grado_id==$grados->id)
+				<td><div class="form-group">
+					{!!Form::text('curso_id[]',$cursos->id,['class'=>'form-control', 'readonly'])!!}
+				</div></td>
 
-					{!!Form::open(['route'=>['admin.calificaciones.store', $cursos->id, $curso_alumno->id], 'method'=>'POST']) !!}
+				<td><div class="form-group">
+					{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+				</div></td>
 
-					<td>{{$curso_alumno->carnet}}</td>
-					<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
-					<td>{{$cursos->id}}</td>
+				<td><div class="form-group">
+					{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+				</div></td>
 
-					<td><div class="form-group">
-						{!!Form::text('bim1',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-					</div></td>
+				<td><div class="form-group">
+					{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+				</div></td>
 
-					<td><div class="form-group">
-							{!!Form::text('bim2',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-					</div></td>
-
-					<td><div class="form-group">
-								{!!Form::text('bim3',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-					</div></td>
-
-					<td><div class="form-group">
-								{!!Form::text('bim4',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-					</div></td>
-
-					<td>
-						<div class="form-group">
-						{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-						{!!Form::close()!!}
-						</div>
-					</td>
-
+				<td><div class="form-group">
+					{!!Form::text('bim4[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+				</div></td>
 			</tr>
-				@endif
-				@endforeach
-
-
+			@endif
+		@endforeach
 	</tbody>
-
 </table>
+		<div class="form-group pull-right">
+			{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+			{!!Form::close()!!}
+		</div>
 @else
 <h3 class="text-center">Alumnos sin  notas</h3>
-<table class="table table-striped table-hover">
-	<thead>
-		<th>Carnet</th>
-		<th>Alumno</th>
-		<th>Curso_id</th>
-		<th class="col-sm-1">Bim1</th>
-		<th class="col-sm-1">Bim2</th>
-		<th class="col-sm-1">Bim3</th>
-		<th>Acción</th>
-	</thead>
-	<tbody>
-<tr>
-@foreach($cursos_alumnos as $curso_alumno)
-
+	<table class="table table-striped table-hover">
+		<thead>
+			<th>Id_alumno</th>
+			<th>Alumno</th>
+			<th>Curso_id</th>
+			<th class="col-sm-1">Bim1</th>
+			<th class="col-sm-1">Bim2</th>
+			<th class="col-sm-1">Bim3</th>
+		</thead>
+		<tbody>
+		<tr>
+		{!!Form::open(['route'=>['admin.calificaciones.store', $cursos->id], 'method'=>'POST'])!!}
+			@foreach($cursos_alumnos as $curso_alumno)
 				@if($curso_alumno->grado_id==$grados->id)
+					<td><div class="form-group">
+						{!!Form::text('alumno_id[]',$curso_alumno->id,['class'=>'form-control', 'readonly'])!!}
+					</div></td>
+					
+					<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
 
-				{!!Form::open(['route'=>['admin.calificaciones.store', $cursos->id, $curso_alumno->id], 'method'=>'POST']) !!}
+					<td><div class="form-group">
+						{!!Form::text('curso_id[]',$cursos->id,['class'=>'form-control', 'readonly'])!!}
+					</div></td>
 
-				<td>{{$curso_alumno->carnet}}</td>
-				<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
-				<td>{{$cursos->id}}</td>
+					<td><div class="form-group">
+						{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					</div></td>
 
-				<td><div class="form-group">
-					{!!Form::text('bim1',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-				</div></td>
+					<td><div class="form-group">
+						{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					</div></td>
 
-				<td><div class="form-group">
-						{!!Form::text('bim2',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-				</div></td>
-
-				<td><div class="form-group">
-							{!!Form::text('bim3',null,['class'=>'form-control','placeholder'=> '', ''])!!}
-				</div></td>
-
-				<td>
-					<div class="form-group">
-					{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-					{!!Form::close()!!}
-					</div>
-				</td>
-
-		</tr>
+					<td><div class="form-group">
+						{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					</div></td>
+				</tr>
 			@endif
-			@endforeach
-
-
-</tbody>
-
+		@endforeach
+	</tbody>
 </table>
+
+	<div class="form-group pull-right">
+		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+		{!!Form::close()!!}
+	</div>
+	
 @endif
-{!!Form::open(['route'=>['admin.calificaciones.destroy',':ALUMNOID', ':CURSOID'], 'method'=>'DELETE', 'id'=>'form-delete'])!!}
-{!!Form::close()!!}
-
-{!!Form::open(['route'=>['admin.calificaciones.update', ':ALUMNOID', ':CURSOID'], 'method'=>'PUT', 'id'=>'form-update']) !!}
-{!!Form::close()!!}
-
 @endsection
 
 @section('scripts')

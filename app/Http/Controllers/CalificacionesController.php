@@ -62,20 +62,39 @@ class CalificacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $cursoid, $alumnoid)
-    {
+    public function store(Request $request, $idcurso)
+    {   
+        $cantidad=count($request->alumno_id);
+        $mensaje="";
+ 
+        for ($i=0; $i<$cantidad ; $i++) { 
+            $alumnos=alumno::find($request->alumno_id[$i]);
+            $grados=grado::find($alumnos->grado_id);
+            $cantidadbimestres=$grados->cantidadbimestres;
 
-        $alumnos=alumno::find($alumnoid);
-        $grados=grado::find($alumnos->grado_id);
-
-        /*Calculo del Promedio con base a cantidad de bimestres del grado*/
-        $request->promedio=($request->bim1+$request->bim2+$request->bim3+$request->bim4)/$grados->cantidadbimestres;
-
-        $alumnos->cursos()->attach($cursoid, ['bim1' => $request->bim1, 'bim2' => $request->bim2, 'bim3' => $request->bim3, 'bim4' => $request->bim4, 'promedio' => $request->promedio]);
+        /*Calculo del Promedio con base a cantidad de bimestres del grado*/if($cantidadbimestres==4){
+                            
+                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i]+$request->bim4[$i])/$cantidadbimestres;
 
 
-        flash('Calificación Guardada Exitosamente')->success()->important();
-        return redirect()->route('admin.calificaciones.listCalificaciones', $cursoid);
+                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'bim4' => $request->bim4[$i], 'promedio' => $promedio]);
+
+                $mensaje=$mensaje . $alumnos->nombres . ', ';
+                }
+
+            else
+             {
+                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i])/$cantidadbimestres;
+
+                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'promedio' => $promedio]);
+
+                $mensaje=$mensaje . $alumnos->nombres . ', ';
+            
+            }}   
+
+  
+         flash('Las calificaciones de: ' . $mensaje . ' se guardaron exitosamente')->success()->important();
+        return redirect()->route('admin.calificaciones.listCalificaciones', $idcurso);
 
     }
 
@@ -110,6 +129,7 @@ class CalificacionesController extends Controller
      */
     public function update(Request $request, $cursoid, $alumnoid)
     {
+        dd($request->all());
       $alumnos=alumno::find($alumnoid);
       $grados=grado::find($alumnos->grado_id);
       $request->promedio=($request->bim1+$request->bim2+$request->bim3+$request->bim4)/$grados->cantidadbimestres;
@@ -133,7 +153,6 @@ class CalificacionesController extends Controller
      */
     public function destroy($alumnoid, $cursoid)
     {
-
       $alumnos=alumno::find($alumnoid);
       $alumnos->cursos()->detach($cursoid);
 

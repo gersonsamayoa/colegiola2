@@ -69,17 +69,17 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 			'as' 	=>'admin.calificaciones.listCalificaciones'
 			]);
 
-			Route::post('calificaciones/{idcurso}{idalumno}', [
+			Route::post('grabarcalificaciones/{idcurso}', [
 				'uses'=>'CalificacionesController@store',
 				'as'=>'admin.calificaciones.store'
 			]);
 
-			Route::put('calificaciones/{idcurso}{idalumno}', [
+			Route::put('calificaciones/{idcurso}/{idalumno}', [
 					'uses'=>'CalificacionesController@update',
 					'as'=>'admin.calificaciones.update'
 				]);
 
-				Route::get('calificaciones/{idalumno}{idcurso}/destroy', [
+				Route::get('calificaciones/{idalumno}/{cursoid}/destroy', [
 					'uses'	=>'CalificacionesController@destroy',
 					'as'	=>'admin.calificaciones.destroy'
 					]);
