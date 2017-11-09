@@ -25,11 +25,11 @@ class CursosController extends Controller
       $grados=grado::orderby('nombre','ASC')->lists('nombre', 'id');
 
       if($request->grado_id){
-        $cursos=curso::buscar($request->grado_id)->orderBy('nombre', 'ASC')->paginate(5);
+        $cursos=curso::buscar($request->grado_id)->orderBy('id', 'ASC')->paginate(5);
 
           return view('admin.cursos.index', compact('cursos', 'grados', 'niveles'));
       }else{
-        $cursos=curso::orderBy('nombre', 'ASC')->paginate(5);
+        $cursos=curso::orderBy('id', 'ASC')->paginate(5);
           return view('admin.cursos.index', compact('cursos', 'grados', 'niveles'));
       }
 

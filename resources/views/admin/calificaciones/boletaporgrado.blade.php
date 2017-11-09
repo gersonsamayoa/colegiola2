@@ -10,6 +10,7 @@
 <br>
 @if ($grados->cantidadbimestres==4)
 @foreach($alumnos as $alumno)
+
 <h3>{{$alumno->nombres . " " . $alumno->apellidos}}</h3>
 <table class="table table-striped table-hover">
       <thead class="info">
@@ -55,7 +56,8 @@
         </tbody>
       </table>
         @endforeach
-        @else
+
+@else
 
         @foreach($alumnos as $alumno)
 <h3>{{$alumno->nombres . " " . $alumno->apellidos}}</h3>

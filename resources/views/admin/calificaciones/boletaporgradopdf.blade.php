@@ -6,9 +6,9 @@
     
   </head>
   <body>
-
 @if ($grados->cantidadbimestres==4)
 @foreach($alumnos as $alumno)
+<div style="page-break-after:always;">
 <hr>
 <h2>{{$alumno->nombres . " " . $alumno->apellidos}}</h2>
 <h3>{{ $grados->nombre }}</h3>
@@ -58,15 +58,14 @@
               ?>
         </tbody>
       </table>
-       <br><br>
-        @endforeach
-
-        @else
-
-        @foreach($alumnos as $alumno)
-<h2>{{$alumno->nombres . " " . $alumno->apellidos}}</h2>
-<h3>{{ $grados->nombre }}</h3>
-<table class="table table-striped table-hover" border="1">
+    </div>
+     @endforeach
+    @else
+  @foreach($alumnos as $alumno)
+  <div style="page-break-after:always;">
+    <h2>{{$alumno->nombres . " " . $alumno->apellidos}}</h2>
+    <h3>{{ $grados->nombre }}</h3>
+    <table class="table table-striped table-hover" border="1">
       <thead class="info">
         <tr>
             <th class="info">Curso_id</th>
@@ -102,11 +101,12 @@
         <td></td>
         <td><strong>{{$totalpromedio/$totalcursos}}</strong></td>
       </tr>
-      <?php
+        <?php
           $totalpromedio=0;
           $totalcursos=0;
           ?>
         </tbody>
       </table>
+           </div>
         @endforeach
-        @endif
+@endif

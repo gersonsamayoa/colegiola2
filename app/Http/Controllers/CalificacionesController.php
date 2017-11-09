@@ -92,8 +92,10 @@ class CalificacionesController extends Controller
             
             }}   
 
-  
-         flash('Las calificaciones de: ' . $mensaje . ' se guardaron exitosamente')->success()->important();
+        if ($mensaje!=null) {
+           flash('Las calificaciones de: ' . $mensaje . ' se guardaron exitosamente')->success()->important();
+        }
+         
         return redirect()->route('admin.calificaciones.listCalificaciones', $idcurso);
 
     }
@@ -127,22 +129,55 @@ class CalificacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $cursoid, $alumnoid)
+    public function update(Request $request, $idcurso)
     {
-        dd($request->all());
-      $alumnos=alumno::find($alumnoid);
-      $grados=grado::find($alumnos->grado_id);
-      $request->promedio=($request->bim1+$request->bim2+$request->bim3+$request->bim4)/$grados->cantidadbimestres;
-      $cursos=$alumnos->cursos()->where('curso_id', $cursoid)->first();
-      $cursos->pivot->bim1=$request->bim1;
-      $cursos->pivot->bim2=$request->bim2;
-      $cursos->pivot->bim3=$request->bim3;
-      $cursos->pivot->bim4=$request->bim4;
-      $cursos->pivot->promedio=$request->promedio;
-      $cursos->pivot->save();
+        
+        $cantidad=count($request->alumno_id);
+        $mensaje="";
 
-      flash('Calificación Editada Exitosamente')->success()->important();
-      return redirect()->route('admin.calificaciones.listCalificaciones', $cursoid);
+        for ($i=0; $i<$cantidad ; $i++) { 
+            $alumnos=alumno::find($request->alumno_id[$i]);
+            $grados=grado::find($alumnos->grado_id);
+            $cantidadbimestres=$grados->cantidadbimestres;
+
+
+            if($cantidadbimestres==4){
+                            
+                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i]+$request->bim4[$i])/$cantidadbimestres;
+
+
+                $cursos=$alumnos->cursos()->where('curso_id', $request->curso_id[$i])->first();
+
+                  $cursos->pivot->bim1=$request->bim1[$i];
+                  $cursos->pivot->bim2=$request->bim2[$i];
+                  $cursos->pivot->bim3=$request->bim3[$i];
+                  $cursos->pivot->bim4=$request->bim4[$i];
+                  $cursos->pivot->promedio=$promedio;
+                  $cursos->pivot->save();
+                  $mensaje=$mensaje . $alumnos->nombres . ', ';
+              }
+               else
+             {
+                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i])/$cantidadbimestres;
+
+                $cursos=$alumnos->cursos()->where('curso_id', $request->curso_id[$i])->first();
+
+                $cursos->pivot->bim1=$request->bim1[$i];
+                  $cursos->pivot->bim2=$request->bim2[$i];
+                  $cursos->pivot->bim3=$request->bim3[$i];
+                  $cursos->pivot->promedio=$promedio;
+                  $cursos->pivot->save();
+
+                $mensaje=$mensaje . $alumnos->nombres . ', ';
+
+             }
+          }
+
+      if ($mensaje!=null) {
+           flash('Las calificaciones de: ' . $mensaje . ' se guardaron exitosamente')->success()->important();
+        }
+
+      return redirect()->route('admin.calificaciones.listCalificaciones', $idcurso);
     }
 
     /**

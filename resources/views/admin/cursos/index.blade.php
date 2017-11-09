@@ -19,6 +19,7 @@
 
 	<table class="table table-striped table-hover">
 		<thead>
+			<th>Correlativo</th>
 			<th>ID</th>
 			<th>Curso</th>
 			<th>Grado</th>

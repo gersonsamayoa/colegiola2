@@ -74,12 +74,13 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 				'as'=>'admin.calificaciones.store'
 			]);
 
-			Route::put('calificaciones/{idcurso}/{idalumno}', [
+			Route::any('actualizar/{idcurso}', [
 					'uses'=>'CalificacionesController@update',
-					'as'=>'admin.calificaciones.update'
+					'as'=>'admin.actualizar.update'
 				]);
 
-				Route::get('calificaciones/{idalumno}/{cursoid}/destroy', [
+
+			Route::get('calificaciones/{idalumno}/{cursoid}/destroy', [
 					'uses'	=>'CalificacionesController@destroy',
 					'as'	=>'admin.calificaciones.destroy'
 					]);
