@@ -11,7 +11,7 @@
 			<th class="col-sm-1">Fecha</th>
 			<th class="col-sm-1">Nit</th>
 			<th class="col-sm-1">Nombre</th>
-			<th class="col-sm-1">Num. de Documento</th>
+			<th class="col-sm-1">Num. de Boleta</th>
 			<th class="col-sm-1">Num. de Factura</th>
 			<th class="col-sm-1">Mes</th>
 			<th class="col-sm-1">Monto</th>

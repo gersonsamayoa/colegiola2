@@ -18,7 +18,6 @@
         <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
           <li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>
           <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
-          <li><a href="{{route('admin.cursos.index')}}">Cursos</a></li>
           <li><a href="{{route('admin.meses.index')}}">Meses</a></li>
           <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta x Grado</a></li>
           <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>

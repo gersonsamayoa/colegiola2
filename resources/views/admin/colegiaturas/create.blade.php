@@ -32,8 +32,8 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('numerodocumento', 'Número de Documento')!!}
-	{!!Form::text('numerodocumento',null,['class'=>'form-control','placeholder'=> 'Número de documento', 'required'])!!}
+	{!!Form::label('numerodocumento', 'Número de Boleta')!!}
+	{!!Form::text('numerodocumento',null,['class'=>'form-control','placeholder'=> 'Número de Boleta', 'required'])!!}
 	</div>
 
 	<div class="form-group">

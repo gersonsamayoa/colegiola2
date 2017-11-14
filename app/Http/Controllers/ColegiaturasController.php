@@ -13,6 +13,7 @@ use App\colegiatura;
 use Laracasts\Flash\Flash;
 use App\carrera;
 use App\grado;
+use DB;
 
 class ColegiaturasController extends Controller
 {
@@ -127,7 +128,7 @@ class ColegiaturasController extends Controller
    public function consultagrado(Request $request)
   {
     $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");
-    $grados=grado::orderby('nombre','ASC')->lists('nombre','id');
+    $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
     if ($request->grado_id){
     $alumnos=alumno::buscar($request->grado_id)->get();
     $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();
@@ -143,4 +144,21 @@ class ColegiaturasController extends Controller
 
     return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
   }
+
+  public function alumnocolegiatura($id)
+  {
+    $colegiaturas= colegiatura::Find($id);
+    $alumnos=alumno::Find($colegiaturas->alumno_id);
+    
+    return view('admin.colegiaturas.alumnocolegiatura', compact('colegiaturas', 'alumnos'));
+  }
+
+    public function eliminar($id)
+    {
+        $colegiaturas= colegiatura::Find($id);
+        $colegiaturas->delete();
+
+        flash('La colegiatura ha sido borrado de forma exitosa')->error()->important();
+        return redirect()->route('admin.colegiaturas.consultagrado');
+    }
 }

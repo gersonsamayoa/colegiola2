@@ -8,7 +8,7 @@ class grado extends Model
 {
     protected $table ="grados";
 
-    protected $fillable =['nombre', 'cantidadbimestres', 'nivel_id'];
+    protected $fillable =['nombre', 'grado', 'cantidadbimestres', 'nivel_id'];
 
     public function alumnos()
     {

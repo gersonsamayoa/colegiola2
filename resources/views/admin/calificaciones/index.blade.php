@@ -1,10 +1,9 @@
 @extends ('admin.template.main')
 @section('title', 'Ingreso de Notas del Curso de: '. $cursos->nombre)
-@section('subtitle', 'Grado: '.$grados->nombre)
+@section('subtitle', 'Grado: '.$grados->grado . " " . $grados->nombre)
 
 @section('content')
 @include('flash::message')
-
 <h3 class="text-center">Alumnos con notas</h3>
 @if($grados->cantidadbimestres==4)
 <table class="table table-striped table-hover">
@@ -17,6 +16,7 @@
 		    <th class="col-sm-1">Bim3</th>
 			<th class="col-sm-1">Bim4</th>
 		    <th class="col-sm-1">Promedio</th>
+		    <th class="col-sm-1">Cantidad<br>Bimestres</th>
       		<th>Acción</th>
 		</thead>
 		<tbody>
@@ -28,7 +28,7 @@
 					{!!Form::text('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
 					</div></td>
 				
-					<td>{{$cursoalumnoasignado->nombres . " " . $cursoalumnoasignado->apellidos}}</td>
+					<td>{{$cursoalumnoasignado->apellidos . " " . $cursoalumnoasignado->nombres}}</td>
 
 					<td width="10px"><div class="form-group">
 					{!!Form::text('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
@@ -52,6 +52,10 @@
 
 					<td><div class="form-group">
 								{!!Form::label($cursoalumnoasignado->promedio ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
+					</div></td>
+
+					<td><div class="form-group">
+								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td>
@@ -78,6 +82,7 @@
 			<th class="col-sm-1">Bim2</th>
 		    <th class="col-sm-1">Bim3</th>
 		    <th class="col-sm-1">Promedio</th>
+		    <th class="col-sm-1">Cantidad<br>Bimestres</th>
       		<th>Acción</th>
 		</thead>
 		{!!Form::open(['route'=>['admin.actualizar.update', $cursos->id], 'method'=>'PUT']) !!}
@@ -88,7 +93,7 @@
 					{!!Form::text('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
 					</div></td>
 				
-					<td>{{$cursoalumnoasignado->nombres . " " . $cursoalumnoasignado->apellidos}}</td>
+					<td>{{$cursoalumnoasignado->apellidos . " " . $cursoalumnoasignado->nombres}}</td>
 
 					<td width="10px"><div class="form-group">
 					{!!Form::text('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
@@ -110,6 +115,9 @@
 					<td><div class="form-group">
 								{!!Form::label($cursoalumnoasignado->promedio ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
+
+					<td><div class="form-group">
+								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', ''])!!}
 
 					<td>
 						<div class="form-group">
@@ -148,7 +156,7 @@
 				{!!Form::text('alumno_id[]',$curso_alumno->id,['class'=>'form-control', 'readonly'])!!}
 				</div></td>
 				
-				<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
+				<td>{{$curso_alumno->apellidos . " " . $curso_alumno->nombres}}</td>
 
 				<td><div class="form-group">
 					{!!Form::text('curso_id[]',$cursos->id,['class'=>'form-control', 'readonly'])!!}
@@ -198,7 +206,7 @@
 						{!!Form::text('alumno_id[]',$curso_alumno->id,['class'=>'form-control', 'readonly'])!!}
 					</div></td>
 					
-					<td>{{$curso_alumno->nombres . " " . $curso_alumno->apellidos}}</td>
+					<td>{{$curso_alumno->apellidos . " " . $curso_alumno->nombres}}</td>
 
 					<td><div class="form-group">
 						{!!Form::text('curso_id[]',$cursos->id,['class'=>'form-control', 'readonly'])!!}

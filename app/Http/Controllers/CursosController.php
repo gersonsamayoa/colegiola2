@@ -10,6 +10,7 @@ use Laracasts\Flash\Flash;
 use App\curso;
 use App\grado;
 use App\nivel;
+use DB;
 
 
 class CursosController extends Controller
@@ -21,18 +22,7 @@ class CursosController extends Controller
      */
     public function index(Request $request)
     {
-      $niveles=Nivel::orderby('nombre','ASC')->lists('nombre', 'id');
-      $grados=grado::orderby('nombre','ASC')->lists('nombre', 'id');
-
-      if($request->grado_id){
-        $cursos=curso::buscar($request->grado_id)->orderBy('id', 'ASC')->paginate(5);
-
-          return view('admin.cursos.index', compact('cursos', 'grados', 'niveles'));
-      }else{
-        $cursos=curso::orderBy('id', 'ASC')->paginate(5);
-          return view('admin.cursos.index', compact('cursos', 'grados', 'niveles'));
-      }
-
+     
 
     }
 
@@ -41,11 +31,10 @@ class CursosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-      $grados=grado::orderby('nombre','ASC')->lists('nombre', 'id');
-      $niveles=nivel::orderby('nombre', 'ASC')->lists('nombre', 'id');
-      return view('admin.cursos.create', compact('grados', 'niveles'));
+        $grados=grado::find($id);
+        return view('admin.cursos.create', compact('grados'));
     }
 
     /**
@@ -61,7 +50,7 @@ class CursosController extends Controller
         $cursos->grado_id=$request->grado_id;
         $cursos->save();
         flash('Curso Guardado Exitosamente')->success()->important();;
-        return redirect()->route('admin.cursos.index');
+        return redirect()->route('admin.grados.cursos.show', $request->grado_id );
     }
 
     /**
@@ -72,7 +61,9 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        //
+        $grados=grado::find($id);
+        $cursos=curso::where('grado_id', $id)->get();
+        return view('admin.cursos.index', compact('cursos', 'grados'));
     }
 
     /**
@@ -84,9 +75,9 @@ class CursosController extends Controller
     public function edit($id)
     {
         $cursos=curso::find($id);
-        $niveles=nivel::orderby('nombre', 'ASC')->lists('nombre', 'id');
-        $grados=grado::orderby('nombre', 'ASC')->lists('nombre', 'id');
-        return view ('admin.cursos.edit', compact('cursos', 'niveles', 'grados'));
+        $grados=grado::find($cursos->grado_id);
+        
+        return view ('admin.cursos.edit', compact('cursos', 'grados'));
 
     }
 
@@ -105,7 +96,7 @@ class CursosController extends Controller
 
         flash('El curso '. $cursos->nombre . ' ha sido guardado exitosamente')->warning()->important();
 
-        return redirect()->route('admin.cursos.index');
+        return redirect()->route('admin.grados.cursos.show', $request->grado_id );
     }
 
     /**
@@ -120,6 +111,6 @@ class CursosController extends Controller
       $cursos->delete();
 
       flash('El curso '. $cursos->nombre . ' Ha sido borrado de forma exitosa')->error()->important();
-      return redirect()->route('admin.cursos.index');
+      return redirect()->route('admin.grados.cursos.show', $cursos->grado_id );
     }
 }

@@ -33,9 +33,9 @@ class CalificacionesController extends Controller
         $alumnos=alumno::where('grado_id', $grados->id)->get();
 
         //Alumnos con notas ya consignadas segun el curso seleccionado
-        $cursosalumnosasignados=DB::table('alumno_curso')->leftjoin('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')->where('alumno_curso.curso_id','=',$id)->orderBy('nombres', 'ASC')->get();
+        $cursosalumnosasignados=DB::table('alumno_curso')->leftjoin('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')->where('alumno_curso.curso_id','=',$id)->orderBy('apellidos', 'ASC')->get();
 
-        // Primero sacas los id alumnos que están asignados al curso
+        // Primero sacas los id alumnos que si están asignados al curso
         $alumno_curso = alumno_curso::where('curso_id','=',$id)
         ->select(['alumno_id'])->get();
 
@@ -77,7 +77,7 @@ class CalificacionesController extends Controller
                 $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i]+$request->bim4[$i])/$cantidadbimestres;
 
 
-                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'bim4' => $request->bim4[$i], 'promedio' => $promedio]);
+                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'bim4' => $request->bim4[$i], 'cantidad_bimestres'=>$cantidadbimestres, 'promedio' => $promedio]);
 
                 $mensaje=$mensaje . $alumnos->nombres . ', ';
                 }
@@ -86,7 +86,7 @@ class CalificacionesController extends Controller
              {
                 $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i])/$cantidadbimestres;
 
-                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'promedio' => $promedio]);
+                $alumnos->cursos()->attach($request->curso_id[$i], ['bim1' => $request->bim1[$i], 'bim2' => $request->bim2[$i], 'bim3' => $request->bim3[$i], 'cantidad_bimestres'=>$cantidadbimestres, 'promedio' => $promedio]);
 
                 $mensaje=$mensaje . $alumnos->nombres . ', ';
             
@@ -130,8 +130,7 @@ class CalificacionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $idcurso)
-    {
-        
+    { 
         $cantidad=count($request->alumno_id);
         $mensaje="";
 
@@ -139,7 +138,10 @@ class CalificacionesController extends Controller
             $alumnos=alumno::find($request->alumno_id[$i]);
             $grados=grado::find($alumnos->grado_id);
             $cantidadbimestres=$grados->cantidadbimestres;
-
+           if($request->cantidad_bimestres[$i]!=null)
+           {
+            $cantidadbimestres=$request->cantidad_bimestres[$i];
+           }
 
             if($cantidadbimestres==4){
                             
@@ -152,6 +154,7 @@ class CalificacionesController extends Controller
                   $cursos->pivot->bim2=$request->bim2[$i];
                   $cursos->pivot->bim3=$request->bim3[$i];
                   $cursos->pivot->bim4=$request->bim4[$i];
+                  $cursos->pivot->cantidad_bimestres=$request->cantidad_bimestres[$i];
                   $cursos->pivot->promedio=$promedio;
                   $cursos->pivot->save();
                   $mensaje=$mensaje . $alumnos->nombres . ', ';
@@ -165,6 +168,7 @@ class CalificacionesController extends Controller
                 $cursos->pivot->bim1=$request->bim1[$i];
                   $cursos->pivot->bim2=$request->bim2[$i];
                   $cursos->pivot->bim3=$request->bim3[$i];
+                  $cursos->pivot->cantidad_bimestres=$request->cantidad_bimestres[$i];
                   $cursos->pivot->promedio=$promedio;
                   $cursos->pivot->save();
 

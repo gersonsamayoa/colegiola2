@@ -18,6 +18,7 @@ class AlumnoCurso extends Migration
         $table->float('bim2')->nullable();
         $table->float('bim3')->nullable();
         $table->float('bim4')->nullable();
+        $table->integer('cantidad_bimestres')->nullable();
         $table->float('promedio')->nullable();
         $table->integer('alumno_id')->unsigned();
         $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');

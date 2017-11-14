@@ -4,6 +4,11 @@
 {!! Form::open(['route'=>['admin.grados.update', $grados], 'method'=>'PUT']) !!}
 
 <div class="form-group">
+  {!!Form::label('grado', 'Grado')!!}
+  {!!Form::select('grado',['1o.'=>'1o.','2o.'=>'2o.','3o.'=>'3o.','4o.'=>'4o.','5o.'=>'5o.','6o.'=>'6o.'],$grados->grado,['class'=>'form-control','required'])!!}
+</div>
+
+<div class="form-group">
 {!!Form::label('name', 'Nuevo Grado')!!}
 {!!Form::text('nombre',$grados->nombre,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
 </div>

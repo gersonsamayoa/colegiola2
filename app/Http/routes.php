@@ -41,6 +41,16 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
     		'as' 	=>'admin.cursos.destroy'
     		]);
 
+    	Route::get('grados/cursos/{id}', [
+    		'uses'	=>	'cursosController@show',
+    		'as'	=>	'admin.grados.cursos.show'
+    		]);
+
+    	Route::get('grados/curso/{id}', [
+    		'uses' 	=>	'cursosController@create',
+    		'as'	=>	'admin.cursos.create'
+    	]);
+
 		Route::resource('meses', 'MesesController');
 		Route::get('meses/{id}/destroy', [
 			'uses'	=>'MesesController@destroy',
@@ -118,6 +128,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 				'as' => 'admin.colegiaturas.detalles'
 				]);
 
+
 				Route::get('colegiaturas/{id}/create', [
 				'uses' => 'ColegiaturasController@create',
 				'as' => 'admin.colegiaturas.create'
@@ -128,9 +139,19 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 					'as'	=>'admin.colegiaturas.destroy'
 					]);
 
+				Route::get('colegiaturas/{id}/eliminar', [
+					'uses'	=>'ColegiaturasController@eliminar',
+					'as'	=>'admin.colegiaturas.eliminar'
+					]);
+
 					Route::get('colegiaturas/{id}/consultagrado', [
 					'uses' => 'ColegiaturasController@consultagrado',
 					'as' => 'admin.colegiaturas.consultagrado'
+					]);
+
+					Route::get('colegiaturas/{id}/alumnocolegiatura', [
+					'uses'	=>	'ColegiaturasController@alumnocolegiatura',
+					'as'	=>	'admin.colegiaturas.alumnocolegiatura'
 					]);
 
 				/*Rutas para la Factura*/

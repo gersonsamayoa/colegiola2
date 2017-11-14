@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\alumno;
 use App\grado;
 use App\nivel;
+use DB;
 use Laracasts\Flash\Flash;
+
 
 class AlumnosController extends Controller
 {
@@ -18,7 +20,7 @@ class AlumnosController extends Controller
      */
     public function index(Request $request)
     {
-      $grados=grado::orderby('nombre','ASC')->lists('nombre','id');
+      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
       $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(4);
 
       if($request->nombres){
@@ -41,8 +43,8 @@ class AlumnosController extends Controller
      */
     public function create()
     {
-        $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
-        $grados=grado::orderBy('nombre','ASC')->lists('nombre', 'id');
+        $niveles=nivel::orderBy('id','ASC')->lists('nombre', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
 
         return view('admin.alumnos.create', compact('niveles', 'grados'));
     }
@@ -108,7 +110,7 @@ class AlumnosController extends Controller
     {
         $alumno=Alumno::Find($id);
         $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
-        $grados=grado::orderBy('nombre','ASC')->lists('nombre', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
 
 
         return view('admin.alumnos.edit', compact('alumno', 'grados', 'niveles'));

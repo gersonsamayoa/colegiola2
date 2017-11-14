@@ -67,7 +67,7 @@ class BoletaController extends Controller
         $totalpromedio=0;
         $totalcursos=0;
         $grados=grado::find($idgrado);
-        $alumnos=alumno::where('grado_id', $idgrado)->get();
+        $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos2=alumno_curso::orderby('curso_id', 'ASC')->get();
 
@@ -80,7 +80,7 @@ class BoletaController extends Controller
         $totalpromedio=0;
         $totalcursos=0;
         $grados=grado::find($idgrado);
-        $alumnos=alumno::where('grado_id', $idgrado)->get();
+        $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos2=alumno_curso::orderby('curso_id', 'ASC')->get();
 

@@ -20,7 +20,7 @@
 		<thead>
 			<th>ID</th>
 			<th class="col-sm-2">Apellidos</th>
-			<th class="col-sm-1">Nombres</th>
+			<th class="col-sm-2">Nombres</th>
 			<th>Carnet</th>
 			<th class="col-sm-1">Encargado</th>
 			<th>Telefono</th>
@@ -36,7 +36,7 @@
 					<td>{{$alumno->carnet}}</td>
 					<td>{{$alumno->encargado}}</td>
 					<td>{{$alumno->telefono}}</td>
-					<td width=400>{{$alumno->grado->nombre}}</td>
+					<td width=400>{{$alumno->grado->grado . " " . $alumno->grado->nombre}}</td>
 					<td>
 						<a href="{{route('admin.alumnos.edit', $alumno->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">
 						</a>

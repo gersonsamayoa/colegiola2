@@ -1,5 +1,5 @@
 @extends ('admin.template.main')
-@section('title', 'Detalle de Colegiaturas de: ')
+@section('title', 'Consulta de Colegiaturas ')
 @section('content')
 
 <!--Buscador-->
@@ -27,17 +27,18 @@
 		</thead>
 		<tbody>
 			@foreach($groupcolegiaturas as $alumnos)
-							@foreach($alumnos as $alumno)
-	              <tr>
-									<td><strong>{{$alumno->nombres}} </strong>
-		                  @foreach($colegiaturas as $colegiatura)
-			                  	@if($colegiatura->alumno->nombres==$alumno->nombres)
-													<td>{{$colegiatura->mes->nombre}}</td>
-													@endif
-											@endforeach
-					            </td>
-	            		</tr>
-								@endforeach
+			@foreach($alumnos as $alumno)
+	        <tr>
+			<td>{{$alumno->nombres . " " . $alumno->apellidos}}
+		        @foreach($colegiaturas as $colegiatura)
+			    @if($colegiatura->alumno->nombres==$alumno->nombres)
+				<td><a href="{{ route('admin.colegiaturas.alumnocolegiatura', $colegiatura->id) }}" target="_blank">
+				{{$colegiatura->mes->nombre}}</a></td>
+				@endif
+				@endforeach
+			</td>
+	        </tr>
+			@endforeach
 			@endforeach
 		</tbody>
 

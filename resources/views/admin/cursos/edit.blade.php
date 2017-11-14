@@ -9,18 +9,12 @@
 </div>
 
 <div class="form-group">
-{!!Form::label('nivel_id', 'Nivel')!!}
-{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'id'=>'Nivel'])!!}
-</div>
-
-<div class="form-group">
-{!!Form::label('grado_id', 'Grado')!!}
-{!!Form::select('grado_id', $grados, $cursos->grado_id, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Grado', 'required'])!!}
-</div>
+	{!!Form::hidden('grado_id', $grados->id, ['class'=>'form-control'])!!}
+	</div>
 
 <div class="form-group">
 {!!Form::submit('Editar',['class'=>'btn btn-primary'])!!}
-<a class="btn btn-danger" href="{{route('admin.grados.index')}}" role="button">Cancelar</a>
+<a class="btn btn-danger" href="{{route('admin.grados.cursos.show', $grados->id)}}" role="button">Cancelar</a>
 </div>
 
 

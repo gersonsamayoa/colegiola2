@@ -18,7 +18,7 @@ class NivelesController extends Controller
      */
     public function index()
     {
-        $niveles=nivel::orderby('nombre', 'ASC')->paginate(4);
+        $niveles=nivel::orderby('id', 'ASC')->paginate(4);
         return view('admin.niveles.index')->with('niveles', $niveles);
     }
 

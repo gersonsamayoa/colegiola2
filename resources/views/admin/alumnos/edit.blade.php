@@ -30,7 +30,7 @@
 
 	<div class="form-group">
 	{!!Form::label('nivel_id', 'Nivel')!!}
-	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required', 'id'=>'Nivel'])!!}
+	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'id'=>'Nivel'])!!}
 	</div>
 	
 	<div class="form-group">

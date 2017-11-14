@@ -8,7 +8,7 @@ class alumno_curso extends Model
 {
   protected $table ="alumno_curso";
 
-  protected $fillable =['bim1','bim2','bim3', 'bim4','promedio', 'alumno_id', 'curso_id'];
+  protected $fillable =['bim1','bim2','bim3', 'bim4', 'cantidad_bimestres', 'promedio', 'alumno_id', 'curso_id'];
 
   public function alumno()
   {

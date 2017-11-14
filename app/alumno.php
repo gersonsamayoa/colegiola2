@@ -22,7 +22,10 @@ class alumno extends Model
 
        public function scopeSearch($query, $nombres)
     {
-        return $query->where('nombres', 'LIKE', "%$nombres%");
+        if(trim($nombres)!="")
+        {
+        return $query->where(\DB::raw("CONCAT(nombres, ' ', apellidos)"),'LIKE', "%$nombres%");
+        }
     }
 
     public function scopeBuscar($query, $grado_id)

@@ -19,7 +19,7 @@ class GradosController extends Controller
      */
     public function index()
     {
-      $grados= grado::orderby ('nivel_id', 'ASC')->paginate(4);
+      $grados= grado::orderby ('nombre', 'DESC')->paginate(10);
       return view('admin.grados.index')->with('grados', $grados);
     }
 

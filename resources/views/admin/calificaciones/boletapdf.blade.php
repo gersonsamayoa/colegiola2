@@ -8,7 +8,7 @@
   <body>
 <hr>
  <h2>{{$alumnos->nombres . " " . $alumnos->apellidos}}</h2>
- <h3>{{$grados->nombre}}</h3>
+ <h3>{{$grados->grado . " " . $grados->nombre}}</h3>
 
 <hr>
 <br>
@@ -16,7 +16,7 @@
 <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
   <thead>
     <tr>
-      <th >Curso_id</th>
+      <th>No.</th>
       <th  width="230px">Curso</th>
         <th  width="75px">Bim1</th>
         <th  width="75px">Bim2</th>
@@ -26,9 +26,11 @@
       </tr>
   </thead>
   <tbody>
+    <?php
+      $contador=1;?>
       @foreach($alumnos2 as $alumno_curso)
         <tr>
-          <td>{{$alumno_curso->curso_id}}</td>
+          <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
           <td>{{$alumno_curso->bim1}}</td>
           <td>{{$alumno_curso->bim2}}</td>
@@ -53,7 +55,7 @@
   <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
   <thead>
     <tr>
-      <th >Curso_id</th>
+      <th>No.</th>
       <th  width="300px">Curso</th>
         <th  width="75px">Bim1</th>
         <th  width="75px">Bim2</th>
@@ -62,9 +64,11 @@
       </tr>
   </thead>
   <tbody>
+    <?php
+      $contador=1;?>
       @foreach($alumnos2 as $alumno_curso)
         <tr>
-          <td>{{$alumno_curso->curso_id}}</td>
+          <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
           <td>{{$alumno_curso->bim1}}</td>
           <td>{{$alumno_curso->bim2}}</td>

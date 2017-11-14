@@ -10,8 +10,8 @@
 @foreach($alumnos as $alumno)
 <div style="page-break-after:always;">
 <hr>
-<h2>{{$alumno->nombres . " " . $alumno->apellidos}}</h2>
-<h3>{{ $grados->nombre }}</h3>
+<h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
+<h3>{{$grados->grado . " " . $grados->nombre}}</h3>
 <hr>
 <table class="table table-striped table-hover" border="1">
     <thead class="info">
@@ -63,8 +63,8 @@
     @else
   @foreach($alumnos as $alumno)
   <div style="page-break-after:always;">
-    <h2>{{$alumno->nombres . " " . $alumno->apellidos}}</h2>
-    <h3>{{ $grados->nombre }}</h3>
+    <h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
+    <h3>{{$grados->grado . " " . $grados->nombre}}</h3>
     <table class="table table-striped table-hover" border="1">
       <thead class="info">
         <tr>
