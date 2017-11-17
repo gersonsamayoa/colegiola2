@@ -51,7 +51,7 @@
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::label($cursoalumnoasignado->promedio ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::label(round($cursoalumnoasignado->promedio) ,round($cursoalumnoasignado->promedio),['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td><div class="form-group">
@@ -113,7 +113,7 @@
 
 
 					<td><div class="form-group">
-								{!!Form::label($cursoalumnoasignado->promedio ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::label(round($cursoalumnoasignado->promedio), round($cursoalumnoasignado->promedio),['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td><div class="form-group">
@@ -228,13 +228,15 @@
 		@endforeach
 	</tbody>
 </table>
-
 	<div class="form-group pull-right">
 		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
 		{!!Form::close()!!}
 	</div>
-	
 @endif
+<br><br><br>
+<div>
+<a href="{{route('admin.grados.cursos.show', $grados->id)}}" class="btn btn-success">Regresar</a>
+</div>
 @endsection
 
 @section('scripts')

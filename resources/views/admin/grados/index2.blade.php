@@ -1,5 +1,5 @@
 @extends ('admin.template.main')
-@section('title', 'Listado Total de Grados: ')
+@section('title', 'Listado de Grados Nivel: ' . $niveles->nombre)
 @section('content')
 <hr>
 @include('flash::message')
@@ -14,7 +14,7 @@
 		<tbody>
 			@foreach($grados as $grado)
 				<tr>
-					<td>{{ $grado->grado }}</td>
+					<td>{{ $grado->grado}}</td>
 					<td>{{$grado->nombre}}</td>
 					<td>{{$grado->cantidadbimestres}}</td>
 					<td>{{$grado->nivel->nombre}}</td>
@@ -28,6 +28,6 @@
 		</tbody>
 	</table>
 	{!!$grados->render()!!}
-	<a href="{{route('admin.grados.create')}}" class="btn btn-info">Nuevo Grado</a>
+	<a href="{{route('admin.niveles.grados.create',  $niveles->id)}}" class="btn btn-info">Nuevo Grado</a>
 	<a href="{{route('admin.niveles.index')}}" class="btn btn-success">Regresar</a>
 	@endsection

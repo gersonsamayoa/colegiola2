@@ -1,5 +1,5 @@
 @extends ('admin.template.main')
-@section('title', 'Listado de Carreras')
+@section('title', 'Listado de Pagos')
 @section('content')
 <a href="{{route('admin.meses.create')}}" class="btn btn-info">Nuevo Mes</a>
 <hr>
@@ -9,20 +9,32 @@
 			<th>ID</th>
 			<th>Mes</th>
 			<th>Operaciones</th>
+			<th>ID</th>
+			<th>Mes</th>
+			<th>Operaciones</th>
 		</thead>
 		<tbody>
+			<?php
+			$j=1; ?>
+			<tr>
 			@foreach($meses as $mes)
-				<tr>
-					<td>{{$mes->id}}</td>
-					<td>{{$mes->nombre}}</td>
-					<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
-					</a> <a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
-				</tr>
+				@if($j<3)
+						<td>{{$mes->id}}</td>
+						<td>{{$mes->nombre}}</td>
+						<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
+						</a> <a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
+						<?php $j++; ?>
+				@else
+					</tr>
+					<tr>
+						<td>{{$mes->id}}</td>
+						<td>{{$mes->nombre}}</td>
+						<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
+						</a> <a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>
+						<?php $j=2; ?>
+				@endif
 			@endforeach
+			</tr>
 		</tbody>
-
 	</table>
-
-	{!!$meses->render()!!}
-
 @endsection

@@ -16,6 +16,13 @@ Route::get('/', ['as'=>'index', function
     return view('welcome');
 }]);
 
+Route::get('/secretaria', [
+	'as'	=>	'index.secretaria', function () {
+		return view('welcome2');
+	}
+	]);
+
+
 Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 	Route::get('/', ['as'=>'admin.index', function
@@ -34,6 +41,17 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
   		'uses'	=>'GradosController@destroy',
   		'as' 	=>'admin.grados.destroy'
   		]);
+
+  	Route::get('niveles/grados/{id}', [
+		'uses'	=>	'GradosController@gradosnivel',
+		'as'	=>	'admin.niveles.grados'
+		]);
+
+  	Route::get('niveles/grados/create/{id}', [
+  		'uses'	=>	'GradosController@create',
+  		'as'	=>	'admin.niveles.grados.create'
+  		]);
+
 
       Route::resource('cursos', 'CursosController');
     	Route::get('cursos/{id}/destroy', [
@@ -71,7 +89,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 		/*Ruta del Js Dropdown*/
   	Route::get('alumnos/create/{id}', 'AlumnosController@getGrados');
-		Route::get('alumnos/create2/{id}', 'AlumnosController@getGrados2');
+	Route::get('alumnos/create2/{id}', 'AlumnosController@getGrados2');
 
 		/*Rutas para listado de calificaciones*/
 		Route::get('calificaciones/{id}', [

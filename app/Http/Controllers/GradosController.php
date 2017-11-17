@@ -19,8 +19,16 @@ class GradosController extends Controller
      */
     public function index()
     {
-      $grados= grado::orderby ('nombre', 'DESC')->paginate(10);
+
+      $grados= grado::orderby('nombre', 'ASC')->orderby('grado', 'ASC')->paginate(10);
       return view('admin.grados.index')->with('grados', $grados);
+    }
+
+    public function gradosnivel($id)
+    {
+      $niveles=Nivel::Find($id);
+      $grados= grado::where('nivel_id', $id)->orderby('nombre', 'ASC')->orderby('grado', 'ASC')->paginate(10);
+      return view('admin.grados.index2', compact('grados', 'niveles'));
     }
 
     /**
@@ -28,10 +36,11 @@ class GradosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
       $niveles=Nivel::orderby('nombre','ASC')->lists('nombre', 'id');
-      return view('admin.grados.create', compact('niveles'));
+      $niveles2=Nivel::Find($id);
+      return view('admin.grados.create', compact('niveles', 'niveles2'));
     }
 
     /**
@@ -45,7 +54,7 @@ class GradosController extends Controller
       $grados=new grado($request->all());
       $grados->save();
       flash('Grado Guardado Exitosamente')->success()->important();
-      return redirect()->route('admin.grados.index');
+      return redirect()->route('admin.niveles.grados', $grados->nivel_id);
     }
 
     /**
@@ -87,7 +96,7 @@ class GradosController extends Controller
       $grados->save();
 
       flash('El Grado '. $grados->nombre . ' ha sido editado con éxito')->warning()->important();
-      return redirect()->route('admin.grados.index');
+      return redirect()->route('admin.niveles.grados', $grados->nivel_id);
     }
 
     /**
@@ -102,6 +111,6 @@ class GradosController extends Controller
       $grados->delete();
 
       flash('El Grado ' . $grados->nombre . ' ha sido borrado de forma exitosa')->error()->important();
-      return redirect()->route('admin.grados.index');
+      return redirect()->route('admin.niveles.grados', $grados->nivel_id);
     }
 }

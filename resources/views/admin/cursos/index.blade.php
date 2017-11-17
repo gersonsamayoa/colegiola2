@@ -32,6 +32,7 @@
 	</table>
 
 	<a href="{{route('admin.cursos.create', $grados->id)}}" class="btn btn-info">Nuevo Curso</a>
+	<a href="{{route('admin.niveles.grados', $grados->nivel_id)}}" class="btn btn-success">Regresar</a>
 	<hr>
 
 	@endsection

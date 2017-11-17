@@ -8,6 +8,8 @@
   <body>
 @if ($grados->cantidadbimestres==4)
 @foreach($alumnos as $alumno)
+<?php
+      $contador=1;?>
 <div style="page-break-after:always;">
 <hr>
 <h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
@@ -16,7 +18,7 @@
 <table class="table table-striped table-hover" border="1">
     <thead class="info">
       <tr>
-          <th class="info">Curso_id</th>
+          <th class="info">No</th>
           <th class="info" width="350px">Curso</th>
             <th class="info">Bim1</th>
             <th class="info">Bim2</th>
@@ -27,15 +29,16 @@
     </thead>
   <tbody>
   @foreach($alumnos2 as $alumno_curso)
+
     @if($alumno->id==$alumno_curso->alumno_id)
           <tr>
-              <td>{{$alumno_curso->curso_id}}</td>
+               <td>{{ $contador }}</td> <?php $contador++; ?>
               <td>{{$alumno_curso->curso->nombre}}</td>
               <td>{{$alumno_curso->bim1}}</td>
               <td>{{$alumno_curso->bim2}}</td>
               <td>{{$alumno_curso->bim3}}</td>
               <td>{{$alumno_curso->bim4}}</td>
-              <td>{{$alumno_curso->promedio}}</td>
+              <td>{{round($alumno_curso->promedio)}}</td>
               <?php
               $totalpromedio=$totalpromedio+$alumno_curso->promedio;
               $totalcursos=$totalcursos+1;
@@ -50,7 +53,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>{{$totalpromedio/$totalcursos}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
       </tr>
           <?php
               $totalpromedio=0;
@@ -62,13 +65,15 @@
      @endforeach
     @else
   @foreach($alumnos as $alumno)
+  <?php
+      $contador=1;?>
   <div style="page-break-after:always;">
     <h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
     <h3>{{$grados->grado . " " . $grados->nombre}}</h3>
     <table class="table table-striped table-hover" border="1">
       <thead class="info">
         <tr>
-            <th class="info">Curso_id</th>
+            <th class="info">No</th>
             <th class="info" width="350px">Curso</th>
             <th class="info">Bim1</th>
             <th class="info">Bim2</th>
@@ -80,12 +85,12 @@
 @foreach($alumnos2 as $alumno_curso)
   @if($alumno->id==$alumno_curso->alumno_id)
       <tr>
-          <td>{{$alumno_curso->curso_id}}</td>
+          <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
           <td>{{$alumno_curso->bim1}}</td>
           <td>{{$alumno_curso->bim2}}</td>
           <td>{{$alumno_curso->bim3}}</td>
-          <td>{{$alumno_curso->promedio}}</td>
+          <td>{{round($alumno_curso->promedio)}}</td>
           <?php
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
           $totalcursos=$totalcursos+1;
@@ -99,7 +104,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>{{$totalpromedio/$totalcursos}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
       </tr>
         <?php
           $totalpromedio=0;

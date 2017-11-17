@@ -26,10 +26,10 @@ class grado extends Model
     }
 
     public static function grados($id){
-      return grado::where('nivel_id', '=', $id)->orderBy('nombre','ASC')->get();
+      return grado::where('nivel_id', '=', $id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
     }
 
     public static function grados2($id){
-      return grado::orderBy('nombre','ASC')->get();
+      return grado::orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
     }
 }

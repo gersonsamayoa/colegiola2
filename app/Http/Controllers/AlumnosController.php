@@ -20,8 +20,9 @@ class AlumnosController extends Controller
      */
     public function index(Request $request)
     {
-      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
-      $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(4);
+      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+ 
+      $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(10);
 
       if($request->nombres){
         $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->paginate(4);
@@ -44,7 +45,7 @@ class AlumnosController extends Controller
     public function create()
     {
         $niveles=nivel::orderBy('id','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
         return view('admin.alumnos.create', compact('niveles', 'grados'));
     }
@@ -110,7 +111,7 @@ class AlumnosController extends Controller
     {
         $alumno=Alumno::Find($id);
         $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
 
         return view('admin.alumnos.edit', compact('alumno', 'grados', 'niveles'));

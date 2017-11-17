@@ -25,7 +25,7 @@
 
 <div class="form-group">
 {!!Form::submit('Editar',['class'=>'btn btn-primary'])!!}
-<a class="btn btn-danger" href="{{route('admin.grados.index')}}" role="button">Cancelar</a>
+<a class="btn btn-danger" href="{{route('admin.niveles.grados', $grados->nivel_id)}}" role="button">Cancelar</a>
 </div>
 
 

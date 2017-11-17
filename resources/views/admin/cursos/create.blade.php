@@ -1,6 +1,6 @@
 @extends ('admin.template.main')
 
-@section('title', 'Agregar Cursos')
+@section('title', 'Agregar Cursos al grado: ' . $grados->grado . " " . $grados->nombre )
 
 @section('content')
 	@if(count($errors)>0)

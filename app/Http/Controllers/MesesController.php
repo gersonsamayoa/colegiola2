@@ -18,7 +18,7 @@ class MesesController extends Controller
      */
     public function index()
     {
-        $meses= mes::orderBy('id', 'ASC')->paginate(4);
+        $meses= mes::orderBy('id', 'ASC')->get();
         return view('admin.meses.index')->with ('meses', $meses);
     }
 

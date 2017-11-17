@@ -128,7 +128,7 @@ class ColegiaturasController extends Controller
    public function consultagrado(Request $request)
   {
     $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");
-    $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('fullgrado','ASC')->lists('fullgrado', 'id');
+    $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
     if ($request->grado_id){
     $alumnos=alumno::buscar($request->grado_id)->get();
     $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();

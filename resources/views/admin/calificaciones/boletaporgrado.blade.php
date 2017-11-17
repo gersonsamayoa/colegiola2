@@ -17,7 +17,7 @@
 <h3>{{$alumno->apellidos . " " . $alumno->nombres}}</h3>
 <table class="table table-striped table-hover">
       <thead class="info">
-      <th class=" info">Curso_id</th>
+      <th class=" info">No.</th>
       <th class=" info">Curso</th>
         <th class=" info">Bim1</th>
         <th class=" info">Bim2</th>
@@ -41,7 +41,7 @@
           @else <td>{{$alumno_curso->bim3}}</td>@endif
           @if($alumno_curso->bim4==0)<td td class="danger">{{$alumno_curso->bim4}}</td>
           @else <td>{{$alumno_curso->bim4}}</td>@endif
-          <td>{{$alumno_curso->promedio}}</td>
+          <td>{{round($alumno_curso->promedio)}}</td>
           <?php
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
           $totalcursos=$totalcursos+1;
@@ -56,7 +56,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>{{$totalpromedio/$totalcursos}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
       </tr>
       <?php
           $totalpromedio=0;
@@ -74,7 +74,7 @@
 <h3>{{$alumno->apellidos . " " . $alumno->nombres}}</h3>
 <table class="table table-striped table-hover">
       <thead class="info">
-      <th class=" info">Curso_id</th>
+      <th class=" info">No.</th>
       <th class=" info">Curso</th>
         <th class=" info">Bim1</th>
         <th class=" info">Bim2</th>
@@ -95,7 +95,7 @@
           @else <td>{{$alumno_curso->bim2}}</td>@endif
           @if($alumno_curso->bim3==0)<td td class="danger">{{$alumno_curso->bim3}}</td>
           @else <td>{{$alumno_curso->bim3}}</td>@endif
-          <td>{{$alumno_curso->promedio}}</td>
+          <td>{{round($alumno_curso->promedio)}}</td>
           <?php
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
           $totalcursos=$totalcursos+1;
@@ -109,7 +109,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>{{$totalpromedio/$totalcursos}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
       </tr>
       <?php
           $totalpromedio=0;
@@ -118,6 +118,6 @@
         </tbody>
       </table>
         @endforeach
-
         @endif
+        <a href="{{route('admin.niveles.grados', $grados->nivel_id)}}" class="btn btn-success">Regresar</a>
    @endsection

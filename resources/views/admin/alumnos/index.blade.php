@@ -9,11 +9,10 @@
 			 <span class="input-group-addon" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
 	 </div>
 		Buscar por Grado: <div class="input-group">
-		{!!Form::select('grado_id', $grados,null,['class'=>'form-control', 'placeholder'=>'Seleccione un Grado'])!!}
-			<span class="input-group-addon" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+		{!!Form::select('grado_id', $grados,null,['class'=>'form-control', 'placeholder'=>'Seleccione un Grado'])!!}	
 	</div>
 	{!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
-{!!Form::close()!!}
+    {!!Form::close()!!}
 <br><br><br>
 @include('flash::message')
 	<table class="table table-striped table-hover">
@@ -21,7 +20,7 @@
 			<th>ID</th>
 			<th class="col-sm-2">Apellidos</th>
 			<th class="col-sm-2">Nombres</th>
-			<th>Carnet</th>
+			<th>Carné</th>
 			<th class="col-sm-1">Encargado</th>
 			<th>Telefono</th>
 			<th class="col-sm-3">Grado</th>

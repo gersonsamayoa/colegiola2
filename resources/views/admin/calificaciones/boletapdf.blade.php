@@ -36,7 +36,7 @@
           <td>{{$alumno_curso->bim2}}</td>
           <td>{{$alumno_curso->bim3}}</td>
           <td>{{$alumno_curso->bim4}}</td>
-          <td>{{$alumno_curso->promedio}}</td>
+          <td>{{round($alumno_curso->promedio)}}</td>
         </tr>
       @endforeach
       <tr>
@@ -46,7 +46,7 @@
           <td></td>
           <td></td>
           <td></td>
-          <td><strong>{{$totalpromedio}}</strong></td>
+          <td><strong>{{round($totalpromedio)}}</strong></td>
       </tr>
     </tbody>
   </table>
@@ -73,7 +73,7 @@
           <td>{{$alumno_curso->bim1}}</td>
           <td>{{$alumno_curso->bim2}}</td>
           <td>{{$alumno_curso->bim3}}</td>
-          <td>{{$alumno_curso->promedio}}</td>
+          <td>{{round($alumno_curso->promedio)}}</td>
         </tr>
       @endforeach
       <tr>
@@ -82,7 +82,7 @@
           <td></td>
           <td></td>
           <td></td>
-            <td><strong>{{$totalpromedio}}</strong></td>
+            <td><strong>{{round($totalpromedio)}}</strong></td>
       </tr>
     </tbody>
   </table>
