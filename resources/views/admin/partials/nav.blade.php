@@ -10,28 +10,35 @@
       </button>
       <a href="{{route('index')}}" class=" "><img src="{{asset('img/logo-header1.png')}}" width="45px"></a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    @if(Auth::user())
-      <ul class="nav navbar-nav">
-        <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
-          <li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>
-          <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
-          <li><a href="{{route('admin.meses.index')}}">Meses</a></li>
-          <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta x Grado</a></li>
-          <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+      @if(Auth::user())
+        <ul class="nav navbar-nav">
+           @if(Auth::user()->admin() OR Auth::user()->secretaria())
+            <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
+            <li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>
+            <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
+            @endif
+            
+            @if(Auth::user()->admin() OR Auth::user()->contador())
+            <li><a href="{{route('admin.meses.index')}}">Meses</a></li>
+            <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta x Grado</a></li>
+            @endif
 
-      <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}<span class="caret"></span></a>
-     <ul class="dropdown-menu">
-      <li><a href="{{ route('admin.auth.logout')}}">Salir</a></li>
-      </ul>
-       </li>
-       </ul>
-       @endif
-      </div>
-      </div>
+            @if(Auth::user()->admin())
+            <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>
+            @endif
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ route('admin.auth.logout')}}">Salir</a></li>
+            </ul>
+          </li>
+        </ul>
+      @endif
+    </div>
+  </div>
 </nav>

@@ -28,6 +28,6 @@
 		</tbody>
 	</table>
 	{!!$grados->render()!!}
-	<a href="{{route('admin.grados.create')}}" class="btn btn-info">Nuevo Grado</a>
+	<br>
 	<a href="{{route('admin.niveles.index')}}" class="btn btn-success">Regresar</a>
 	@endsection

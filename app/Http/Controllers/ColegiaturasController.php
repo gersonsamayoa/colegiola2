@@ -47,6 +47,7 @@ class ColegiaturasController extends Controller
      */
     public function store(Request $request)
     {
+  
         $colegiaturas= new colegiatura($request->all());
         $colegiaturas->save();
 

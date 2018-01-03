@@ -30,7 +30,7 @@ class alumno extends Model
 
     public function scopeBuscar($query, $grado_id)
     {
-      return $query->where('grado_id', 'LIKE', "%$grado_id%");
+      return $query->where('grado_id', '=', "$grado_id");
     }
 
     public function cursos()

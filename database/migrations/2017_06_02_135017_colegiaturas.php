@@ -15,7 +15,7 @@ class Colegiaturas extends Migration
         Schema::create('colegiaturas', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
-            $table->integer('nit');
+            $table->string('nit', 120);
             $table->string('nombre', 120);
             $table->integer('numerodocumento');
             $table->integer('numerofactura');

@@ -16,12 +16,6 @@ Route::get('/', ['as'=>'index', function
     return view('welcome');
 }]);
 
-Route::get('/secretaria', [
-	'as'	=>	'index.secretaria', function () {
-		return view('welcome2');
-	}
-	]);
-
 
 Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
@@ -30,11 +24,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
     return view('welcome');
 	}]);
 
-	Route::resource('niveles', 'NivelesController');
-	Route::get('niveles/{id}/destroy', [
-		'uses'	=>'NivelesController@destroy',
-		'as' 	=>'admin.niveles.destroy'
-		]);
+	
 
     Route::resource('grados', 'GradosController');
   	Route::get('grados/{id}/destroy', [
@@ -75,11 +65,23 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 			'as' 	=>'admin.meses.destroy'
 			]);
 
+		Route::resource('niveles', 'NivelesController');
+		
+	Route::group(['middleware' => 'admin'], function() {
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
 		'uses'	=>'UsersController@destroy',
 		'as' 	=>'admin.usuarios.destroy'
 		]);
+
+	Route::get('niveles/{id}/destroy', [
+		'uses'	=>'NivelesController@destroy',
+		'as' 	=>'admin.niveles.destroy'
+		]);
+
+	
+});
+	
 
 	Route::resource('alumnos', 'AlumnosController');
 	Route::get('alumnos/{id}/destroy', [

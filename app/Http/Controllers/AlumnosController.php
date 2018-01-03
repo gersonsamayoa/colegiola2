@@ -23,16 +23,17 @@ class AlumnosController extends Controller
       $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
  
       $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(10);
-
+      
       if($request->nombres){
         $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->paginate(4);
           /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
           return view('admin.alumnos.index', compact('alumnos', 'grados'));
-      }else{
+      }else {
         $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->paginate(4);
         /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
         return view('admin.alumnos.index', compact('alumnos', 'grados'));
-      }
+        }
+
       return view('admin.alumnos.index', compact('alumnos'));
 
     }

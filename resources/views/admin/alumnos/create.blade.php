@@ -35,8 +35,8 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('carnet', 'Carnet')!!}
-	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carnet', 'required'])!!}
+	{!!Form::label('carné', 'Carné')!!}
+	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carné', 'required'])!!}
 	</div>
 
 	<div class="form-group">
