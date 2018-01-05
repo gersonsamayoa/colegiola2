@@ -12,6 +12,6 @@ class mes extends Model
 
   public function colegiaturas()
   {
-    return $this->hasMany('App\colegiatura');
+    return $this->belongsToMany('App\colegiatura');
   }
 }

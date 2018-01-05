@@ -17,6 +17,8 @@ class Meses extends Migration
           $table->text('nombre');
           $table->timestamps();
         });
+
+     
       }
 
     /**
@@ -26,6 +28,8 @@ class Meses extends Migration
      */
     public function down()
     {
+        
         Schema::drop('meses');
+
     }
 }

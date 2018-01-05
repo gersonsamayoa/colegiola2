@@ -28,11 +28,17 @@
 					<td>{{$colegiatura->nombre}}</td>
 					<td>{{$colegiatura->numerodocumento}}</td>
 					<td>{{$colegiatura->numerofactura}}</td>
-					<td>{{$colegiatura->mes->nombre}}</td>
+					<td>
+					@foreach($mymeses as $mymes)
+						@if($mymes->colegiatura_id==$colegiatura->id)
+						<span class="label label-success">{{ $mymes->mes->nombre }}</span>
+						@endif
+					@endforeach
+					</td>
 					<td>Q{{number_format($colegiatura->monto, '2','.' , ',')}}</td>
 					<td width="175px">{{$colegiatura->descripcion}}</td>
 					<td>{{$colegiatura->alumno->nombres . " ". $colegiatura->alumno->apellidos}}</td>
-
+					
 					<td><a href="{{route('admin.colegiaturas.edit', $colegiatura->id)}}" class="btn btn-primary">Editar
 					</a> <a href="{{route('admin.colegiaturas.destroy', $colegiatura->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
 					<a href="{{route('admin.pdf', $colegiatura->id)}}" class="btn btn-primary">Imprimir
@@ -43,12 +49,11 @@
 		</tbody>
 
 	</table>
-
-
-
-
+	
+<a href="{{route('admin.alumnos.index')}}" class="btn btn-success">Regresar</a>
 
 	{!!$colegiaturas->render()!!}
+
 
 
 @endsection

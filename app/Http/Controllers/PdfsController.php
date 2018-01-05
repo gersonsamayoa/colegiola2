@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\alumno;
 use App\colegiatura;
+use App\colegiatura_mes;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class PdfsController extends Controller
@@ -21,7 +22,8 @@ class PdfsController extends Controller
     {
 
       $colegiaturas=Colegiatura::find($id);
-      $pdf	= PDF::loadview('admin.alumnos.factura', ['colegiaturas' => $colegiaturas]);
+      $mymeses=colegiatura_mes::all();
+      $pdf	= PDF::loadview('admin.alumnos.factura', ['colegiaturas' => $colegiaturas, 'mymeses' => $mymeses]);
       return $pdf->stream('archivo.pdf');
     }
 

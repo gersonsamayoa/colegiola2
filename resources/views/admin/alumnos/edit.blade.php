@@ -15,7 +15,7 @@
 
 	<div class="form-group">
 	{!!Form::label('carnet', 'Carnet')!!}
-	{!!Form::text('carnet',$alumno->carnet,['class'=>'form-control','placeholder'=> 'Carnet', 'required'])!!}
+	{!!Form::text('carnet',$alumno->carnet,['class'=>'form-control','placeholder'=> 'Carnet'])!!}
 	</div>
 
 	<div class="form-group">

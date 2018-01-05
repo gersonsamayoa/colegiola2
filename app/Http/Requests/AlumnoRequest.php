@@ -24,7 +24,7 @@ class AlumnoRequest extends Request
     public function rules()
     {
         return [
-            'carnet'=> 'required|unique:alumnos'
+            'nombres'=> 'unique:alumnos', 'apellidos'=>'unique:alumnos', 'carnet'=>'unique:alumnos'
         ];
     }
 }

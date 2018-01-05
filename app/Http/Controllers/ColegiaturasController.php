@@ -13,6 +13,7 @@ use App\colegiatura;
 use Laracasts\Flash\Flash;
 use App\carrera;
 use App\grado;
+use App\colegiatura_mes;
 use DB;
 
 class ColegiaturasController extends Controller
@@ -47,9 +48,11 @@ class ColegiaturasController extends Controller
      */
     public function store(Request $request)
     {
-  
+        
         $colegiaturas= new colegiatura($request->all());
         $colegiaturas->save();
+
+        $colegiaturas->meses()->sync($request->mes_id);
 
         flash('Colegiatura Guardada Exitosamente')->success()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
@@ -76,9 +79,10 @@ class ColegiaturasController extends Controller
     {
         $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
         $colegiaturas=colegiatura::Find($id);
+        $mymeses=$colegiaturas->meses->lists('id')->toArray();
         $alumno=Alumno::Find($colegiaturas->alumno_id);
 
-        return view('admin.colegiaturas.edit', compact('colegiaturas', 'alumno', 'meses'));
+        return view('admin.colegiaturas.edit', compact('colegiaturas', 'alumno', 'meses', 'mymeses'));
     }
 
     /**
@@ -90,9 +94,12 @@ class ColegiaturasController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $colegiaturas=colegiatura::Find($id);
         $colegiaturas->Fill($request->all());
         $colegiaturas->save();
+
+        $colegiaturas->meses()->sync($request->mes_id);
 
         flash('La colegiatura se ha sido editada con éxito')->warning()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
@@ -122,7 +129,9 @@ class ColegiaturasController extends Controller
 
         $alumno=Alumno::Find($id);
 
-        return view('admin.colegiaturas.index', compact ('colegiaturas','alumno'));
+        $mymeses=colegiatura_mes::all();
+    
+        return view('admin.colegiaturas.index', compact ('colegiaturas','alumno','mymeses'));
 
     }
 
