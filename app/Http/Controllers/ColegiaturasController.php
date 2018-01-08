@@ -15,6 +15,7 @@ use App\carrera;
 use App\grado;
 use App\colegiatura_mes;
 use DB;
+use App\Http\Requests\ColegiaturaRequest;
 
 class ColegiaturasController extends Controller
 {
@@ -35,6 +36,7 @@ class ColegiaturasController extends Controller
      */
     public function create($id)
     {
+       
       $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
       $alumno=Alumno::Find($id);
       return view('admin.colegiaturas.create', compact('alumno', 'meses'));
@@ -46,9 +48,8 @@ class ColegiaturasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ColegiaturaRequest $request)
     {
-        
         $colegiaturas= new colegiatura($request->all());
         $colegiaturas->save();
 
@@ -122,6 +123,7 @@ class ColegiaturasController extends Controller
 
      public function detalles($id)
     {
+
         $colegiaturas= colegiatura::where('alumno_id', $id)->paginate(4);
         $colegiaturas->each(function($colegiaturas){
            $colegiaturas->alumno;

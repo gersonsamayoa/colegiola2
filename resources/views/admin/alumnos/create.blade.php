@@ -17,7 +17,7 @@
 {!!Form::open(['route'=>'admin.alumnos.store', 'method'=>'POST']) !!}
 	<div class="form-group">
 	{!!Form::label('nombres', 'Nombres')!!}
-	{!!Form::text('nombres',null,['class'=>'form-control','placeholder'=> 'Nombres', 'required'])!!}
+	{!!Form::text('nombres',Input::old('nombres'),['class'=>'form-control','placeholder'=> 'Nombres', 'required'])!!}
 	</div>
 	<div class="form-group">
 	{!!Form::label('apellidos', 'Apellidos')!!}

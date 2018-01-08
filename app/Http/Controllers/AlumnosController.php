@@ -77,7 +77,25 @@ class AlumnosController extends Controller
      */
     public function store(AlumnoRequest $request)
     {
+        $nombres=alumno::where('nombres', $request->nombres)->get();
+        $apellidos=alumno::where('apellidos', $request->apellidos)->get();
 
+        if ($nombres->all() OR $apellidos->all())
+        {
+        $alumno= new alumno();
+        $alumno->nombres=$request->nombres;
+        $alumno->apellidos=$request->apellidos;
+        $alumno->encargado=$request->encargado;
+        $alumno->telefono=$request->telefono;
+        $alumno->carnet=$request->carnet;
+        $alumno->grado_id=$request->grado_id;
+        $alumno->save();
+
+        flash('Alumno Guardado con Nombre o Apellidos Repetido')->success()->warning();
+        return redirect()->route('admin.alumnos.index');
+        }
+        else
+        {
         $alumno= new alumno();
         $alumno->nombres=$request->nombres;
         $alumno->apellidos=$request->apellidos;
@@ -89,6 +107,8 @@ class AlumnosController extends Controller
 
         flash('Alumno Guardado Exitosamente')->success()->important();
         return redirect()->route('admin.alumnos.index');
+        
+        }
     }
 
     /**

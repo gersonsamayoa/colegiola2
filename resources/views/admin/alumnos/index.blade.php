@@ -3,7 +3,7 @@
 @section('content')
 <a href="{{route('admin.alumnos.create')}}" class="btn btn-info">Nuevo alumno</a><br><br>
 <!--Buscador-->
-	{!!Form::open(['route'=>'admin.alumnos.index','method'=>'GET', 'class'=>'navbar-form pull-right'])!!}
+	{!!Form::model(Request::all(),['route'=>'admin.alumnos.index','method'=>'GET', 'class'=>'navbar-form pull-right'])!!}
 	 Buscar por Nombre: <div class="input-group">
 		 {!!Form::text('nombres', null, ['class'=>'form-control', 'placeholder'=>'Buscar alumno..', 'aria-describedby'=>'search'])!!}
 			 <span class="input-group-addon" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
@@ -48,7 +48,7 @@
 		</tbody>
 	</table>
 
-	{!!$alumnos->render()!!}
+	{!!$alumnos->appends(Request::all())->render()!!}
 
 
 @endsection
