@@ -8,15 +8,15 @@ class colegiatura_mes extends Model
 {
    protected $table="colegiatura_mes";
 
-   protected $fillable=['colegiatura_id', 'mes_id'];
+   protected $fillable=['fecha','nit','nombre','numerodocumento','numerofactura','monto','descripcion', 'alumno_id', 'mes_id'];
 
-   public function colegiatura()
-   {
-   	return $this->belongsTo('App');
-   }
+   public function alumno()
+  {
+    return $this->belongsTo('App\alumno');
+  }
 
-   public function mes()
+   public function meses()
     {
-    	return $this->belongsTo('App\mes');
+    	return $this->belongsToMany('App\mes');
     }
 }
