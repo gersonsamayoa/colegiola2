@@ -17,6 +17,8 @@ use App\colegiatura_mes;
 use DB;
 use App\Http\Requests\ColegiaturaRequest;
 
+
+
 class ColegiaturasController extends Controller
 {
     /**
@@ -36,8 +38,14 @@ class ColegiaturasController extends Controller
      */
     public function create($id)
     {
-       
-      $meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
+        $colegiaturas=colegiatura::where('alumno_id', $id)->get();
+        $colegiatura_mes=DB::table('colegiatura_mes')->leftJoin('colegiaturas', 'colegiatura_mes.colegiatura_id', '=', 'colegiaturas.id')->where('colegiaturas.alumno_id', '=', $id)->select(['mes_id']);
+
+         
+       $meses=DB::table('meses')->whereNotin('id', $colegiatura_mes)->lists('nombre', 'id');
+
+      //$meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
+  
       $alumno=Alumno::Find($id);
       return view('admin.colegiaturas.create', compact('alumno', 'meses'));
     }

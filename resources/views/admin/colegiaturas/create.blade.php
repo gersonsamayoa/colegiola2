@@ -43,7 +43,7 @@
 
 	<div class="form-group">
 	{!!Form::label('mes_id', 'Mes')!!}
-	{!!Form::select('mes_id[]', $meses, null, ['multiple'=>true, 'class'=>'form-control', 'placeholder'=> 'Seleccione un Mes', 'required'])!!}
+	{!!Form::select('mes_id[]', $meses, null, ['multiple'=>true, 'class'=>'form-control', 'required'])!!}
 	</div>
 
 	<div class="form-group">
