@@ -49,6 +49,7 @@ class ColegiaturasController extends Controller
      */
     public function store(ColegiaturaRequest $request)
     {
+        
         $colegiaturas= new colegiatura_mes($request->all());
         $colegiaturas->meses()->sync($request->mes_id);
         $colegiaturas->save();
