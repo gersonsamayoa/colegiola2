@@ -9,6 +9,7 @@ use App\Http\Requests\MesRequest;
 use App\Http\Controllers\Controller;
 use App\alumno;
 use App\mes;
+use App\colegiatura;
 use Laracasts\Flash\Flash;
 use App\carrera;
 use App\grado;
@@ -49,12 +50,10 @@ class ColegiaturasController extends Controller
      */
     public function store(ColegiaturaRequest $request)
     {
-        
-        $colegiaturas= new colegiatura_mes($request->all());
-        $colegiaturas->meses()->sync($request->mes_id);
+        $colegiaturas= new colegiatura($request->all());
         $colegiaturas->save();
 
-        
+        $colegiaturas->meses()->sync($request->mes_id);
 
         flash('Colegiatura Guardada Exitosamente')->success()->important();
         return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
@@ -125,8 +124,11 @@ class ColegiaturasController extends Controller
      public function detalles($id)
     {
 
-        $colegiaturas= colegiatura_mes::where('alumno_id', $id)->paginate(4);
-       
+        $colegiaturas= colegiatura::where('alumno_id', $id)->paginate(4);
+        $colegiaturas->each(function($colegiaturas){
+           $colegiaturas->alumno;
+           });
+
         $alumno=Alumno::Find($id);
 
         $mymeses=colegiatura_mes::all();

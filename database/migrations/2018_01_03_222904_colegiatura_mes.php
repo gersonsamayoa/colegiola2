@@ -13,18 +13,11 @@ class ColegiaturaMes extends Migration
     public function up()
     {
          Schema::create('colegiatura_mes', function(Blueprint $table){
-           $table->increments('id');
-            $table->date('fecha');
-            $table->string('nit', 120);
-            $table->string('nombre', 120);
-            $table->integer('numerodocumento');
-            $table->integer('numerofactura');
-            $table->float('monto', 8,2);
-            $table->text('descripcion');
-            $table->integer('alumno_id')->unsigned();
-            $table->integer('mes_id')->unsigned();
+      $table->increments('id');
+      $table->integer('colegiatura_id')->unsigned();
+      $table->integer('mes_id')->unsigned();
 
-      $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
+      $table->foreign('colegiatura_id')->references('id')->on('colegiaturas')->onDelete('cascade');
       $table->foreign('mes_id')->references('id')->on('meses')->onDelete('cascade');
 
       $table->timestamps();
