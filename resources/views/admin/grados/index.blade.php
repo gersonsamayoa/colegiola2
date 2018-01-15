@@ -3,6 +3,7 @@
 @section('content')
 <hr>
 @include('flash::message')
+<div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<thead>
 			<th>Grado</th>
@@ -27,6 +28,7 @@
 			@endforeach
 		</tbody>
 	</table>
+</div>
 	{!!$grados->render()!!}
 	<br>
 	<a href="{{route('admin.niveles.index')}}" class="btn btn-success">Regresar</a>

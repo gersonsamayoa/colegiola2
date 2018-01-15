@@ -15,6 +15,7 @@
     {!!Form::close()!!}
 <br><br><br>
 @include('flash::message')
+<div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<thead>
 			<th>ID</th>
@@ -47,7 +48,7 @@
 			@endforeach
 		</tbody>
 	</table>
-
+</div>
 	{!!$alumnos->appends(Request::all())->render()!!}
 
 

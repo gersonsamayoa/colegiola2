@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\grado;
 use App\nivel;
+use App\alumno;
 use Laracasts\Flash\Flash;
 
 class GradosController extends Controller
@@ -112,5 +113,13 @@ class GradosController extends Controller
 
       flash('El Grado ' . $grados->nombre . ' ha sido borrado de forma exitosa')->error()->important();
       return redirect()->route('admin.niveles.grados', $grados->nivel_id);
+    }
+
+    public function listado($id)
+    {
+      $alumnos=alumno::where('grado_id', $id)->orderby('apellidos', 'ASC')->get();
+      $grado=grado::find($id);
+      return view('admin.grados.listadoalumnos', compact('alumnos', 'grado'));
+
     }
 }

@@ -42,6 +42,11 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
   		'as'	=>	'admin.niveles.grados.create'
   		]);
 
+  	Route::get('niveles/grados/listado/{id}', [
+  		'uses'	=>	'GradosController@listado',
+  		'as'	=>	'admin.niveles.grados.listado'
+  		]);
+
 
       Route::resource('cursos', 'CursosController');
     	Route::get('cursos/{id}/destroy', [
