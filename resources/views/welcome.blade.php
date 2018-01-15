@@ -3,6 +3,8 @@
 @section('title', '')
 
 
+
+
 @section('content')
 <div class="jumbotron" style="background-image: url('{{asset('img/colegioctsaerio.png')}}'); background-repeat: no-repeat;
     background-position: center bottom;
