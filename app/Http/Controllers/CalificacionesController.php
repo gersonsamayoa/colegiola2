@@ -40,7 +40,7 @@ class CalificacionesController extends Controller
         ->select(['alumno_id'])->get();
 
         //busqueda de alumnos que no tienen la nota en el curso
-        $cursos_alumnos=DB::table('alumnos')->whereNotIn('id', $alumno_curso)->select('alumnos.*')->get();
+        $cursos_alumnos=DB::table('alumnos')->whereNotIn('id', $alumno_curso)->select('alumnos.*')->orderBy('apellidos', 'ASC')->get();
 
 
         return view('admin.calificaciones.index', compact('cursos', 'grados', 'alumnos', 'cursosalumnosasignados', 'cursos_alumnos'));

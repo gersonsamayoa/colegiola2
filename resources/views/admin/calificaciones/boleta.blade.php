@@ -26,11 +26,15 @@
       <tr>
           <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
-          <td>{{$alumno_curso->bim1}}</td>
-          <td>{{$alumno_curso->bim2}}</td>
-          <td>{{$alumno_curso->bim3}}</td>
-          <td>{{$alumno_curso->bim4}}</td>
-          <td>{{round($alumno_curso->promedio)}}</td>
+          @if($alumno_curso->bim1==0)<td class="danger">{{$alumno_curso->bim1}}</td>
+          @else<td>{{$alumno_curso->bim1}}</td>@endif
+          @if($alumno_curso->bim2==0)<td class="danger">{{$alumno_curso->bim2}}</td>
+          @else<td>{{$alumno_curso->bim2}}</td>@endif
+          @if($alumno_curso->bim3==0)<td class="danger">{{$alumno_curso->bim3}}</td>
+          @else<td>{{$alumno_curso->bim3}}</td>@endif
+          @if($alumno_curso->bim4==0)<td class="danger">{{$alumno_curso->bim4}}</td>
+          @else<td>{{$alumno_curso->bim4}}</td>@endif
+            <td>{{round($alumno_curso->promedio)}}</td>
       </tr>
       @endforeach
       <tr>
@@ -62,9 +66,12 @@
       <tr>
       <td>{{ $contador }}</td> <?php $contador++; ?>
       <td>{{$alumno_curso->curso->nombre}}</td>
-        <td>{{$alumno_curso->bim1}}</td>
-        <td>{{$alumno_curso->bim2}}</td>
-        <td>{{$alumno_curso->bim3}}</td>
+        @if($alumno_curso->bim1==0)<td class="danger">{{$alumno_curso->bim1}}</td>
+          @else<td>{{$alumno_curso->bim1}}</td>@endif
+          @if($alumno_curso->bim2==0)<td class="danger">{{$alumno_curso->bim2}}</td>
+          @else<td>{{$alumno_curso->bim2}}</td>@endif
+          @if($alumno_curso->bim3==0)<td class="danger">{{$alumno_curso->bim3}}</td>
+          @else<td>{{$alumno_curso->bim3}}</td>@endif
         <td>{{round($alumno_curso->promedio)}}</td>
         </tr>
       @endforeach

@@ -53,7 +53,9 @@
         <td></td>
         <td></td>
         <td></td>
+         @if($totalcursos>0)
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
+        @endif
       </tr>
           <?php
               $totalpromedio=0;
@@ -104,7 +106,9 @@
         <td></td>
         <td></td>
         <td></td>
+         @if($totalcursos>0)
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
+        @endif
       </tr>
         <?php
           $totalpromedio=0;

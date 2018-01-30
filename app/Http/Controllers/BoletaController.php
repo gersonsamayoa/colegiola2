@@ -34,8 +34,8 @@ class BoletaController extends Controller
             $totalpromedio=$totalpromedio+$alumno->promedio;
             $totalcursos=$totalcursos+1;
         }
-
-        $totalpromedio=$totalpromedio/$totalcursos;
+        if($totalpromedio>0){
+        $totalpromedio=$totalpromedio/$totalcursos;}
 
         return view('admin.calificaciones.boleta', compact('alumnos', 'grados', 'alumnos2', 'totalpromedio'));
     }
@@ -51,8 +51,8 @@ class BoletaController extends Controller
             $totalpromedio=$totalpromedio+$alumno->promedio;
             $totalcursos=$totalcursos+1;
         }
-
-        $totalpromedio=$totalpromedio/$totalcursos;
+        if($totalpromedio>0){
+        $totalpromedio=$totalpromedio/$totalcursos;}
 
         $pdf=new PDF();
 
@@ -70,7 +70,7 @@ class BoletaController extends Controller
         $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos2=alumno_curso::orderby('curso_id', 'ASC')->get();
-
+       
         return view('admin.calificaciones.boletaporgrado', compact('alumnos',
             'alumnos2', 'grados', 'totalpromedio', 'totalcursos'));
     }
