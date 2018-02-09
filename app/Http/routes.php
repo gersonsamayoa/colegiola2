@@ -55,12 +55,12 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
     		]);
 
     	Route::get('grados/cursos/{id}', [
-    		'uses'	=>	'cursosController@show',
+    		'uses'	=>	'CursosController@show',
     		'as'	=>	'admin.grados.cursos.show'
     		]);
 
     	Route::get('grados/curso/{id}', [
-    		'uses' 	=>	'cursosController@create',
+    		'uses' 	=>	'CursosController@create',
     		'as'	=>	'admin.cursos.create'
     	]);
 
