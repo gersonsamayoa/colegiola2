@@ -4,7 +4,7 @@
 
 @section('content')
 @include('flash::message')
-<a href="{{route('admin.boleta.imprimir', $alumnos->id)}}" class="btn btn-primary pull-right glyphicon glyphicon-print"></a>
+<a href="{{route('admin.boleta.imprimir', $alumnos->id)}}" class="btn btn-primary pull-right glyphicon glyphicon-print" target="_blank"></a>
 <br>
 <br>
 <br>

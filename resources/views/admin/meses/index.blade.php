@@ -20,7 +20,8 @@
 							<tr><td>{{$mes->id}}</td>
 							<td>{{$mes->nombre}}</td>
 							<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
-							</a> <a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td></tr>
+							</a> 
+							<!--<a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>--></tr>
 							<?php $j++; ?>	
 					@endif
 				@endforeach
@@ -43,7 +44,8 @@
 							<tr><td>{{$mes->id}}</td>
 							<td>{{$mes->nombre}}</td>
 							<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
-							</a> <a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td></tr>
+							</a> 
+							<!--<a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>--></tr>
 							<?php $j++; ?>	
 					@endif
 				@endforeach

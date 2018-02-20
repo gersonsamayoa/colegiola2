@@ -25,7 +25,7 @@
 					<td>{{$colegiaturas->nombre}}</td>
 					<td>{{$colegiaturas->numerodocumento}}</td>
 					<td>{{$colegiaturas->numerofactura}}</td>
-					<td><span class="label label-default">{{$colegiaturas->mes->nombre}}</span></td>
+					<td><span class="label label-default">{{$colegiaturas->meses->nombre}}</span></td>
 					<td>Q{{number_format($colegiaturas->monto, '2','.' , ',')}}</td>
 					<td width="175px">{{$colegiaturas->descripcion}}</td>
 					<td>{{$colegiaturas->alumno->nombres . " ". $colegiaturas->alumno->apellidos}}</td>

@@ -17,5 +17,26 @@ class UsuariosTableSeeder extends Seeder
           'password'  =>bcrypt('sysadmon'),
           'type'      =>'admin',
       ]);
+
+      DB::table ('users')->insert([
+          'name'  =>'Manuel Filiberto',
+          'email' =>'mfcruzveliz@cts.edu.gt',
+          'password'  =>bcrypt('ctsmfcruzveliz'),
+          'type'      =>'admin',
+      ]);
+
+      DB::table ('users')->insert([
+          'name'  =>'Mario Roberto Coronado',
+          'email' =>'mrcoronado@cts.edu.gt',
+          'password'  =>bcrypt('ctsmrcoronado'),
+          'type'      =>'contador',
+      ]);
+
+      DB::table ('users')->insert([
+          'name'  =>'Baudilio Gilberto Castillo',
+          'email' =>'bgcastillo@cts.edu.gt',
+          'password'  =>bcrypt('ctsgbcastillo'),
+          'type'      =>'secretaria',
+      ]);
     }
 }

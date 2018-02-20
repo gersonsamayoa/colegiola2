@@ -22,6 +22,7 @@
             
             @if(Auth::user()->admin() OR Auth::user()->contador())
             <li><a href="{{route('admin.meses.index')}}">Meses</a></li>
+            <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta por Grado</a></li>
             @endif
 
             @if(Auth::user()->admin())

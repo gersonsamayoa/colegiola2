@@ -16,7 +16,7 @@
 					<td>{{$nivel->id}}</td>
 					<td><a href="{{route('admin.niveles.grados', $nivel->id)}}">{{$nivel->nombre}}</a></td>
 					<td><a href="{{route('admin.niveles.edit', $nivel->id)}}" class="btn btn-primary	">Editar</a> 
-						<a href="{{route('admin.niveles.destroy', $nivel->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
+						<!--<a href="{{route('admin.niveles.destroy', $nivel->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>-->
 					</td>
 				</tr>
 			@endforeach

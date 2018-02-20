@@ -149,26 +149,27 @@ class ColegiaturasController extends Controller
   {
     $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");
     $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
-    if ($request->grado_id){
-    $alumnos=alumno::buscar($request->grado_id)->get();
-    $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();
-    $groupcolegiaturas=$alumnos->groupby('nombres');
+
+    if ($request->nombres){
+        $alumnos=alumno::Search($request->nombres)->orderby('apellidos','ASC')->get();
+        $colegiaturas= colegiatura::orderby('id','ASC')->get();
+        $groupcolegiaturas=$alumnos->groupby('nombres');
+        return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
     }
     else {
-      {
-        $alumnos=alumno::Search($request->nombres)->get();
-        $colegiaturas= colegiatura::orderby('mes_id','ASC')->get();
+        $alumnos=alumno::buscar($request->grado_id)->orderby('apellidos','ASC')->get();
+        $colegiaturas= colegiatura::orderby('id','ASC')->get();
         $groupcolegiaturas=$alumnos->groupby('nombres');
-      }
-    }
-
-    return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
+        return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
+        }
   }
 
   public function alumnocolegiatura($id)
   {
     $colegiaturas= colegiatura::Find($id);
     $alumnos=alumno::Find($colegiaturas->alumno_id);
+
+  
     
     return view('admin.colegiaturas.alumnocolegiatura', compact('colegiaturas', 'alumnos'));
   }

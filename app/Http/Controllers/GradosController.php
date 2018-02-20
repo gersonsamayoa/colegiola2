@@ -28,7 +28,7 @@ class GradosController extends Controller
     public function gradosnivel($id)
     {
       $niveles=Nivel::Find($id);
-      $grados= grado::where('nivel_id', $id)->orderby('nombre', 'ASC')->orderby('grado', 'ASC')->paginate(10);
+      $grados= grado::where('nivel_id', $id)->orderby('id', 'ASC')->orderby('grado', 'ASC')->orderby('nombre', 'ASC')->paginate(10);
       return view('admin.grados.index2', compact('grados', 'niveles'));
     }
 
