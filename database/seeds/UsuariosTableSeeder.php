@@ -35,7 +35,7 @@ class UsuariosTableSeeder extends Seeder
       DB::table ('users')->insert([
           'name'  =>'Baudilio Gilberto Castillo',
           'email' =>'bgcastillo@cts.edu.gt',
-          'password'  =>bcrypt('ctsgbcastillo'),
+          'password'  =>bcrypt('ctsbgcastillo'),
           'type'      =>'secretaria',
       ]);
     }

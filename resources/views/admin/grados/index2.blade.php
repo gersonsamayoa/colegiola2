@@ -6,7 +6,6 @@
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Id</th>
 			<th>Grado</th>
 			<th>Nombre</th>
 			<th>Cantidad<br> Bimestres</th>
@@ -16,7 +15,6 @@
 		<tbody>
 			@foreach($grados as $grado)
 				<tr>
-					<td>{{ $grado->id }}</td>
 					<td>{{ $grado->grado}}</td>
 					<td>{{$grado->nombre}}</td>
 					<td class="text-center">{{$grado->cantidadbimestres}}</td>

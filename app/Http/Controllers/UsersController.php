@@ -86,7 +86,12 @@ class UsersController extends Controller
         $user=User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        if(!empty($request->password))
+        {
+            $user->password=bcrypt($request->password);
+        }
         $user->type = $request->type;
+
         $user->save();
 
         flash('El usuario '. $user->name . ' ha sido editado con exito!')->warning()->important();
