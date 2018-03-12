@@ -6,7 +6,7 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<th>No.</th>
-			<th>Apellidos</th>
+			<th>Carné</th>
 			<th>Nombres</th>
 		</thead>
 		<tbody>
@@ -15,8 +15,8 @@
       		@foreach($alumnos as $alumno)
       		<tr>
       			<td>{{ $contador }}</td> <?php $contador++; ?>
-      			<td>{{ $alumno->apellidos }}</td>
-      			<td>{{ $alumno->nombres }}</td>
+      			<td>{{ $alumno->carnet }}</td>
+      			<td>{{ $alumno->apellidos . ' ' . $alumno->nombres}}</td>
       		</tr>
       		@endforeach
 
