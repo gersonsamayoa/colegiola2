@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>@yield ('title', 'Home') | Panel de Administración</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
+	<link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
 
 </head>
 <body>

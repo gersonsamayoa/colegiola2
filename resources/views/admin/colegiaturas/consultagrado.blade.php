@@ -3,9 +3,9 @@
 @section('content')
 
 <!--Buscador-->
-	{!!Form::model(Request::all(),['route'=>'admin.colegiaturas.consultagrado','method'=>'GET', 'class'=>'navbar-form pull-right'])!!}
-	 Buscar por Nombre: <div class="input-group">
-		 {!!Form::text('nombres', null, ['class'=>'form-control', 'placeholder'=>'Buscar alumno..', 'aria-describedby'=>'search'])!!}
+	{!!Form::model(Request::all(),['route'=>'admin.colegiaturas.consultagrado','method'=>'GET', 'class'=>'navbar-form pull-left'])!!}
+	 Buscar: <div class="input-group">
+		 {!!Form::text('nombres', null, ['class'=>'form-control', 'placeholder'=>'Nombre o Carné', 'aria-describedby'=>'search'])!!}
 			 <span class="input-group-addon" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
 	 </div>
 		por Grado: <div class="input-group">
@@ -13,7 +13,7 @@
 	</div>
 	{!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
 {!!Form::close()!!}
-	<hr>
+	<br>
 	<br>
 	<br>
 @include('flash::message')

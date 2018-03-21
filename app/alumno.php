@@ -24,7 +24,7 @@ class alumno extends Model
     {
         if(trim($nombres)!="")
         {
-        return $query->where(\DB::raw("CONCAT(nombres, ' ', apellidos)"),'LIKE', "%$nombres%");
+        return $query->where(\DB::raw("CONCAT(nombres, ' ', apellidos, ' ',carnet)"),'LIKE', "%$nombres%");
         }
     }
 

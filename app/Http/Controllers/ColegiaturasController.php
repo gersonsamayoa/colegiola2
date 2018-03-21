@@ -145,6 +145,12 @@ class ColegiaturasController extends Controller
 
     }
 
+    public function solvencias($id)
+    {
+        $alumnos=Alumno::where('grado_id', $id)->get();
+        dd($alumnos->all());
+    }
+
    public function consultagrado(Request $request)
   {
     $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");

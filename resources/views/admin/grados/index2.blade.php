@@ -25,6 +25,7 @@
 					<a href="{{route('admin.grados.cursos.show', $grado->id)}}" class="btn btn-warning glyphicon glyphicon-book" title="Crear Cursos"></a>
 					<a href="{{route('admin.grados.boleta', $grado->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Imprimir Boletas de Calificaciones"></a>
 					<a href="{{route('admin.niveles.grados.listado', $grado->id)}}" class="btn btn-default glyphicon glyphicon-file" title="Generar Listado de Grado"></a>
+					<a href="{{ route('admin.colegiaturas.solvencias', $grado->id) }}" class="btn btn-danger glyphicon glyphicon-usd" title="Pendientes de Pago"></a>
 					</td>
 				</tr>
 			@endforeach

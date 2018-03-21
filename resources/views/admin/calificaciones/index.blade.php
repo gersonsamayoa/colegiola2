@@ -35,19 +35,19 @@
 					</div></td>
 				
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', ''])!!}
+						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', ''])!!}
+							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim4[]',$cursoalumnoasignado->bim4,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::text('bim4[]',$cursoalumnoasignado->bim4,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
 					</div></td>
 
 					<td><div class="form-group">
@@ -55,7 +55,7 @@
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'5'])!!}
 					</div></td>
 
 					<td>
@@ -100,15 +100,15 @@
 					</div></td>
 				
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', ''])!!}
+						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', '','tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', ''])!!}
+							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', '' , 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 
 
@@ -117,7 +117,7 @@
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
 
 					<td>
 						<div class="form-group">
@@ -163,19 +163,19 @@
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim4[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+					{!!Form::text('bim4[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
 				</div></td>
 			</tr>
 			@endif
@@ -213,15 +213,15 @@
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+						{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+						{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', ''])!!}
+						{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 				</tr>
 			@endif

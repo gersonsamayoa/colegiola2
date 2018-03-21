@@ -179,6 +179,11 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 					'as'	=>	'admin.colegiaturas.alumnocolegiatura'
 					]);
 
+					Route::get('colegiaturas/{id}/solvencia', [
+					'uses'	=>	'ColegiaturasController@solvencias',
+					'as'	=>	'admin.colegiaturas.solvencias'
+					]);
+
 				/*Rutas para la Factura*/
 					Route::get('pdf/{id}', [
 						'uses' 	=>	'PdfsController@index',
