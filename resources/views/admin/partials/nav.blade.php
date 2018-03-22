@@ -16,7 +16,7 @@
         <ul class="nav navbar-nav">
            @if(Auth::user()->admin() OR Auth::user()->secretaria())
             <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
-            <li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>
+            <!--<li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>-->
             <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
             @endif
             

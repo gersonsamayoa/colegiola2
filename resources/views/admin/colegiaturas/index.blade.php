@@ -50,7 +50,7 @@
 
 	</table>
 	
-<a href="{{route('admin.alumnos.index')}}" class="btn btn-success">Regresar</a>
+<a href="{{route('admin.alumnos.index',['grado_id'=>$alumno->grado_id])}}" class="btn btn-success">Regresar</a>
 
 	{!!$colegiaturas->render()!!}
 

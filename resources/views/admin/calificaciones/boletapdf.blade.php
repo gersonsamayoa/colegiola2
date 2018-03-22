@@ -6,11 +6,20 @@
     
   </head>
   <body>
-<hr>
+    <table width="100%">
+      <tr>
+        <td width="15%">
+        <img src="http://colegio.cts.edu.gt/img/logo-header1.png" width="70px">
+        </td>
+        <td width="85%" align="center">
+        <h1>Colegio Técnico de Computación CTS </h1>
+        <p>Chiquimulilla, Santa Rosa 2,018</p>
+        </td>
+      </tr>
+      </table>
+      <hr>
  <h2>{{$alumnos->nombres . " " . $alumnos->apellidos}}</h2>
- <h3>{{$grados->grado . " " . $grados->nombre}}</h3>
-
-<hr>
+ <p>{{$grados->grado . " " . $grados->nombre}}</p>
 <br>
 @if ($grados->cantidadbimestres==4)
 <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
@@ -42,14 +51,21 @@
       <tr>
           <td><strong>Promedio</strong></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{ round($totalbim1) }}</td>
+          <td>{{ round($totalbim2) }}</td>
+          <td>{{ round($totalbim3) }}</td>
+          <td>{{ round($totalbim4) }}</td>
           <td><strong>{{round($totalpromedio)}}</strong></td>
       </tr>
     </tbody>
   </table>
+  <br><br><br>
+        <table width="100%">
+          <tr>
+            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+          </tr>
+        </table>
   @else
 
   <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
@@ -79,11 +95,18 @@
       <tr>
           <td><strong>Promedio</strong></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><strong>{{round($totalpromedio)}}</strong></td>
+          <td>{{ round($totalbim1) }}</td>
+          <td>{{ round($totalbim2) }}</td>
+          <td>{{ round($totalbim3) }}</td>
+          <td><strong>{{round($totalpromedio)}}</strong></td>
       </tr>
     </tbody>
   </table>
+  <br><br><br>
+        <table width="100%">
+          <tr>
+            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+          </tr>
+        </table>
 @endif

@@ -40,10 +40,10 @@
       <tr>
           <td><strong>Promedio</strong></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{ round($totalbim1) }}</td>
+          <td>{{ round($totalbim2) }}</td>
+          <td>{{ round($totalbim3) }}</td>
+          <td>{{ round($totalbim4) }}</td>
           <td><strong>{{round($totalpromedio)}}</strong></td>
         </tr>
     </tbody>
@@ -75,14 +75,16 @@
         <td>{{round($alumno_curso->promedio)}}</td>
         </tr>
       @endforeach
-      <td><strong>Promedio</strong></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <tr>
+        <td><strong>Promedio</strong></td>
+        <td></td>
+        <td>{{ round($totalbim1) }}</td>
+        <td>{{ round($totalbim2) }}</td>
+        <td>{{ round($totalbim3) }}</td>
         <td><strong>{{round($totalpromedio)}}</strong></td>
+      </tr>
     </tbody>
   </table>
 @endif
-
+<a href="{{route('admin.alumnos.index',['grado_id'=>$alumnos->grado_id])}}" class="btn btn-success">Regresar</a>
   @endsection

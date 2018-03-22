@@ -40,7 +40,7 @@
 
 	<div class="form-group">
 	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-	<a class="btn btn-danger" href="{{route('admin.alumnos.index')}}" role="button">Cancelar</a>
+	<a class="btn btn-danger" href="{{route('admin.alumnos.index',['grado_id'=>$alumno->grado_id])}}" role="button">Cancelar</a>
 	</div>
 
 

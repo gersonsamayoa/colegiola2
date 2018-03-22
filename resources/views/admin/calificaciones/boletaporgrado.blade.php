@@ -43,6 +43,10 @@
           @else <td>{{$alumno_curso->bim4}}</td>@endif
           <td>{{round($alumno_curso->promedio)}}</td>
           <?php
+          $totalbim1=$totalbim1+$alumno_curso->bim1;
+          $totalbim2=$totalbim2+$alumno_curso->bim2;
+          $totalbim3=$totalbim3+$alumno_curso->bim3;
+          $totalbim4=$totalbim4+$alumno_curso->bim4;
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
           $totalcursos=$totalcursos+1;
           ?>
@@ -52,15 +56,19 @@
       <tr>
         <td><strong>Promedio</strong></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
         @if($totalcursos>0)
+        <td>{{ round($totalbim1/$totalcursos) }}</td>
+        <td>{{ round($totalbim2/$totalcursos) }}</td>
+        <td>{{ round($totalbim3/$totalcursos) }}</td>
+        <td>{{ round($totalbim4/$totalcursos) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
         @endif
       </tr>
       <?php
+          $totalbim1=0;
+          $totalbim2=0;
+          $totalbim3=0;
+          $totalbim4=0;
           $totalpromedio=0;
           $totalcursos=0;
           ?>
@@ -86,7 +94,6 @@
   <tbody>
 
 @foreach($alumnos2 as $alumno_curso)
-
   @if($alumno->id==$alumno_curso->alumno_id)
       <tr>
           <td>{{ $contador }}</td> <?php $contador++; ?>
@@ -99,6 +106,9 @@
           @else <td>{{$alumno_curso->bim3}}</td>@endif
           <td>{{round($alumno_curso->promedio)}}</td>
           <?php
+          $totalbim1=$totalbim1+$alumno_curso->bim1;
+          $totalbim2=$totalbim2+$alumno_curso->bim2;
+          $totalbim3=$totalbim3+$alumno_curso->bim3;
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
           $totalcursos=$totalcursos+1;
           ?>
@@ -108,14 +118,17 @@
       <tr>
         <td><strong>Promedio</strong></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
         @if($totalcursos>0)
+        <<td>{{round($totalbim1/$totalcursos) }}</td>
+        <td>{{ round($totalbim2/$totalcursos) }}</td>
+        <td>{{ round($totalbim3/$totalcursos) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
         @endif
       </tr>
       <?php
+          $totalbim1=0;
+          $totalbim2=0;
+          $totalbim3=0;
           $totalpromedio=0;
           $totalcursos=0;
           ?>
