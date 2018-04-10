@@ -33,14 +33,14 @@ class CalificacionesController extends Controller
         $alumnos=alumno::where('grado_id', $grados->id)->get();
 
         //Alumnos con notas ya consignadas segun el curso seleccionado
-        $cursosalumnosasignados=DB::table('alumno_curso')->leftjoin('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')->where('alumno_curso.curso_id','=',$id)->orderBy('apellidos', 'ASC')->get();
+        $cursosalumnosasignados=DB::table('alumno_curso')->leftjoin('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')->where('alumno_curso.curso_id','=',$id)->orderBy('apellidos', 'ASC')->orderBy('nombres', 'ASC')->get();
 
         // Primero sacas los id alumnos que si están asignados al curso
         $alumno_curso = alumno_curso::where('curso_id','=',$id)
         ->select(['alumno_id'])->get();
 
         //busqueda de alumnos que no tienen la nota en el curso
-        $cursos_alumnos=DB::table('alumnos')->whereNotIn('id', $alumno_curso)->select('alumnos.*')->orderBy('apellidos', 'ASC')->get();
+        $cursos_alumnos=DB::table('alumnos')->whereNotIn('id', $alumno_curso)->select('alumnos.*')->orderBy('apellidos', 'ASC')->orderBy('nombres', 'ASC')->get();
 
 
         return view('admin.calificaciones.index', compact('cursos', 'grados', 'alumnos', 'cursosalumnosasignados', 'cursos_alumnos'));

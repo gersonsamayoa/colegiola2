@@ -98,9 +98,12 @@ class BoletaController extends Controller
         $totalbim3=0;
         $totalbim4=0;
         $grados=grado::find($idgrado);
+        $totalcursos=count(curso::where('grado_id', $idgrado)->get());
         $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
-        $alumnos2=alumno_curso::orderby('curso_id', 'ASC')->get();
+        $alumnos3 = alumno::where('grado_id','=',$idgrado)->select(['id'])->get();
+
+          $alumnos2=alumno_curso::wherein('alumno_id',$alumnos3)->orderby('curso_id', 'ASC')->get();
        
         return view('admin.calificaciones.boletaporgrado', compact('alumnos',
             'alumnos2', 'grados', 'totalpromedio', 'totalcursos', 'totalbim1','totalbim2','totalbim3','totalbim4'));
@@ -115,6 +118,7 @@ class BoletaController extends Controller
         $totalbim3=0;
         $totalbim4=0;
         $grados=grado::find($idgrado);
+        $totalcursos=count(curso::where('grado_id', $idgrado)->get());
         $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos3 = alumno::where('grado_id','=',$idgrado)->select(['id'])->get();

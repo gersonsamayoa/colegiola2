@@ -19,7 +19,7 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-        <p>Chiquimulilla, Santa Rosa 2,018</p>
+         <p>Colonia Vista Hermosa Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
         </td>
       </tr>
       </table>
@@ -56,7 +56,6 @@
               $totalbim3=$totalbim3+$alumno_curso->bim3;
               $totalbim4=$totalbim4+$alumno_curso->bim4;
               $totalpromedio=$totalpromedio+$alumno_curso->promedio;
-              $totalcursos=$totalcursos+1;
               ?>
           </tr>
        @endif
@@ -78,15 +77,14 @@
               $totalbim3=0;
               $totalbim4=0;
               $totalpromedio=0;
-              $totalcursos=0;
               ?>
         </tbody>
       </table>
         <br><br><br>
         <table width="100%">
           <tr>
-            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
-            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario <br>o Maestro de Grado  </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br><br> Director </p></td>
           </tr>
         </table>
         </div>
@@ -103,7 +101,7 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-        <p>Chiquimulilla, Santa Rosa 2,018</p>
+        <p>Colonia Vista Hermosa Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
         </td>
       </tr>
       </table>
@@ -136,7 +134,6 @@
           $totalbim2=$totalbim2+$alumno_curso->bim2;
           $totalbim3=$totalbim3+$alumno_curso->bim3;
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
-          $totalcursos=$totalcursos+1;
           ?>
       </tr>
        @endif
@@ -156,15 +153,14 @@
           $totalbim2=0;
           $totalbim3=0;
           $totalpromedio=0;
-          $totalcursos=0;
           ?>
         </tbody>
       </table>
       <br><br><br>
         <table width="100%">
           <tr>
-            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
-            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario <br>o Maestro de Grado  </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br><br> Director </p></td>
           </tr>
         </table>
            </div>

@@ -48,7 +48,6 @@
           $totalbim3=$totalbim3+$alumno_curso->bim3;
           $totalbim4=$totalbim4+$alumno_curso->bim4;
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
-          $totalcursos=$totalcursos+1;
           ?>
       </tr>
        @endif
@@ -70,7 +69,6 @@
           $totalbim3=0;
           $totalbim4=0;
           $totalpromedio=0;
-          $totalcursos=0;
           ?>
         </tbody>
       </table>
@@ -110,7 +108,6 @@
           $totalbim2=$totalbim2+$alumno_curso->bim2;
           $totalbim3=$totalbim3+$alumno_curso->bim3;
           $totalpromedio=$totalpromedio+$alumno_curso->promedio;
-          $totalcursos=$totalcursos+1;
           ?>
       </tr>
        @endif
@@ -130,7 +127,6 @@
           $totalbim2=0;
           $totalbim3=0;
           $totalpromedio=0;
-          $totalcursos=0;
           ?>
         </tbody>
       </table>
