@@ -31,7 +31,4 @@ class curso extends Model
     return $this->hasMany('App\alumno_curso');
   }
 
-
-
-
 }

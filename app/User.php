@@ -51,4 +51,8 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->type==='secretaria';
     }
+    public function director()
+    {
+        return $this->type==='director';
+    }
 }

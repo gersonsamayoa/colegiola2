@@ -24,7 +24,7 @@
       </tr>
       </table>
 <hr>
-<h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
+<h2>{{$alumno->apellidos . ", " . $alumno->nombres}}</h2>
 <p>{{$grados->grado . " " . $grados->nombre}}</p>
 <table class="table table-striped table-hover" border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
     <thead class="info">
@@ -45,10 +45,10 @@
           <tr>
                <td>{{ $contador }}</td> <?php $contador++; ?>
               <td>{{$alumno_curso->curso->nombre}}</td>
-              <td>{{$alumno_curso->bim1}}</td>
-              <td>{{$alumno_curso->bim2}}</td>
-              <td>{{$alumno_curso->bim3}}</td>
-              <td>{{$alumno_curso->bim4}}</td>
+              @if($alumno_curso->bim1<60)<td><font color='red'>{{$alumno_curso->bim1}}</font></td>@else<td>{{$alumno_curso->bim1}}</td>@endif
+              @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
+              @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
+              @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
               <td>{{round($alumno_curso->promedio)}}</td>
               <?php
               $totalbim1=$totalbim1+$alumno_curso->bim1;
@@ -125,9 +125,9 @@
       <tr>
           <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
-          <td>{{$alumno_curso->bim1}}</td>
-          <td>{{$alumno_curso->bim2}}</td>
-          <td>{{$alumno_curso->bim3}}</td>
+           @if($alumno_curso->bim1<60)<td><font color='red'>{{$alumno_curso->bim1}}</font></td>@else<td>{{$alumno_curso->bim1}}</td>@endif
+              @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
+              @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
           <td>{{round($alumno_curso->promedio)}}</td>
           <?php
           $totalbim1=$totalbim1+$alumno_curso->bim1;

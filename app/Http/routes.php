@@ -19,12 +19,9 @@ Route::get('/', ['as'=>'index', function
 
 Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
-	Route::get('/', ['as'=>'admin.index', function
-	() {
+	Route::get('/', ['as'=>'admin.index', function() {
     return view('welcome');
 	}]);
-
-	
 
     Route::resource('grados', 'GradosController');
   	Route::get('grados/{id}/destroy', [
@@ -47,6 +44,22 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
   		'as'	=>	'admin.niveles.grados.listado'
   		]);
 
+  	/*Ruta para Vaciado de calificaciones*/
+  	Route::post('niveles/grados/vaciado/{id}', [
+  		'uses'	=>	'GradosController@vaciado',
+  		'as'	=>	'admin.niveles.grados.vaciado'
+  		]);
+
+  	Route::get('niveles/grados/selectbim/{id}', [
+  		'uses' 	=>	'GradosController@selectbim',
+  		'as'	=>	'admin.niveles.grados.selectbim'
+  	]);
+
+  	Route::get('niveles/grados/vaciado/{id}/{bim}', [
+		'uses'	=> 	'GradosController@imprimir',
+		'as'	=>	'admin.niveles.grados.selectbim.imprimir'
+	]);
+
 
       Route::resource('cursos', 'CursosController');
     	Route::get('cursos/{id}/destroy', [
@@ -64,6 +77,8 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
     		'as'	=>	'admin.cursos.create'
     	]);
 
+    
+
 		Route::resource('meses', 'MesesController');
 		Route::get('meses/{id}/destroy', [
 			'uses'	=>'MesesController@destroy',
@@ -72,20 +87,20 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 		Route::resource('niveles', 'NivelesController');
 		
-	Route::group(['middleware' => 'admin'], function() {
-	Route::resource('usuarios', 'UsersController');
-	Route::get('usuarios/{id}/destroy', [
+		Route::group(['middleware' => 'admin'], function() {
+		Route::resource('usuarios', 'UsersController');
+		Route::get('usuarios/{id}/destroy', [
 		'uses'	=>'UsersController@destroy',
 		'as' 	=>'admin.usuarios.destroy'
 		]);
 
-	Route::get('niveles/{id}/destroy', [
+		Route::get('niveles/{id}/destroy', [
 		'uses'	=>'NivelesController@destroy',
 		'as' 	=>'admin.niveles.destroy'
 		]);
 
 	
-});
+		});
 	
 
 	Route::resource('alumnos', 'AlumnosController');
@@ -119,6 +134,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 					'uses'	=>'CalificacionesController@destroy',
 					'as'	=>'admin.calificaciones.destroy'
 					]);
+			
 
 					/*Ruta para Boleta de Calificaciones*/
 
@@ -188,7 +204,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 					Route::get('pdf/{id}', [
 						'uses' 	=>	'PdfsController@index',
 						'as'		=>	'admin.pdf'
-					]);
+					]);		
 
 });
 

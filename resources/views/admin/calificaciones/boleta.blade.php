@@ -1,5 +1,5 @@
 @extends ('admin.template.main')
-@section('title', 'Boleta de Calificaciones de: '. $alumnos->nombres . " " . $alumnos->apellidos)
+@section('title', 'Boleta de Calificaciones de: '. $alumnos->apellidos . ", " . $alumnos->nombres)
 @section('subtitle', 'Grado: '.$grados->grado . " " . $grados->nombre)
 
 @section('content')

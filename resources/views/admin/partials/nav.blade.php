@@ -14,9 +14,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       @if(Auth::user())
         <ul class="nav navbar-nav">
-           @if(Auth::user()->admin() OR Auth::user()->secretaria())
+           @if(Auth::user()->admin() OR Auth::user()->secretaria() OR Auth::user()->director())
             <li><a href="{{route('admin.niveles.index')}}">Niveles</a></li>
+            @endif
             <!--<li><a href="{{route('admin.grados.index')}}">Grados y Carreras</a></li>-->
+             @if(Auth::user()->admin() OR Auth::user()->secretaria() OR Auth::user()->director() OR Auth::user()->contador())
             <li><a href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
             @endif
             

@@ -38,11 +38,19 @@
 					<td>{{$alumno->telefono}}</td>
 					<td width=400>{{$alumno->grado->grado . " " . $alumno->grado->nombre}}</td>
 					<td>
+						@if(Auth::user()->admin() OR Auth::user()->secretaria())
 						<a href="{{route('admin.alumnos.edit', $alumno->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">
 						</a>
+						@endif
+						@if(Auth::user()->admin() OR Auth::user()->secretaria())
 						<a href="{{route('admin.alumnos.destroy', $alumno->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>
+						@endif
+						@if(Auth::user()->admin() OR Auth::user()->contador())
 						<a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" class="btn btn-info glyphicon glyphicon-usd" title="Colegiaturas"></a>
+						@endif
+						@if(Auth::user()->admin() OR Auth::user()->secretaria() OR Auth::user()->director() OR Auth::user()->contador())
 						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Boleta de Calificaciones"></a>
+						@endif
 					</td>
 				</tr>
 			@endforeach

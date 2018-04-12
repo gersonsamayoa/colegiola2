@@ -18,12 +18,12 @@
 
 		<div class="form-group">
 		{!!Form::label('password','Contraseña')!!}
-		{!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'*******','required'])!!}
+		{!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'*******',''])!!}
 		</div>
 		
 		<div class="form-group">
 		{!!Form::label('type','Tipo')!!}
-		{!!Form::select('type', ['contador'=>'Contador','secretaria'=>'Secretaría','admin'=>'Administrador'], $user->type, ['class'=>'form-control'])!!}
+		{!!Form::select('type', ['contador'=>'Contador','secretaria'=>'Secretaría','admin'=>'Administrador', 'director'=>'Director'], $user->type, ['class'=>'form-control'])!!}
 		</div>
 
 		<div class="form-group">

@@ -5,6 +5,9 @@
 @section('content')
 @include('flash::message')
 <h3 class="text-center">Alumnos con notas</h3>
+<div>
+<a href="{{route('admin.grados.cursos.show', $grados->id)}}" class="btn btn-success pull-right">Regresar</a>
+</div>
 @if($grados->cantidadbimestres==4)
 <table class="table table-striped table-hover">
 		<thead>
@@ -69,7 +72,7 @@
 	</tbody>
 </table>
 	<div class="form-group pull-right">
-		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+		{!!Form::submit('Asignar Notas',['class'=>'btn btn-primary'])!!}
 		{!!Form::close()!!}
 	</div>
 @else
@@ -130,7 +133,7 @@
 	</tbody>
 </table>
 <div class="form-group pull-right">
-		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+		{!!Form::submit('Asignar Notas',['class'=>'btn btn-primary'])!!}
 		{!!Form::close()!!}
 	</div>
 @endif
@@ -183,7 +186,7 @@
 	</tbody>
 </table>
 		<div class="form-group pull-right">
-			{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+			{!!Form::submit('Asignar Alumnos',['class'=>'btn btn-primary'])!!}
 			{!!Form::close()!!}
 		</div>
 @else
@@ -229,14 +232,12 @@
 	</tbody>
 </table>
 	<div class="form-group pull-right">
-		{!!Form::submit('Asignar Todos',['class'=>'btn btn-primary'])!!}
+		{!!Form::submit('Asignar Alumnos',['class'=>'btn btn-primary'])!!}
 		{!!Form::close()!!}
 	</div>
 @endif
 <br><br><br>
-<div>
-<a href="{{route('admin.grados.cursos.show', $grados->id)}}" class="btn btn-success">Regresar</a>
-</div>
+
 @endsection
 
 @section('scripts')
