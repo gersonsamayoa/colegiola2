@@ -3,7 +3,6 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Boleta de Calificaciones</title>
-    
   </head>
   <body>
     <table width="100%">
@@ -13,13 +12,13 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-        <p>Chiquimulilla, Santa Rosa 2,018</p>
+        <p>Colonia Vista Hermosa, Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
         </td>
       </tr>
       </table>
       <hr>
  <h2>{{$alumnos->apellidos . ", " . $alumnos->nombres}}</h2>
- <p>{{$grados->grado . " " . $grados->nombre}}</p>
+ <p>Grado: {{$grados->grado . " " . $grados->nombre}}</p>
 <br>
 @if ($grados->cantidadbimestres==4)
 <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
@@ -61,9 +60,9 @@
   </table>
   <br><br><br>
         <table width="100%">
-          <tr>
-            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
-            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+           <tr>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario <br>o Maestro de Grado  </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br><br> Director </p></td>
           </tr>
         </table>
   @else
@@ -104,9 +103,9 @@
   </table>
   <br><br><br>
         <table width="100%">
-          <tr>
-            <td width="50%" align="center"><p>f._____________________________<br> Director </p> </td>
-            <td width="50%" align="center"><p>f._____________________________<br> Secretario o Maestro de Grado </p></td>
+           <tr>
+            <td width="50%" align="center"><p>f._____________________________<br> Secretario <br>o Maestro de Grado  </p> </td>
+            <td width="50%" align="center"><p>f._____________________________<br><br> Director </p></td>
           </tr>
         </table>
 @endif

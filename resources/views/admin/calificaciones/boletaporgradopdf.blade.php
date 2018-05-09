@@ -3,7 +3,6 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Boleta de Calificaciones</title>
-    
   </head>
   <body>
 
@@ -19,31 +18,30 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-         <p>Colonia Vista Hermosa Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
+         <p>Colonia Vista Hermosa, Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
         </td>
       </tr>
       </table>
 <hr>
 <h2>{{$alumno->apellidos . ", " . $alumno->nombres}}</h2>
-<p>{{$grados->grado . " " . $grados->nombre}}</p>
-<table class="table table-striped table-hover" border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
-    <thead class="info">
+<p>Grado: {{$grados->grado . " " . $grados->nombre}}</p>
+<table border=1 cellspacing=0 bordercolor=black>
+    <thead>
       <tr>
-          <th class="info">No</th>
-          <th class="info" width="350px">Curso</th>
-            <th class="info">Bim1</th>
-            <th class="info">Bim2</th>
-            <th class="info">Bim3</th>
-            <th class="info">Bim4</th>
-            <th class="info">Promedio</th>
+          <th>No.</th>
+          <th width="350px">Curso</th>
+          <th>Bim1</th>
+          <th>Bim2</th>
+          <th>Bim3</th>
+          <th>Bim4</th>
+          <th>Promedio</th>
         </tr>
     </thead>
   <tbody>
   @foreach($alumnos2 as $alumno_curso)
-
     @if($alumno->id==$alumno_curso->alumno_id)
           <tr>
-               <td>{{ $contador }}</td> <?php $contador++; ?>
+              <td>{{ $contador }}</td> <?php $contador++; ?>
               <td>{{$alumno_curso->curso->nombre}}</td>
               @if($alumno_curso->bim1<60)<td><font color='red'>{{$alumno_curso->bim1}}</font></td>@else<td>{{$alumno_curso->bim1}}</td>@endif
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
@@ -63,13 +61,11 @@
       <tr>
         <td><strong>Promedio</strong></td>
         <td></td>
-         @if($totalcursos>0)
         <td>{{ round($totalbim1/$totalcursos) }}</td>
         <td>{{ round($totalbim2/$totalcursos) }}</td>
         <td>{{ round($totalbim3/$totalcursos) }}</td>
         <td>{{ round($totalbim4/$totalcursos) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
-        @endif
       </tr>
           <?php
               $totalbim1=0;
@@ -101,22 +97,22 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-        <p>Colonia Vista Hermosa Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
+        <p>Colonia Vista Hermosa, Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522</p>
         </td>
       </tr>
       </table>
       <hr>
-    <h2>{{$alumno->apellidos . " " . $alumno->nombres}}</h2>
-    <p>{{$grados->grado . " " . $grados->nombre}}</p>
-    <table class="table table-striped table-hover" border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
-      <thead class="info">
+    <h2>{{$alumno->apellidos . ", " . $alumno->nombres}}</h2>
+    <p>Grado: {{$grados->grado . " " . $grados->nombre}}</p>
+   <table border=1 cellspacing=0 bordercolor=black>
+      <thead>
         <tr>
-            <th class="info">No</th>
-            <th class="info" width="350px">Curso</th>
-            <th class="info">Bim1</th>
-            <th class="info">Bim2</th>
-            <th class="info">Bim3</th>
-            <th class="info">Promedio</th>
+            <th>No.</th>
+            <th width="350px">Curso</th>
+            <th>Bim1</th>
+            <th>Bim2</th>
+            <th>Bim3</th>
+            <th>Promedio</th>
         </tr>
   </thead>
   <tbody>
@@ -141,12 +137,10 @@
       <tr>
         <td><strong>Promedio</strong></td>
         <td></td>
-         @if($totalcursos>0)
         <td>{{ round($totalbim1/$totalcursos) }}</td>
         <td>{{ round($totalbim2/$totalcursos) }}</td>
         <td>{{ round($totalbim3/$totalcursos) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos)}}</strong></td>
-        @endif
       </tr>
         <?php
           $totalbim1=0;

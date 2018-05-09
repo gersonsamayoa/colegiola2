@@ -72,4 +72,83 @@
 
 		</tbody>
 	</table>
-@endsection
+   <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+      <table class="table table-striped table-hover">
+            <thead>
+                  <tr>
+                        <th>No.</th>
+                        <th style="text-align: center;">Curso</th>
+                        <th style="text-align: center;">Cantidad de Alumnos con nota menor a 40</th>
+                        <th style="text-align: center;">Cantidad de Alumnos con nota entre 40 y 49</th>
+                        <th style="text-align: center;">Cantidad de Alumnos con nota entre a 50 y 59</th>
+                        <th style="text-align: center;">Total de alumnos que perdieron la Clase</th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <?php
+              $contador=1;?>
+                        @foreach($cursos as $curso)
+                         <tr>
+                        <td>{{ $contador }}</td>
+                        <td style="text-align: left;">{{ $curso->nombre }}</td>
+                              @foreach($alumnos_perdidos as $alumno_perdido)
+                                    @if($alumno_perdido->curso_id == $curso->id AND $alumno_perdido->nota<40)
+                                    <?php
+                                    $totalperdido=$totalperdido+1;
+                                     ?>
+                                    @endif
+                              
+                              @endforeach
+                                   
+                               <td>{{ $totalperdido }}</td>
+                                <?php
+                               $totalperdido=0;
+                                $contador=$contador+1;
+                               ?>
+
+                               @foreach($alumnos_perdidos as $alumno_perdido)
+                                    @if($alumno_perdido->curso_id == $curso->id AND $alumno_perdido->nota>39 AND $alumno_perdido->nota<50)
+                                    <?php
+                                    $totalperdido=$totalperdido+1;
+                                     ?>
+                                    @endif
+                              @endforeach
+                              <td>{{ $totalperdido }}</td>
+                             
+                              <?php
+                               $totalperdido=0;
+                               ?>
+
+                               @foreach($alumnos_perdidos as $alumno_perdido)
+                                    @if($alumno_perdido->curso_id == $curso->id AND $alumno_perdido->nota>49 AND $alumno_perdido->nota<60)
+                                    <?php
+                                    $totalperdido=$totalperdido+1;
+                                     ?>
+                                    @endif
+                              @endforeach
+                              <td>{{ $totalperdido }}</td>
+                             
+                              <?php
+                               $totalperdido=0;
+                               ?>
+
+                                @foreach($alumnos_perdidos as $alumno_perdido)
+                                    @if($alumno_perdido->curso_id == $curso->id)
+                                    <?php
+                                    $totalperdido=$totalperdido+1;
+                                     ?>
+                                    @endif
+                              @endforeach
+                              <td>{{ $totalperdido }}</td>
+                             
+                              <?php
+                               $totalperdido=0;
+                               ?>
+                        </tr>
+                         @endforeach
+            </tbody>
+      </table>
+      </div>
+      </div>
+      @endsection

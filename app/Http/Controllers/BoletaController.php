@@ -83,10 +83,15 @@ class BoletaController extends Controller
 
         $pdf=new PDF();
 
-
+         if($grados->nivel_id==2 OR $grados->nivel_id==1){
+        $pdf=PDF::loadview('admin.calificaciones.boletaprimpdf',compact('alumnos', 'grados', 'alumnos2', 'totalpromedio', 'totalbim1','totalbim2','totalbim3','totalbim4'));
+  
+        return $pdf->stream('archivo.pdf');}
+        else{
         $pdf=PDF::loadview('admin.calificaciones.boletapdf',compact('alumnos', 'grados', 'alumnos2', 'totalpromedio', 'totalbim1','totalbim2','totalbim3','totalbim4'));
   
         return $pdf->stream('archivo.pdf');
+        }
     }
 
     public function BoletaporGrado($idgrado)
@@ -97,14 +102,16 @@ class BoletaController extends Controller
         $totalbim2=0;
         $totalbim3=0;
         $totalbim4=0;
+        $contador[]="";
         $grados=grado::find($idgrado);
         $totalcursos=count(curso::where('grado_id', $idgrado)->get());
         $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos3 = alumno::where('grado_id','=',$idgrado)->select(['id'])->get();
 
-          $alumnos2=alumno_curso::wherein('alumno_id',$alumnos3)->orderby('curso_id', 'ASC')->get();
-       
+        $alumnos2=alumno_curso::wherein('alumno_id',$alumnos3)->orderby('alumno_id', 'ASC')->orderby('curso_id', 'ASC')->get();
+
+
         return view('admin.calificaciones.boletaporgrado', compact('alumnos',
             'alumnos2', 'grados', 'totalpromedio', 'totalcursos', 'totalbim1','totalbim2','totalbim3','totalbim4'));
     }
@@ -118,19 +125,25 @@ class BoletaController extends Controller
         $totalbim3=0;
         $totalbim4=0;
         $grados=grado::find($idgrado);
+        /*dd($grados->nivel->nombre);*/
+
         $totalcursos=count(curso::where('grado_id', $idgrado)->get());
         $alumnos=alumno::where('grado_id', $idgrado)->orderby('apellidos', 'ASC')->get();
 
         $alumnos3 = alumno::where('grado_id','=',$idgrado)->select(['id'])->get();
    
-        $alumnos2=alumno_curso::wherein('alumno_id',$alumnos3)->orderby('curso_id', 'ASC')->get();
+        $alumnos2=alumno_curso::wherein('alumno_id',$alumnos3)->orderby('alumno_id', 'ASC')->orderby('curso_id', 'ASC')->get();
 
         $pdf=new PDF();
-
-        $pdf=PDF::loadview('admin.calificaciones.boletaporgradopdf',compact('alumnos',
-            'alumnos2', 'grados', 'totalpromedio', 'totalcursos', 'totalbim1','totalbim2','totalbim3','totalbim4'));
+        if($grados->nivel_id==2 OR $grados->nivel_id==1){
+        $pdf=PDF::loadview('admin.calificaciones.boletaporgradoprimpdf',compact('alumnos',
+            'alumnos2', 'grados', 'totalpromedio', 'totalcursos', 'totalbim1','totalbim2','totalbim3','totalbim4'));}
+        else{
+            $pdf=PDF::loadview('admin.calificaciones.boletaporgradopdf',compact('alumnos',
+            'alumnos2', 'grados', 'totalpromedio', 'totalcursos', 'totalbim1','totalbim2','totalbim3','totalbim4'));}
   
         return $pdf->stream('archivo.pdf');
+
     }
 
     /**
