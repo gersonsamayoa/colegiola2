@@ -24,6 +24,11 @@
 </div>
 
 <div class="form-group">
+{!!Form::label('ciclo_id', 'Ciclo')!!}
+{!!Form::select('ciclo_id', $ciclos, $grados->ciclo_id, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required'])!!}
+</div>
+
+<div class="form-group">
 {!!Form::submit('Editar',['class'=>'btn btn-primary'])!!}
 <a class="btn btn-danger" href="{{route('admin.niveles.grados', $grados->nivel_id)}}" role="button">Cancelar</a>
 </div>

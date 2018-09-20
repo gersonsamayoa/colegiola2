@@ -29,6 +29,8 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
   		'as' 	=>'admin.grados.destroy'
   		]);
 
+
+
   	Route::get('niveles/grados/{id}', [
 		'uses'	=>	'GradosController@gradosnivel',
 		'as'	=>	'admin.niveles.grados'
@@ -205,6 +207,13 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 						'uses' 	=>	'PdfsController@index',
 						'as'		=>	'admin.pdf'
 					]);		
+
+					/*Rutas para los Ciclos*/
+					Route::resource('ciclos', 'CiclosController');
+				  	Route::get('ciclos/{id}/destroy', [
+				  		'uses'	=>'CiclosController@destroy',
+				  		'as' 	=>'admin.ciclos.destroy'
+				  		]);
 
 });
 

@@ -11,9 +11,7 @@
 @if($grados->cantidadbimestres==4)
 <table class="table table-striped table-hover">
 		<thead>
-			<th>Alumno_id</th>
 			<th>Alumno</th>
-      		<th>Curso_id</th>
 			<th class="col-sm-1">Bim1</th>
 			<th class="col-sm-1">Bim2</th>
 		    <th class="col-sm-1">Bim3</th>
@@ -27,38 +25,38 @@
 			@foreach($cursosalumnosasignados as $cursoalumnoasignado)
 			@if($cursoalumnoasignado->curso_id==$cursos->id)
 
-					<td width="10px"><div class="form-group">
-					{!!Form::text('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
-					</div></td>
+				
+					{!!Form::hidden('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
+				
 				
 					<td>{{$cursoalumnoasignado->apellidos . " " . $cursoalumnoasignado->nombres}}</td>
 
-					<td width="10px"><div class="form-group">
-					{!!Form::text('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
-					</div></td>
+			
+					{!!Form::hidden('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
+		
 				
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
+						{!!Form::number('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control', 'min'=>'0','max'=>'100', 'placeholder'=> '', '', 'tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
+							{!!Form::number('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control', 'min'=>'0','max'=>'100', 'placeholder'=> '', '', 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
+								{!!Form::number('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim4[]',$cursoalumnoasignado->bim4,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
+								{!!Form::number('bim4[]',$cursoalumnoasignado->bim4,['class'=>'form-control', 'min'=>'0','max'=>'100', 'placeholder'=> '', '', 'tabindex'=>'4'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::label(round($cursoalumnoasignado->promedio) ,round($cursoalumnoasignado->promedio),['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::label(round($cursoalumnoasignado->promedio) ,$cursoalumnoasignado->promedio,['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'5'])!!}
+								{!!Form::number('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control', 'min'=>'1','max'=>'4','placeholder'=> '', '', 'tabindex'=>'5'])!!}
 					</div></td>
 
 					<td>
@@ -78,9 +76,7 @@
 @else
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Alumno_id</th>
 			<th>Alumno</th>
-      		<th>Curso_id</th>
 			<th class="col-sm-1">Bim1</th>
 			<th class="col-sm-1">Bim2</th>
 		    <th class="col-sm-1">Bim3</th>
@@ -92,35 +88,35 @@
 			@foreach($cursosalumnosasignados as $cursoalumnoasignado)
 			@if($cursoalumnoasignado->curso_id==$cursos->id)
 
-					<td width="10px"><div class="form-group">
-					{!!Form::text('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
-					</div></td>
+			
+					{!!Form::hidden('alumno_id[]',$cursoalumnoasignado->alumno_id,['class'=>'form-control', 'readonly'])!!}
+			
 				
 					<td>{{$cursoalumnoasignado->apellidos . " " . $cursoalumnoasignado->nombres}}</td>
 
-					<td width="10px"><div class="form-group">
-					{!!Form::text('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
-					</div></td>
+				
+					{!!Form::hidden('curso_id[]',$cursoalumnoasignado->curso_id,['class'=>'form-control', 'readonly'])!!}
+			
 				
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control','placeholder'=> '', '','tabindex'=>'1'])!!}
+						{!!Form::number('bim1[]',$cursoalumnoasignado->bim1,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '','tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-							{!!Form::text('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control','placeholder'=> '', '' , 'tabindex'=>'2'])!!}
+							{!!Form::number('bim2[]',$cursoalumnoasignado->bim2,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '' , 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
+								{!!Form::number('bim3[]',$cursoalumnoasignado->bim3,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 
 
 					<td><div class="form-group">
-								{!!Form::label(round($cursoalumnoasignado->promedio), round($cursoalumnoasignado->promedio),['class'=>'form-control','placeholder'=> '', ''])!!}
+								{!!Form::label(round($cursoalumnoasignado->promedio), ($cursoalumnoasignado->promedio),['class'=>'form-control','placeholder'=> '', ''])!!}
 					</div></td>
 
 					<td><div class="form-group">
-								{!!Form::text('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
+								{!!Form::number('cantidad_bimestres[]',$cursoalumnoasignado->cantidad_bimestres,['class'=>'form-control', 'min'=>'1','max'=>'4','placeholder'=> '', '', 'tabindex'=>'4'])!!}
 
 					<td>
 						<div class="form-group">
@@ -166,19 +162,19 @@
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
+					{!!Form::number('bim1[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'1'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
+					{!!Form::number('bim2[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'2'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
+					{!!Form::number('bim3[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 				</div></td>
 
 				<td><div class="form-group">
-					{!!Form::text('bim4[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'4'])!!}
+					{!!Form::number('bim4[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'4'])!!}
 				</div></td>
 			</tr>
 			@endif
@@ -216,15 +212,15 @@
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim1[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'1'])!!}
+						{!!Form::number('bim1[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'1'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim2[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'2'])!!}
+						{!!Form::number('bim2[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'2'])!!}
 					</div></td>
 
 					<td><div class="form-group">
-						{!!Form::text('bim3[]',null,['class'=>'form-control','placeholder'=> '', '', 'tabindex'=>'3'])!!}
+						{!!Form::number('bim3[]',null,['class'=>'form-control', 'min'=>'0','max'=>'100','placeholder'=> '', '', 'tabindex'=>'3'])!!}
 					</div></td>
 				</tr>
 			@endif

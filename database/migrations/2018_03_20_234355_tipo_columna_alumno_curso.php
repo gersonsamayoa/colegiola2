@@ -17,7 +17,7 @@ class TipoColumnaAlumnoCurso extends Migration
             $table->decimal('bim2', 8, 0)->change();
             $table->decimal('bim3', 8, 0)->change();
             $table->decimal('bim4', 8, 0)->change();
-            $table->decimal('promedio', 8, 0)->change();
+            $table->decimal('promedio', 8, 2)->change();
         });
     }
 

@@ -10,6 +10,7 @@
 			<th>Nombre</th>
 			<th>Cantidad<br> Bimestres</th>
 			<th>Nivel</th>
+			<th>Ciclo</th>
 			<th>Operaciones</th>
 		</thead>
 		<tbody>
@@ -19,6 +20,13 @@
 					<td>{{$grado->nombre}}</td>
 					<td class="text-center">{{$grado->cantidadbimestres}}</td>
 					<td>{{$grado->nivel->nombre}}</td>
+					<td>@if($grado->ciclo_id)
+						{{$grado->ciclo->descripcion}}
+						@else
+						{{$grado->ciclo_id}}
+						@endif
+
+					</td>
 					<td>
 					@if(Auth::user()->admin() OR Auth::user()->secretaria())
 					<a href="{{route('admin.grados.edit', $grado->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">

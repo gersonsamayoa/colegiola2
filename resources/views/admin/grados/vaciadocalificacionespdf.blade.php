@@ -35,7 +35,7 @@
       			<td style="font-size:10px">{{ $alumno->apellidos . ' ' . $alumno->nombres}}</td>
       			@foreach($alumno_cursos as $alumno_curso)
       				@if($alumno_curso->alumno_id == $alumno->id)
-      					@if($alumno_curso->nota>59)
+      					@if($alumno_curso->nota>59.9)
       					<td style="font-size:12px; text-align: center;">{{$alumno_curso->nota }}</td>
       					@else
                 <td style="font-size:12px; text-align: center;"><font color="red">{{$alumno_curso->nota }}</font></td>

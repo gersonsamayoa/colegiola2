@@ -11,7 +11,8 @@
         "laracasts/flash": "^3.0",
         "fzaninotto/faker": "^1.6",
         "barryvdh/laravel-dompdf": "^0.8.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "fx3costa/laravelchartjs": "^2.5"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

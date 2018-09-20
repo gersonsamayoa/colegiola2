@@ -8,7 +8,7 @@ class grado extends Model
 {
     protected $table ="grados";
 
-    protected $fillable =['nombre', 'grado', 'cantidadbimestres', 'nivel_id'];
+    protected $fillable =['nombre', 'grado', 'cantidadbimestres', 'nivel_id', 'ciclo_id', 'created_at'];
 
     public function alumnos()
     {
@@ -22,7 +22,12 @@ class grado extends Model
 
     public function nivel()
     {
-      return $this->belongsTo('App\nivel');
+      return $this->belongsTo('App\nivel', 'nivel_id');
+    }
+
+    public function ciclo()
+    {
+      return $this->belongsTo('App\ciclo', 'ciclo_id');
     }
 
     public static function grados($id){

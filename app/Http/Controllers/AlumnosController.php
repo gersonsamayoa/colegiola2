@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\alumno;
 use App\grado;
 use App\nivel;
+use App\ciclo;
 use DB;
 use Laracasts\Flash\Flash;
 
@@ -20,6 +21,7 @@ class AlumnosController extends Controller
      */
     public function index(Request $request)
     {
+      $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
       $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
  
       $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(10);

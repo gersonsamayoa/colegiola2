@@ -33,13 +33,17 @@
 </div>
 {!! Form::close() !!}
 @endif
-	<table class="table table-striped table-hover">
+<br>
+ <?php
+          $contador=1;?>
+	<table id="table_id" class="table table-striped table-hover">
 		<thead>
 			<tr>
 			<th style="font-size:10px">No.</th>
 					<th style="font-size:12px">Nombres</th>
 			@foreach($cursos as $curso)
-			<th style="font-size:8px; text-align: center;">{{ $curso->nombre }}</th>
+			<th style="font-size:8px; text-align: center; padding: 10px 12px;">{{ $contador }}</th>
+      <?php $contador++; ?>
 			@endforeach
 			<th style="font-size:8px; text-align: center;">Promedio</th>
 			</tr>
@@ -53,7 +57,7 @@
       			<td>{{ $alumno->apellidos . ' ' . $alumno->nombres}}</td>
       			@foreach($alumno_cursos as $alumno_curso)
       				@if($alumno_curso->alumno_id == $alumno->id)
-      					@if($alumno_curso->nota>59)
+      					@if($alumno_curso->nota>59.9)
       					<td style="text-align: center;">{{$alumno_curso->nota }}</td>
       					@else
       					<td style="text-align: center; color:red;">{{$alumno_curso->nota }}</td>
@@ -63,7 +67,7 @@
       					 ?>
       				@endif
       			@endforeach
-      			<td>{{ round($totalpromedio/$cantidadcursos) }}</td>
+      			<td style="text-align: center">{{ number_format($totalpromedio/$cantidadcursos, 2) }}</td>
       			<?php
       			 $totalpromedio=0;
       			?>
@@ -72,9 +76,27 @@
 
 		</tbody>
 	</table>
+  
+   <?php
+    $contador=1;?>
+        <table  class="table table-striped table-hover" >
+          <tr>
+          @foreach($cursos as $curso)
+          <th style="font-size:12px; text-align: center;">{{ $contador }}</th>
+          <?php $contador++; ?>
+          @endforeach
+    </tr>
+    <tr>
+      @foreach($cursos as $curso)
+      <th style="font-size:8px; text-align: center">{{ $curso->nombre }}</th>
+       @endforeach
+    </tr>
+        </table>
+
    <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-      <table class="table table-striped table-hover">
+        
+      <table  class="table table-striped table-hover" >
             <thead>
                   <tr>
                         <th>No.</th>
@@ -151,4 +173,22 @@
       </table>
       </div>
       </div>
+
+      <div style="width:100%;">
+      {!! $chartjs->render() !!}
+      </div>
+      <br>
+
       @endsection
+
+      @section('scripts')
+       <script type="text/javascript">
+        $(document).ready( function () {
+        $('#table_id').DataTable({
+          paging: false,
+          } );
+        } );
+        </script>
+    @endsection
+
+        
