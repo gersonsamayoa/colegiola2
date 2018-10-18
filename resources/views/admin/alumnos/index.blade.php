@@ -28,9 +28,11 @@
 			<th class="col-sm-3">Acción</th>
 		</thead>
 		<tbody>
+			<?php
+      		$contador=1;?>
 			@foreach($alumnos as $alumno)
 			<tr>
-					<td>{{$alumno->id}}</td>
+					<td>{{ $contador }}</td> <?php $contador++; ?>
 					<td>{{$alumno->apellidos}}</td>
 					<td>{{$alumno->nombres}}</td>
 					<td>{{$alumno->carnet}}</td>

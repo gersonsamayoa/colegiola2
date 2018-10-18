@@ -215,6 +215,12 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 				  		'as' 	=>'admin.ciclos.destroy'
 				  		]);
 
+				  	/*Rutas para trasaldos*/
+
+				  	Route::resource('traslados', 'TrasladosController');
+
+
+
 });
 
 		Route::get('admin/auth/login',[

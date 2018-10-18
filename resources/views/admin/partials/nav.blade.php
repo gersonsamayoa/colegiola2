@@ -29,6 +29,7 @@
 
             @if(Auth::user()->admin())
             <li><a href="{{route('admin.ciclos.index')}}">Ciclo</a></li>
+            <li><a href="{{route('admin.traslados.index')}}">Traslados</a></li>
             <li><a href="{{route('admin.usuarios.index')}}">Usuarios</a></li>
             @endif
 

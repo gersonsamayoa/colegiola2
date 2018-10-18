@@ -14,29 +14,25 @@ use Laracasts\Flash\Flash;
 
 class AlumnosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index(Request $request)
     {
       $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
-      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+     
+      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+
+      /*Grados de ciclo actual*/
+      $gradosactual=grado::where('ciclo_id',  $ciclos->id)->select(['id'])->get();
  
-      $alumnos=alumno::orderBy('nombres', 'ASC')->paginate(10);
-      
       if($request->nombres){
-        $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->paginate(30);
+        $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(30);
           /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
           return view('admin.alumnos.index', compact('alumnos', 'grados'));
       }else {
-        $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->paginate(30);
+        $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(30);
         /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
         return view('admin.alumnos.index', compact('alumnos', 'grados'));
         }
-
-      return view('admin.alumnos.index', compact('alumnos'));
 
     }
 

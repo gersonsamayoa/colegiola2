@@ -143,7 +143,10 @@ class GradosController extends Controller
       $totalperdido=0;
       $alumnos=alumno::where('grado_id', $id)->orderby('apellidos', 'ASC')->get();
       $alumnos2=alumno::where('grado_id', $id)->orderby('apellidos', 'ASC')->select(['id'])->get();
-      $cursos2=curso::where('grado_id', $id)->orderby('id')->select(['id'])->get();/*Cursos del nuevo grado*/
+
+      /*Cursos del nuevo grado*/
+      $cursos2=curso::where('grado_id', $id)->orderby('id')->select(['id'])->get();
+
       if ($request->bim =="bim1"){ /*Corregi solo primer bimestre*/
       $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.bim1 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
@@ -152,27 +155,27 @@ class GradosController extends Controller
         }
 
       if ($request->bim =="bim2"){
-      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->select('alumno_curso.bim2 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.bim2 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
-      $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->where('alumno_curso.bim2', '<', 60)->select('alumno_curso.bim2 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+      $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->where('alumno_curso.bim2', '<', 60)->select('alumno_curso.bim2 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
       }
 
       if ($request->bim =="bim3"){
-      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->select('alumno_curso.bim3 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.bim3 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
-         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->where('alumno_curso.bim3', '<', 60)->select('alumno_curso.bim3 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->where('alumno_curso.bim3', '<', 60)->select('alumno_curso.bim3 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
       }
 
       if ($request->bim =="bim4"){
-      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->select('alumno_curso.bim4 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.bim4 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
-         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->where('alumno_curso.bim4', '<', 60)->select('alumno_curso.bim4 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->where('alumno_curso.bim4', '<', 60)->select('alumno_curso.bim4 as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
         }
 
       if ($request->bim =="promedio"){
-      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->select('alumno_curso.promedio as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+      $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.promedio as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
-         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->where('alumno_curso.promedio', '<', 60)->select('alumno_curso.promedio as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
+         $alumnos_perdidos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->where('alumno_curso.promedio', '<', 60)->select('alumno_curso.promedio as nota', 'alumno_curso.alumno_id', 'alumno_curso.curso_id')->orderBy('curso_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
 
     }
     $tamaño=count($cursos);

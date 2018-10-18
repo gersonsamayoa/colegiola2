@@ -30,7 +30,7 @@
 	        <tr>
 			<td>{{$alumno->nombres . " " . $alumno->apellidos}}
 		        @foreach($colegiaturas as $colegiatura)
-			    @if($colegiatura->alumno->nombres==$alumno->nombres)
+			    @if($colegiatura->alumno_id==$alumno->id)
 			    @foreach($colegiatura->meses as $mes)
 				<td><a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" target="_blank">
 					{{$mes->nombre}}@endforeach

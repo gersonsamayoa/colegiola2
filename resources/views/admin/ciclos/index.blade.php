@@ -19,7 +19,6 @@
 						@else
 
 						@endif
-						
 					</td>
 					<td>
 						<a href="{{route('admin.ciclos.edit', $ciclo->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar"></a>

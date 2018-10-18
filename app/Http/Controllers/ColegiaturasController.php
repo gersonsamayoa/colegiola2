@@ -16,6 +16,7 @@ use App\grado;
 use App\colegiatura_mes;
 use DB;
 use App\Http\Requests\ColegiaturaRequest;
+use App\ciclo;
 
 
 
@@ -38,6 +39,8 @@ class ColegiaturasController extends Controller
      */
     public function create($id)
     {
+        
+
         $colegiaturas=colegiatura::where('alumno_id', $id)->get();
         $colegiatura_mes=DB::table('colegiatura_mes')->leftJoin('colegiaturas', 'colegiatura_mes.colegiatura_id', '=', 'colegiaturas.id')->where('colegiaturas.alumno_id', '=', $id)->select(['mes_id']);
 
@@ -154,7 +157,12 @@ class ColegiaturasController extends Controller
    public function consultagrado(Request $request)
   {
     $meses=array("Inscripción", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Graduación");
-    $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+
+    $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
+
+    $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+
+
 
     if ($request->nombres){
         $alumnos=alumno::Search($request->nombres)->orderby('apellidos','ASC')->get();
@@ -166,6 +174,7 @@ class ColegiaturasController extends Controller
         $alumnos=alumno::buscar($request->grado_id)->orderby('apellidos','ASC')->get();
         $colegiaturas= colegiatura::orderby('id','ASC')->get();
         $groupcolegiaturas=$alumnos->groupby('nombres');
+       
         return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'groupcolegiaturas', 'alumnos', 'grados', 'meses'));
         }
   }
