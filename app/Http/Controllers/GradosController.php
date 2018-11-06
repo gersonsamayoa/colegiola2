@@ -139,6 +139,7 @@ class GradosController extends Controller
       $bim=$request->bim;
       $cursos=curso::where('grado_id', $id)->orderby('id')->get();
       $cantidadcursos=count($cursos);
+   
       $totalpromedio=0;
       $totalperdido=0;
       $alumnos=alumno::where('grado_id', $id)->orderby('apellidos', 'ASC')->get();
@@ -146,6 +147,7 @@ class GradosController extends Controller
 
       /*Cursos del nuevo grado*/
       $cursos2=curso::where('grado_id', $id)->orderby('id')->select(['id'])->get();
+
 
       if ($request->bim =="bim1"){ /*Corregi solo primer bimestre*/
       $alumno_cursos=DB::table('alumno_curso')->whereIn('alumno_id', $alumnos2)->whereIn('curso_id', $cursos2)->select('alumno_curso.bim1 as nota', 'alumno_curso.alumno_id')->orderBy('alumno_id', 'ASC')->orderBy('curso_id', 'ASC')->get();
@@ -214,7 +216,8 @@ class GradosController extends Controller
     'legend' => ['display' => false],
     'scales' => ['xAxes' => [['ticks'=>['fontSize'=>12, 'autoSkip'=>false, 'maxRotation'=>90, 'minRotation'=>90],
             ]  
-        ]
+        ],
+        'yAxes'=>[['ticks'=>['min'=>0]]]
     ]
 ]);
 

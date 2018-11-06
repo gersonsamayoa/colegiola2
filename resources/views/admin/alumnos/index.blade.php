@@ -28,8 +28,7 @@
 			<th class="col-sm-3">Acción</th>
 		</thead>
 		<tbody>
-			<?php
-      		$contador=1;?>
+			
 			@foreach($alumnos as $alumno)
 			<tr>
 					<td>{{ $contador }}</td> <?php $contador++; ?>
@@ -52,6 +51,7 @@
 						@endif
 						@if(Auth::user()->admin() OR Auth::user()->secretaria() OR Auth::user()->director() OR Auth::user()->contador())
 						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Boleta de Calificaciones"></a>
+						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-warning glyphicon glyphicon-file" title="Compromiso de Estudios"></a>
 						@endif
 					</td>
 				</tr>
@@ -60,6 +60,4 @@
 	</table>
 </div>
 	{!!$alumnos->appends(Request::all())->render()!!}
-
-
 @endsection

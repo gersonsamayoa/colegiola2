@@ -17,6 +17,7 @@ class AlumnosController extends Controller
   
     public function index(Request $request)
     {
+        $contador=1;
       $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
      
       $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
@@ -25,13 +26,13 @@ class AlumnosController extends Controller
       $gradosactual=grado::where('ciclo_id',  $ciclos->id)->select(['id'])->get();
  
       if($request->nombres){
-        $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(30);
+        $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(50);
           /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-          return view('admin.alumnos.index', compact('alumnos', 'grados'));
+          return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador'));
       }else {
-        $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(30);
+        $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(50);
         /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-        return view('admin.alumnos.index', compact('alumnos', 'grados'));
+        return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador'));
         }
 
     }

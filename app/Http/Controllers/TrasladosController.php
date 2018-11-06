@@ -34,10 +34,19 @@ class TrasladosController extends Controller
 
       /*Grados nuevo ciclo*/
       $grados2=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
- 
-         $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->paginate(30);
+
+      /*Grado del ciclo anterior para busqueda por nombre o carnet*/
+       $grados3=grado::where('ciclo_id', $cicloanterior->id)->select('id')->get();
+
+            if($request->nombres){
+         $alumnos= alumno::search($request->nombres)->whereIn('grado_id', $grados3)->orderBy('apellidos', 'ASC')->paginate(100);
+         return view('admin.traslados.index', compact('alumnos', 'grados', 'grados2', 'gradoanterior'));
+                }
+            else {
+             $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->paginate(100);
+             return view('admin.traslados.index', compact('alumnos', 'grados', 'grados2', 'gradoanterior'));
+            }     
         
-        return view('admin.traslados.index', compact('alumnos', 'grados', 'grados2', 'gradoanterior'));
         }
         else{
             flash('No hay ciclo anterior para trasladar alumnos')->error()->important();
