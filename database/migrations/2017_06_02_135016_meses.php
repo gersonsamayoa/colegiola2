@@ -15,6 +15,7 @@ class Meses extends Migration
       Schema::create('meses', function (Blueprint $table) {
           $table->increments('id');
           $table->text('nombre');
+          $table->text('numeromes');
           $table->timestamps();
         });
 

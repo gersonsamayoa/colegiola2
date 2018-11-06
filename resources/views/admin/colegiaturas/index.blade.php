@@ -16,7 +16,6 @@
 			<th class="col-sm-1">Mes</th>
 			<th class="col-sm-1">Monto</th>
 			<th class="col-sm-1">Descripción</th>
-			<th class="col-sm-1">Alumno</th>
 			<th class="col-sm-3">Operaciones</th>
 		</thead>
 		<tbody>
@@ -28,16 +27,10 @@
 					<td>{{$colegiatura->nombre}}</td>
 					<td>{{$colegiatura->numerodocumento}}</td>
 					<td>{{$colegiatura->numerofactura}}</td>
-					<td>
-					@foreach($mymeses as $mymes)
-						@if($mymes->colegiatura_id==$colegiatura->id)
-						<span class="label label-success">{{ $mymes->mes->nombre }}</span>
-						@endif
-					@endforeach
-					</td>
+					<td>{{ $colegiatura->alumno->carnet }}{{$colegiatura->mes->numeromes}}</td>
 					<td>Q{{number_format($colegiatura->monto, '2','.' , ',')}}</td>
 					<td width="175px">{{$colegiatura->descripcion}}</td>
-					<td>{{$colegiatura->alumno->nombres . " ". $colegiatura->alumno->apellidos}}</td>
+				
 					
 					<td><a href="{{route('admin.colegiaturas.edit', $colegiatura->id)}}" class="btn btn-primary">Editar
 					</a> <a href="{{route('admin.colegiaturas.destroy', $colegiatura->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>

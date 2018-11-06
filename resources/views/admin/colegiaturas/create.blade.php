@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('nombre', 'Nombre')!!}
+	{!!Form::label('nombre', 'Nombre de Persona')!!}
 	{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
 	</div>
 
@@ -47,7 +47,7 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('monto', 'Monto')!!}
+	{!!Form::label('monto', 'Monto de cada Pago')!!}
 	Q{!!Form::number('monto',null,['class'=>'form-control', 'step'=>'0.01','placeholder'=>'####.##', 'required'])!!}
 	</div>
 

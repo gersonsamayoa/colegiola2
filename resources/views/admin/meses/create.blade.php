@@ -8,6 +8,11 @@
 {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
 </div>
 
+<div class="form-group">
+{!!Form::label('numeromes', 'Numero de Mes')!!}
+{!!Form::text('numeromes',null,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
+</div>
+
 
 <div class="form-group">
 {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}

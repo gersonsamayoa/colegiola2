@@ -78,7 +78,6 @@ class MesesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $meses=mes::Find($id);
         $meses->Fill($request->all());
         $meses->save();

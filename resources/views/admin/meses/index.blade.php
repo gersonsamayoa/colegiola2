@@ -10,6 +10,7 @@
 			<thead>
 				<th>ID</th>
 				<th>Mes</th>
+				<th>NumeroMes</th>
 				<th>Operaciones</th>
 			</thead>
 			<tbody>
@@ -19,6 +20,7 @@
 					@if($mes->id<7)
 							<tr><td>{{$mes->id}}</td>
 							<td>{{$mes->nombre}}</td>
+							<td>{{$mes->numeromes}}</td>
 							<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
 							</a> 
 							<!--<a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>--></tr>
@@ -34,6 +36,7 @@
 			<thead>
 				<th>ID</th>
 				<th>Mes</th>
+				<th>NumeroMes</th>
 				<th>Operaciones</th>
 			</thead>
 			<tbody>
@@ -43,6 +46,7 @@
 					@if($mes->id>6)
 							<tr><td>{{$mes->id}}</td>
 							<td>{{$mes->nombre}}</td>
+							<td>{{$mes->numeromes}}</td>
 							<td><a href="{{route('admin.meses.edit', $mes->id)}}" class="btn btn-primary">Editar
 							</a> 
 							<!--<a href="{{route('admin.meses.destroy', $mes->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a></td>--></tr>

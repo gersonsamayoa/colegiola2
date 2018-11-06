@@ -8,10 +8,10 @@ class mes extends Model
 {
   protected $table ="meses";
 
-  protected $fillable =['nombre'];
+  protected $fillable =['nombre', 'numeromes'];
 
   public function colegiaturas()
-  {
-    return $this->belongsToMany('App\colegiatura');
-  }
+    {
+    	return $this->hasMany('App\colegiatura');
+    }
 }

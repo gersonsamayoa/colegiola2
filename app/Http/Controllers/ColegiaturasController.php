@@ -13,7 +13,6 @@ use App\colegiatura;
 use Laracasts\Flash\Flash;
 use App\carrera;
 use App\grado;
-use App\colegiatura_mes;
 use DB;
 use App\Http\Requests\ColegiaturaRequest;
 use App\ciclo;
@@ -38,16 +37,9 @@ class ColegiaturasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
-    {
-        
-
-        $colegiaturas=colegiatura::where('alumno_id', $id)->get();
-        $colegiatura_mes=DB::table('colegiatura_mes')->leftJoin('colegiaturas', 'colegiatura_mes.colegiatura_id', '=', 'colegiaturas.id')->where('colegiaturas.alumno_id', '=', $id)->select(['mes_id']);
-
-         
-       $meses=DB::table('meses')->whereNotin('id', $colegiatura_mes)->lists('nombre', 'id');
-
-      //$meses=Mes::orderBy('id', 'ASC')->lists('nombre', 'id');
+    {  
+      $colegiaturas=colegiatura::where('alumno_id', $id)->select('mes_id')->get();
+      $meses=DB::table('meses')->wherenotin('id', $colegiaturas)->lists('nombre', 'id');
   
       $alumno=Alumno::Find($id);
       return view('admin.colegiaturas.create', compact('alumno', 'meses'));
@@ -61,13 +53,23 @@ class ColegiaturasController extends Controller
      */
     public function store(ColegiaturaRequest $request)
     {
-        $colegiaturas= new colegiatura($request->all());
-        $colegiaturas->save();
-
-        $colegiaturas->meses()->sync($request->mes_id);
+        $cantidad=count($request->mes_id);
+          for ($i=0; $i<$cantidad ; $i++) { 
+                 $colegiatura= new colegiatura();
+                $colegiatura->fecha=$request->fecha;
+                $colegiatura->nit=$request->nit;
+                $colegiatura->nombre=$request->nombre;
+                $colegiatura->numerodocumento=$request->numerodocumento;
+                $colegiatura->numerofactura=$request->numerofactura;
+                $colegiatura->monto=$request->monto;
+                $colegiatura->descripcion=$request->descripcion;
+                $colegiatura->alumno_id=$request->alumno_id;
+                $colegiatura->mes_id=$request->mes_id[$i];
+                $colegiatura->save();
+             }
 
         flash('Colegiatura Guardada Exitosamente')->success()->important();
-        return redirect()->route('admin.colegiaturas.detalles', $colegiaturas->alumno_id);
+        return redirect()->route('admin.colegiaturas.detalles', $colegiatura->alumno_id);
     }
 
     /**
@@ -136,15 +138,12 @@ class ColegiaturasController extends Controller
     {
 
         $colegiaturas= colegiatura::where('alumno_id', $id)->paginate(4);
-        $colegiaturas->each(function($colegiaturas){
-           $colegiaturas->alumno;
-           });
-
+        
         $alumno=Alumno::Find($id);
 
-        $mymeses=colegiatura_mes::all();
+       
     
-        return view('admin.colegiaturas.index', compact ('colegiaturas','alumno','mymeses'));
+        return view('admin.colegiaturas.index', compact ('colegiaturas','alumno'));
 
     }
 
