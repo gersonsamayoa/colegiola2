@@ -38,7 +38,7 @@
 
 	<div class="form-group">
 	{!!Form::label('mes_id', 'Mes')!!}
-	{!!Form::select('mes_id[]', $meses, $mymeses, ['multiple'=>true, 'class'=>'form-control', 'placeholder'=> 'Seleccione un Mes', 'required'])!!}
+	{!!Form::select('mes_id', $meses, $mymeses, ['multiple'=>true, 'class'=>'form-control', 'placeholder'=> 'Seleccione un Mes', 'required'])!!}
 	</div>
 
 	<div class="form-group">

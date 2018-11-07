@@ -27,14 +27,14 @@
 					<td>{{$colegiatura->nombre}}</td>
 					<td>{{$colegiatura->numerodocumento}}</td>
 					<td>{{$colegiatura->numerofactura}}</td>
-					<td>{{ $colegiatura->alumno->carnet }}{{$colegiatura->mes->numeromes}}</td>
+					<td>{{$colegiatura->mes->nombre}}</td>
 					<td>Q{{number_format($colegiatura->monto, '2','.' , ',')}}</td>
 					<td width="175px">{{$colegiatura->descripcion}}</td>
 				
 					
 					<td><a href="{{route('admin.colegiaturas.edit', $colegiatura->id)}}" class="btn btn-primary">Editar
 					</a> <a href="{{route('admin.colegiaturas.destroy', $colegiatura->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger">Eliminar</a>
-					<a href="{{route('admin.pdf', $colegiatura->id)}}" class="btn btn-primary">Imprimir
+					<a href="{{route('admin.pdf', $colegiatura->id)}}" class="btn btn-primary" target="_blank">Imprimir
 					</a>
 					</td>
 				</tr>

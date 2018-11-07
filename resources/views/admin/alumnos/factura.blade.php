@@ -10,8 +10,8 @@
           <th>Mes</th>
           <th>Monto</th>
           <th>Descripción</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
+          <th>Nombre Alumno</th>
+          <th>Apellido Alumno</th>
         </tr>
     </thead>
     <tbody>
@@ -21,11 +21,9 @@
           <td>{{$colegiaturas->nit}}</td>
           <td>{{$colegiaturas->numerodocumento}}</td>
           <td>
-          @foreach($mymeses as $mymes)
-            @if($mymes->colegiatura_id==$colegiaturas->id)
-            <span class="label label-success">{{ $mymes->mes->nombre }}</span>
-            @endif
-          @endforeach
+        
+            <span class="label label-success">{{ $colegiaturas->mes->nombre }}</span>
+       
           </td>
           <td>Q{{number_format($colegiaturas->monto, '2','.' , ',')}}</td>
           <td>{{$colegiaturas->descripcion}}</td>

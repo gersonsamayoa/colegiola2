@@ -25,22 +25,27 @@
 			@endforeach
 		</thead>
 		<tbody>
-			@foreach($groupcolegiaturas as $alumnos)
 			@foreach($alumnos as $alumno)
 	        <tr>
-			<td>{{$alumno->nombres . " " . $alumno->apellidos}}
+			<td>{{$alumno->nombres . " " . $alumno->apellidos}}</td>
 		        @foreach($colegiaturas as $colegiatura)
+		        
 			    @if($colegiatura->alumno_id==$alumno->id)
-			    @foreach($colegiatura->meses as $mes)
-				<td><a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" target="_blank">
-					{{$mes->nombre}}@endforeach
-					</a></td>
+
+			    	@foreach($meses as $mes)
+			    		@if($mes==$colegiatura->mes->nombre)
+						  <td><a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" target="_blank">
+							{{$colegiatura->mes->nombre}}
+							</a></td>
+							@break
+						@endif
+					@endforeach
 				@endif
 				@endforeach
-			</td>
+		
 	        </tr>
 			@endforeach
-			@endforeach
+	
 		</tbody>
 
 	</table>
