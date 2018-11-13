@@ -17,11 +17,11 @@
 
 <!--Buscador-->
 	{!!Form::model(Request::all(),['route'=>'admin.traslados.index','method'=>'GET', 'class'=>'navbar-form pull-left'])!!}
-	Buscar: <div class="input-group">
+	<b>Buscar:</b> <div class="input-group">
 		  {!!Form::text('nombres', null, ['class'=>'form-control', 'placeholder'=>'Nombre o Carné'])!!}
 			 <span class="input-group-addon" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
 	 		 </div>
-	 Grado ciclo Anterior: <div class="input-group">
+	 <b>Grado ciclo Anterior:</b> <div class="input-group">
 		{!!Form::select('grado_id', $grados,null,['class'=>'form-control', 'placeholder'=>'Seleccione un Grado'])!!}
 		</div>
 		
@@ -66,7 +66,7 @@
 	</table>
 
 	<div class="form-group">
-	  	Nuevo Grado:{!! Form::select('nuevogrado_id', $grados2,null,['class'=>'form-control', 'placeholder'=>'Seleccione un Grado', 'required'])!!}	
+	  	<b>Nuevo Grado:</b>{!! Form::select('nuevogrado_id', $grados2,null,['class'=>'form-control', 'placeholder'=>'Seleccione un Grado', 'required'])!!}	
 	</div>
 
 	<div class="form-group pull-right">

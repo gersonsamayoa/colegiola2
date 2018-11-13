@@ -175,7 +175,7 @@ class ColegiaturasController extends Controller
         $alumnos=alumno::buscar($request->grado_id)->orderby('apellidos','ASC')->get();
         $alumnos2=alumno::buscar($request->grado_id)->select(['id'])->get();
         $colegiaturas= colegiatura::WhereIn('alumno_id', $alumnos2)->orderby('mes_id','ASC')->orderby('alumno_id', 'ASC')->get();
-        
+ 
         return view('admin.colegiaturas.consultagrado', compact ('colegiaturas', 'alumnos', 'grados', 'meses'));
         }
   }

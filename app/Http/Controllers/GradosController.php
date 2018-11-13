@@ -34,7 +34,7 @@ class GradosController extends Controller
       $ciclos=ciclo::where('activo', 1)->first();/*Ciclo Activo*/
 
       $niveles=Nivel::Find($id);
-      $grados= grado::where('nivel_id', $id)->where('ciclo_id', $ciclos->id)->orderby('id', 'ASC')->orderby('grado', 'ASC')->orderby('nombre', 'ASC')->paginate(10);
+      $grados= grado::where('nivel_id', $id)->where('ciclo_id', $ciclos->id)->orderby('id', 'ASC')->orderby('grado', 'ASC')->orderby('nombre', 'ASC')->paginate(21);
 
       return view('admin.grados.index2', compact('grados', 'niveles'));
     }

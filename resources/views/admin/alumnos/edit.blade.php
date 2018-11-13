@@ -14,8 +14,8 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('carnet', 'Carnet')!!}
-	{!!Form::text('carnet',$alumno->carnet,['class'=>'form-control','placeholder'=> 'Carnet'])!!}
+	{!!Form::label('fechanacimiento', 'Fecha Nacimiento')!!}
+	{!!Form::date('fechanacimiento',$alumno->fechanacimiento,['class'=>'form-control','placeholder'=> 'Edad', 'required'])!!}
 	</div>
 
 	<div class="form-group">
@@ -24,8 +24,38 @@
 	</div>
 
 	<div class="form-group">
+	{!!Form::label('dpiencargado', 'DPI Encargado')!!}
+	{!!Form::text('dpiencargado',$alumno->dpiencargado,['class'=>'form-control','placeholder'=> 'DPI', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('profesionencargado', 'Profesión Encargado')!!}
+	{!!Form::text('profesionencargado',$alumno->profesionencargado,['class'=>'form-control','placeholder'=> 'Profesión', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('direccionencargado', 'Dirección')!!}
+	{!!Form::text('direccionencargado',$alumno->direccionencargado,['class'=>'form-control','placeholder'=> 'Dirección', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('relacionencargado','Relación')!!}
+		{!!Form::select('relacionencargado', ['padre'=>'Padre','madre'=>'Madre','tutor'=>'Tutor', 'encargado'=>'Encargado'], $alumno->relacionencargado, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('emailencargado','Correo Electrónico')!!}
+		{!!Form::text('emailencargado', $alumno->emailencargado, ['class'=>'form-control', 'placeholder'=>'example@correo.com (opcional)'])!!}
+	</div>
+
+	<div class="form-group">
 	{!!Form::label('telefono', 'Telefono')!!}
 	{!!Form::text('telefono',$alumno->telefono,['class'=>'form-control','placeholder'=> 'Telefono', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('carnet', 'Carnet')!!}
+	{!!Form::text('carnet',$alumno->carnet,['class'=>'form-control','placeholder'=> 'Carnet'])!!}
 	</div>
 
 	<div class="form-group">

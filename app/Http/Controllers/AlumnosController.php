@@ -17,6 +17,7 @@ class AlumnosController extends Controller
   
     public function index(Request $request)
     {
+       
         $contador=1;
       $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
      
@@ -44,8 +45,9 @@ class AlumnosController extends Controller
      */
     public function create()
     {
+        $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
         $niveles=nivel::orderBy('id','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
         return view('admin.alumnos.create', compact('niveles', 'grados'));
     }
@@ -76,36 +78,51 @@ class AlumnosController extends Controller
      */
     public function store(AlumnoRequest $request)
     {
+        $hoy = date("Y-m-d");
         $nombres=alumno::where('nombres', $request->nombres)->get();
         $apellidos=alumno::where('apellidos', $request->apellidos)->get();
 
         if ($nombres->all() OR $apellidos->all())
         {
         $alumno= new alumno();
+        $alumno->fecha=$hoy;
         $alumno->nombres=$request->nombres;
         $alumno->apellidos=$request->apellidos;
+        $alumno->fechanacimiento=$request->fechanacimiento;
         $alumno->encargado=$request->encargado;
+        $alumno->dpiencargado=$request->dpiencargado;
+        $alumno->profesionencargado=$request->profesionencargado;
+        $alumno->direccionencargado=$request->direccionencargado;
+        $alumno->relacionencargado=$request->relacionencargado;
+        $alumno->emailencargado=$request->emailencargado;
         $alumno->telefono=$request->telefono;
         $alumno->carnet=$request->carnet;
         $alumno->grado_id=$request->grado_id;
         $alumno->save();
 
         flash('Alumno Guardado con Nombre o Apellidos Repetido')->success()->warning();
-        return redirect()->route('admin.alumnos.index');
+        return redirect()->route('admin.alumnos.index',  $request->except('nombres'));
         }
         else
         {
         $alumno= new alumno();
+        $alumno->fecha=$hoy;
         $alumno->nombres=$request->nombres;
         $alumno->apellidos=$request->apellidos;
+        $alumno->fechanacimiento=$request->fechanacimiento;
         $alumno->encargado=$request->encargado;
+        $alumno->dpiencargado=$request->dpiencargado;
+        $alumno->profesionencargado=$request->profesionencargado;
+        $alumno->direccionencargado=$request->direccionencargado;
+        $alumno->relacionencargado=$request->relacionencargado;
+        $alumno->emailencargado=$request->emailencargado;
         $alumno->telefono=$request->telefono;
         $alumno->carnet=$request->carnet;
         $alumno->grado_id=$request->grado_id;
         $alumno->save();
 
         flash('Alumno Guardado Exitosamente')->success()->important();
-        return redirect()->route('admin.alumnos.index');
+        return redirect()->route('admin.alumnos.index',  $request->except('nombres'));
         
         }
     }
@@ -129,9 +146,10 @@ class AlumnosController extends Controller
      */
     public function edit($id)
     {
+        $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
         $alumno=Alumno::Find($id);
         $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
 
         return view('admin.alumnos.edit', compact('alumno', 'grados', 'niveles'));
@@ -147,12 +165,27 @@ class AlumnosController extends Controller
     public function update(Request $request, $id)
     {
         $alumno=alumno::Find($id);
-        $alumno->Fill($request->all());
+        $alumno->nombres=$request->nombres;
+        $alumno->apellidos=$request->apellidos;
+        $alumno->fechanacimiento=$request->fechanacimiento;
+        $alumno->encargado=$request->encargado;
+        $alumno->dpiencargado=$request->dpiencargado;
+        $alumno->profesionencargado=$request->profesionencargado;
+        $alumno->direccionencargado=$request->direccionencargado;
+        $alumno->relacionencargado=$request->relacionencargado;
+        $alumno->emailencargado=$request->emailencargado;
+        $alumno->telefono=$request->telefono;
+        $alumno->carnet=$request->carnet;
+        $alumno->grado_id=$request->grado_id;
+  
         $alumno->save();
+        $request = new Request();
 
         flash('La alumno '. $alumno->nombres . ' ' . $alumno->apellidos . ' ha sido editada con éxito')->warning()->important();
 
-        return redirect()->route('admin.alumnos.index');
+        $request->merge(['grado_id'=> $alumno->grado_id]);
+
+        return redirect()->route('admin.alumnos.index',  $request->except('nombres'));
     }
 
     /**
@@ -163,11 +196,14 @@ class AlumnosController extends Controller
      */
     public function destroy($id)
     {
+        $request = new Request();
         $alumno= alumno::Find($id);
-       $alumno->delete();
-
+        $alumno->delete();
        flash('Alumno ' . $alumno->nombre . ' ha sido eliminado de forma exitosa')->error()->important();
-       return redirect()->route('admin.alumnos.index');
+       
+       $request->merge(['grado_id'=> $alumno->grado_id]);
+
+    return redirect()->route('admin.alumnos.index',  $request->except('nombres'));
     }
 
 }

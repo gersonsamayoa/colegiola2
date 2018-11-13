@@ -1,7 +1,6 @@
 @extends ('admin.template.main')
 @section('title', 'Consulta de Colegiaturas ')
 @section('content')
-
 <!--Buscador-->
 	{!!Form::model(Request::all(),['route'=>'admin.colegiaturas.consultagrado','method'=>'GET', 'class'=>'navbar-form pull-left'])!!}
 	 Buscar: <div class="input-group">
@@ -13,11 +12,12 @@
 	</div>
 	{!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
 {!!Form::close()!!}
+
 	<br>
 	<br>
 	<br>
 @include('flash::message')
-	<table class="table table-striped">
+	<table class="table table-striped table-bordered table-hover" >
 		<thead>
 			<th>Nombre</th>
 			@foreach($meses as $mes)
@@ -27,27 +27,25 @@
 		<tbody>
 			@foreach($alumnos as $alumno)
 	        <tr>
-			<td>{{$alumno->nombres . " " . $alumno->apellidos}}</td>
+			<td>{{$alumno->apellidos . " " . $alumno->nombres}}</td>
+			@foreach($meses as $mes)
+				<td>
 		        @foreach($colegiaturas as $colegiatura)
-		        
-			    @if($colegiatura->alumno_id==$alumno->id)
-
-			    	@foreach($meses as $mes)
-			    		@if($mes==$colegiatura->mes->nombre)
-						  <td><a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" target="_blank">
+			    	@if($colegiatura->alumno_id===$alumno->id)
+			    		@if($mes===$colegiatura->mes->nombre)
+						<a href="{{route('admin.colegiaturas.detalles', $alumno->id)}}" target="_blank">
 							{{$colegiatura->mes->nombre}}
 							</a></td>
-							@break
-						@endif
-					@endforeach
-				@endif
+							@else
+
+							@endif
+					@endif
+
 				@endforeach
-		
+		</p>
+			@endforeach
 	        </tr>
 			@endforeach
-	
 		</tbody>
-
 	</table>
-
 @endsection

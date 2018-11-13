@@ -31,10 +31,12 @@ class grado extends Model
     }
 
     public static function grados($id){
-      return grado::where('nivel_id', '=', $id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
+        $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
+      return grado::where('nivel_id', '=', $id)->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
     }
 
     public static function grados2($id){
-      return grado::orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
+        $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
+      return grado::where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->get();
     }
 }

@@ -25,7 +25,6 @@
 						@else
 						{{$grado->ciclo_id}}
 						@endif
-
 					</td>
 					<td>
 					@if(Auth::user()->admin() OR Auth::user()->secretaria())

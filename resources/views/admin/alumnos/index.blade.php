@@ -18,7 +18,7 @@
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>ID</th>
+			<th>No.</th>
 			<th class="col-sm-2">Apellidos</th>
 			<th class="col-sm-2">Nombres</th>
 			<th>Carné</th>
@@ -51,7 +51,7 @@
 						@endif
 						@if(Auth::user()->admin() OR Auth::user()->secretaria() OR Auth::user()->director() OR Auth::user()->contador())
 						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-success glyphicon glyphicon-education" title="Boleta de Calificaciones"></a>
-						<a href="{{route('admin.boleta', $alumno->id)}}" class="btn btn-warning glyphicon glyphicon-file" title="Compromiso de Estudios"></a>
+						<a href="{{route('admin.alumnos.compromiso', $alumno->id)}}" class="btn btn-warning glyphicon glyphicon-file" title="Compromiso de Estudios"></a>
 						@endif
 					</td>
 				</tr>

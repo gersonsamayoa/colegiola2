@@ -162,7 +162,7 @@ class CalificacionesController extends Controller
               }
                else
              {
-                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i])/$cantidadbimestres;
+                $promedio=($request->bim1[$i]+$request->bim2[$i]+$request->bim3[$i]+$request->bim4[$i])/$cantidadbimestres;
 
                 $cursos=$alumnos->cursos()->where('curso_id', $request->curso_id[$i])->first();
 

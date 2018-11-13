@@ -15,6 +15,7 @@
 	@endif
 
 {!!Form::open(['route'=>'admin.alumnos.store', 'method'=>'POST']) !!}
+
 	<div class="form-group">
 	{!!Form::label('nombres', 'Nombres')!!}
 	{!!Form::text('nombres',Input::old('nombres'),['class'=>'form-control','placeholder'=> 'Nombres', 'required'])!!}
@@ -25,8 +26,38 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('encargado', 'Encargado')!!}
+	{!!Form::label('fechanacimiento', 'Fecha Nacimiento')!!}
+	{!!Form::date('fechanacimiento',null,['class'=>'form-control','placeholder'=> 'Edad', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('encargado', 'Nombre Encargado')!!}
 	{!!Form::text('encargado',null,['class'=>'form-control','placeholder'=> 'Encargado', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('dpiencargado', 'DPI Encargado')!!}
+	{!!Form::text('dpiencargado',null,['class'=>'form-control','placeholder'=> 'DPI', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('profesionencargado', 'Profesión Encargado')!!}
+	{!!Form::text('profesionencargado',null,['class'=>'form-control','placeholder'=> 'Profesión', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('direccionencargado', 'Dirección')!!}
+	{!!Form::text('direccionencargado',null,['class'=>'form-control','placeholder'=> 'Dirección', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('relacionencargado','Relación')!!}
+		{!!Form::select('relacionencargado', ['padre'=>'Padre','madre'=>'Madre','tutor'=>'Tutor', 'encargado'=>'Encargado'], null, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('emailencargado','Correo Electrónico')!!}
+		{!!Form::text('emailencargado', null, ['class'=>'form-control', 'placeholder'=>'example@correo.com (opcional)'])!!}
 	</div>
 
 	<div class="form-group">

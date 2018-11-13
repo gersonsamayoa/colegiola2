@@ -31,9 +31,18 @@ class PdfsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function compromiso($id)
     {
-        //
+        $alumnos=alumno::find($id);
+        $hoy=date("Y");
+        $edad=$hoy-(date('Y', strtotime($alumnos->fechanacimiento)));
+
+        $pdf=new PDF();
+        $paper_size = array(0,0,609.4488,935.433);
+        $pdf=PDF::loadview('admin.alumnos.compromisopdf',compact('alumnos', 'edad'))->setpaper($paper_size);;
+        
+        return $pdf->stream('compromiso.pdf');
+      
     }
 
     /**

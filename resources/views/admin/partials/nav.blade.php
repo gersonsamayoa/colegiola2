@@ -27,6 +27,11 @@
             <li><a href="{{route('admin.colegiaturas.consultagrado')}}">Consulta por Grado</a></li>
             @endif
 
+             @if(Auth::user()->secretaria())
+            <li><a href="{{route('admin.ciclos.index')}}">Ciclo</a></li>
+            <li><a href="{{route('admin.traslados.index')}}">Traslados</a></li>
+            @endif
+
             @if(Auth::user()->admin())
             <li><a href="{{route('admin.ciclos.index')}}">Ciclo</a></li>
             <li><a href="{{route('admin.traslados.index')}}">Traslados</a></li>

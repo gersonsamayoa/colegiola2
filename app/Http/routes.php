@@ -219,6 +219,12 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 
 				  	Route::resource('traslados', 'TrasladosController');
 
+				  	/*Ruta para compromiso de Estudios*/
+				  	Route::get('alumnos/compromiso/{id}', [
+					'uses'	=>	'PdfsController@compromiso',
+					'as'	=>	'admin.alumnos.compromiso'
+					]);
+
 
 
 });
