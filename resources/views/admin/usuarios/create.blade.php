@@ -13,7 +13,7 @@
 		</ul>
 	</div>
 	@endif
-	
+
 	{!! Form::open(['route' =>'admin.usuarios.store', 'method'=>'POST']) !!}
 
 		<div class="form-group">

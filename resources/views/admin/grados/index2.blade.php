@@ -11,6 +11,7 @@
 			<th>Cantidad<br> Bimestres</th>
 			<th>Nivel</th>
 			<th>Ciclo</th>
+			<th>Jornada</th>
 			<th>Operaciones</th>
 		</thead>
 		<tbody>
@@ -26,6 +27,7 @@
 						{{$grado->ciclo_id}}
 						@endif
 					</td>
+					<td>{{$grado->jornada}}</td>
 					<td>
 					@if(Auth::user()->admin() OR Auth::user()->secretaria())
 					<a href="{{route('admin.grados.edit', $grado->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">

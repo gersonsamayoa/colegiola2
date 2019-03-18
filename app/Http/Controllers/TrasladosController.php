@@ -33,7 +33,7 @@ class TrasladosController extends Controller
       $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $cicloanterior->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
       /*Grados nuevo ciclo*/
-      $grados2=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+      $grados2=grado::select(DB::raw('concat (grado, " ", nombre, " Jornada ", jornada) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
       /*Grado del ciclo anterior para busqueda por nombre o carnet*/
        $grados3=grado::where('ciclo_id', $cicloanterior->id)->select('id')->get();
@@ -74,6 +74,8 @@ class TrasladosController extends Controller
      */
     public function store(Request $request)
     {
+       
+   
         $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
         $cantidad=count($request->id_alumno);
         $alumnosrepetidos=0;
@@ -82,21 +84,27 @@ class TrasladosController extends Controller
 
  
         for ($i=0; $i<$cantidad ; $i++) { 
+             $totalalumnos=alumno::all(); /*Se cuenta total de alumnos*/
+             $ultimoAgregado=$totalalumnos->last(); /*se obtiene el ultimo agregado a la tabla*/
             $alumnos=alumno::where('id', $request->id_alumno[$i])->first();
-            /*Se busca el alumno dentro de los alumnos ya en grado nuevo por medio de su carnet*/
+            /*Se busca el alumno dentro de los alumnos ya en grado nuevo por medio de su id*/
             $alumnosactual=count(alumno::where('carnet', $alumnos->carnet)->whereIn('grado_id', $gradosactual)->get()); 
             
             if ($alumnosactual>0){
                   $alumnosrepetidos= $alumnosrepetidos+1;
             }
             else{
-                 $alumno= new alumno();
+                 $hoy = date("Y-m-d");
+                $alumno= new alumno();
+                $alumno->fecha=$hoy;
                 $alumno->nombres=$alumnos->nombres;
                 $alumno->apellidos=$alumnos->apellidos;
                 $alumno->encargado=$alumnos->encargado;
                 $alumno->telefono=$alumnos->telefono;
                 $alumno->carnet=$alumnos->carnet;
+                $alumno->alumnonuevo="no";
                 $alumno->grado_id=$request->nuevogrado_id;
+                $alumno->correlativo=$ultimoAgregado->correlativo+1;
                 $alumno->save();
                 $alumnostrasladados=$alumnostrasladados+1;
            }

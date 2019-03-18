@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', ['as'=>'index', function
 	() {
     return view('welcome');
@@ -223,6 +224,12 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function() {
 				  	Route::get('alumnos/compromiso/{id}', [
 					'uses'	=>	'PdfsController@compromiso',
 					'as'	=>	'admin.alumnos.compromiso'
+					]);
+
+					/*Ruta para Contrado de ahesión*/
+				  	Route::get('alumnos/contrato/{id}', [
+					'uses'	=>	'PdfsController@contrato',
+					'as'	=>	'admin.alumnos.contrato'
 					]);
 
 

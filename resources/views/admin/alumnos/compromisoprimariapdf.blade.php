@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Compromiso de Estudios</title>
+    <title>Compromiso de Estudios Primaria y Preprimaria</title>
     <style type="text/css">
       html {
     margin: 0;
@@ -16,7 +16,7 @@
     <table width="100%" border="1">
       <tr>
         <td width="15%" align="center">
-        <img src="http://colegio.cts.edu.gt/img/logo-header1.png" width="70px">
+        <img src="http://colegio.cts.edu.gt/img/ctsito.png" width="70px">
         </td>
         <td width="85%" align="center">
         <p><b>COLEGIO TÉCNICO DE COMPUTACIÓN “C.T.S.” <br> EDUCANDO CON TECNOLOGÍA PARA LA VIDA</b> <br>
@@ -36,7 +36,7 @@
       </td>
       </tr>
       </table>
-      <p align="justify">En Chiquimulilla, Santa Rosa, el día <u>{{date('d/m/Y', strtotime($alumnos->fecha))}}</u> ante el Infrascrito Director de este Colegio, se presenta el (la) señor (a): <b><u>{{$alumnos->encargado}}</u></b>, mayor de edad, quien se identifica mediante el DPI, con Código Único de Identificación No: <u>{{$alumnos->dpiencargado}}</u> emitido por RENAP, de Profesión u oficio: <u>{{$alumnos->profesionencargado}}</u> con dirección en: <u>{{$alumnos->direccionencargado}}</u> Teléfono No: <u>{{$alumnos->telefono}}</u> manifiesta que es <u>{{$alumnos->relacionencargado}}</u> de: <u>{{$alumnos->nombres . ", " . $alumnos->apellidos}}</u> de: <u>{{$edad}}</u> años de edad y que por este medio lo inscribe en el grado de: <u>{{ $alumnos->grado->grado . " " .$alumnos->grado->nombre }}</u> del nivel: <u>{{ $alumnos->grado->nivel->nombre}}</u>
+      <p align="justify">En Chiquimulilla, Santa Rosa, el día <u>{{date('d/m/Y', strtotime($alumnos->fecha))}}</u> ante el Infrascrito Director de este Colegio, se presenta el (la) señor (a): <b><u>{{$alumnos->encargado}}</u></b>, mayor de edad, quien se identifica mediante el DPI, con Código Único de Identificación No: <u>{{$alumnos->dpiencargado}}</u> emitido por RENAP, de Profesión u oficio: <u>{{$alumnos->profesionencargado}}</u> con dirección en: <u>{{$alumnos->direccionencargado}}</u> Teléfono No: <u>{{$alumnos->telefono}}</u> manifiesta que es <u>{{$alumnos->relacionencargado}}</u> de: <u>{{$alumnos->nombres . ", " . $alumnos->apellidos}}</u> de: <u>{{$edad}}</u> años de edad y que por este medio lo inscribe en el grado de: <u>{{$alumnos->grado->nombre }}</u> del nivel: <u>{{ $alumnos->grado->nivel->nombre}}</u>
        y por este acto suscriben el presente COMPROMISO DE RESPONSABILIDADES DE ESTUDIOS Y PRESTACIÓN DE SERVICIOS EDUCATIVOS; de acuerdo a las cláusulas que se señalan  de la manera siguiente:<br><br> <b>PRIMERA:</b> el alumno (a) se compromete a cumplir con las obligaciones que establecen los ARTICULOS Nos. 34 y 35 de la Ley de Educación Nacional, Decreto No. 12-91 del Congreso de La República, con el Acuerdo Ministerial No. 001-2011 NORMATIVA DE CONVIVENCIA PACÍFICA Y DISCIPLINA emitido por el MINEDUC de fecha 03 de enero de 2011, y con el REGLAMENTO INTERNO DEL COLEGIO TÉCNICO DE COMPUTACIÓN CTS, autorizado según Resolución No. 092-2006 de fecha 23-11-2006 de la Dirección Departamental de Educación de Santa Rosa y con lo siguiente:<br><br>
 
 a). Cumplir con todas las obligaciones inherentes a su calidad de alumno (a) y las que sean establecidas por la Dirección del Colegio, Personal Técnico-Administrativo y Personal Docente.<br><br>

@@ -21,7 +21,7 @@ class AlumnosController extends Controller
         $contador=1;
       $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
      
-      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+      $grados=grado::select(DB::raw('concat (grado, " ", nombre, " Jornada ", jornada) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
       /*Grados de ciclo actual*/
       $gradosactual=grado::where('ciclo_id',  $ciclos->id)->select(['id'])->get();
@@ -29,11 +29,11 @@ class AlumnosController extends Controller
       if($request->nombres){
         $alumnos=alumno::search($request->nombres)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(50);
           /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-          return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador'));
+          return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador', 'ciclos'));
       }else {
         $alumnos= alumno::buscar($request->grado_id)->orderBy('apellidos', 'ASC')->whereIn('grado_id', $gradosactual)->paginate(50);
         /*return view('admin.alumnos.index')->with ('alumnos', $alumnos);*/
-        return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador'));
+        return view('admin.alumnos.index', compact('alumnos', 'grados', 'contador', 'ciclos'));
         }
 
     }
@@ -47,7 +47,7 @@ class AlumnosController extends Controller
     {
         $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
         $niveles=nivel::orderBy('id','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre, " Jornada ", jornada) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
         return view('admin.alumnos.create', compact('niveles', 'grados'));
     }
@@ -78,9 +78,12 @@ class AlumnosController extends Controller
      */
     public function store(AlumnoRequest $request)
     {
+
         $hoy = date("Y-m-d");
-        $nombres=alumno::where('nombres', $request->nombres)->get();
-        $apellidos=alumno::where('apellidos', $request->apellidos)->get();
+        $nombres=alumno::where('nombres', $request->nombres)->where('grado_id', $request->grado_id)->get();
+        $apellidos=alumno::where('apellidos', $request->apellidos)->where('grado_id', $request->grado_id)->get();
+        $totalalumnos=alumno::all(); /*Se cuenta total de alumnos*/
+        $ultimoAgregado=$totalalumnos->last(); /*se obtiene el ultimo agregado a la tabla*/
 
         if ($nombres->all() OR $apellidos->all())
         {
@@ -95,8 +98,15 @@ class AlumnosController extends Controller
         $alumno->direccionencargado=$request->direccionencargado;
         $alumno->relacionencargado=$request->relacionencargado;
         $alumno->emailencargado=$request->emailencargado;
+        $alumno->edadencargado=$request->edadencargado;
+        $alumno->estadocivilencargado=$request->estadocivilencargado;
+        $alumno->nacionalidadencargado=$request->nacionalidadencargado;
         $alumno->telefono=$request->telefono;
+        $alumno->telefono2=$request->telefono2;
+        $alumno->telefono3=$request->telefono3;
         $alumno->carnet=$request->carnet;
+        $alumno->correlativo=$ultimoAgregado->correlativo+1;
+        $alumno->alumnonuevo=$request->alumnonuevo;
         $alumno->grado_id=$request->grado_id;
         $alumno->save();
 
@@ -116,8 +126,15 @@ class AlumnosController extends Controller
         $alumno->direccionencargado=$request->direccionencargado;
         $alumno->relacionencargado=$request->relacionencargado;
         $alumno->emailencargado=$request->emailencargado;
+        $alumno->edadencargado=$request->edadencargado;
+        $alumno->estadocivilencargado=$request->estadocivilencargado;
+        $alumno->nacionalidadencargado=$request->nacionalidadencargado;
         $alumno->telefono=$request->telefono;
+        $alumno->telefono2=$request->telefono2;
+        $alumno->telefono3=$request->telefono3;
         $alumno->carnet=$request->carnet;
+        $alumno->correlativo=$ultimoAgregado->correlativo+1;
+        $alumno->alumnonuevo=$request->alumnonuevo;
         $alumno->grado_id=$request->grado_id;
         $alumno->save();
 
@@ -149,7 +166,7 @@ class AlumnosController extends Controller
         $ciclos=ciclo::where('activo', 1)->first(); /*Ciclo Activo*/
         $alumno=Alumno::Find($id);
         $niveles=nivel::orderBy('nombre','ASC')->lists('nombre', 'id');
-        $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+        $grados=grado::select(DB::raw('concat (grado, " ", nombre, " Jornada ", jornada) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
 
         return view('admin.alumnos.edit', compact('alumno', 'grados', 'niveles'));
@@ -165,7 +182,7 @@ class AlumnosController extends Controller
     public function update(Request $request, $id)
     {
         $alumno=alumno::Find($id);
-        $alumno->nombres=$request->nombres;
+         $alumno->nombres=$request->nombres;
         $alumno->apellidos=$request->apellidos;
         $alumno->fechanacimiento=$request->fechanacimiento;
         $alumno->encargado=$request->encargado;
@@ -174,8 +191,14 @@ class AlumnosController extends Controller
         $alumno->direccionencargado=$request->direccionencargado;
         $alumno->relacionencargado=$request->relacionencargado;
         $alumno->emailencargado=$request->emailencargado;
+        $alumno->edadencargado=$request->edadencargado;
+        $alumno->estadocivilencargado=$request->estadocivilencargado;
+        $alumno->nacionalidadencargado=$request->nacionalidadencargado;
         $alumno->telefono=$request->telefono;
+        $alumno->telefono2=$request->telefono2;
+        $alumno->telefono3=$request->telefono3;
         $alumno->carnet=$request->carnet;
+        $alumno->alumnonuevo=$request->alumnonuevo;
         $alumno->grado_id=$request->grado_id;
   
         $alumno->save();

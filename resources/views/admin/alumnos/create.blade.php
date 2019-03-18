@@ -13,7 +13,7 @@
 		</ul>
 	</div>
 	@endif
-
+	<h3 align="center">Datos del Alumno</h3>
 {!!Form::open(['route'=>'admin.alumnos.store', 'method'=>'POST']) !!}
 
 	<div class="form-group">
@@ -31,8 +31,44 @@
 	</div>
 
 	<div class="form-group">
+	{!!Form::label('carné', 'Carné')!!}
+	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carné'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('nivel_id', 'Nivel')!!}
+	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required', 'id'=>'Nivel'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('grado_id', 'Grado')!!}
+	{!!Form::select('grado_id', $grados, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Grado', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('alumnonuevo','Es alumno Nuevo:')!!}
+	{!!Form::select('alumnonuevo', ['si'=>'Si','no'=>'No'], null, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
+	</div>
+
+	<h3 align="center">Datos del Encargado</h3>
+	<div class="form-group">
 	{!!Form::label('encargado', 'Nombre Encargado')!!}
 	{!!Form::text('encargado',null,['class'=>'form-control','placeholder'=> 'Encargado', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+	{!!Form::label('edadencargado', 'Edad Encargado')!!}
+	{!!Form::number('edadencargado',null,['class'=>'form-control','placeholder'=> 'Edad en números', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('estadocivilencargado','Estado Civil')!!}
+		{!!Form::select('estadocivilencargado', ['Soltero(a)'=>'Soltero(a)','Casado(a)'=>'Casado(a)','Viudo(a)'=>'Viudo(a)', 'Divorciado(a)'=>'Divorciado(a)', 'Union de hecho'=>'Union de hecho'], null, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('nacionalidadencargado', 'Nacionalidad')!!}
+		{!!Form::select('nacionalidadencargado', ['guatemalteco(a)'=>'guatemalteco(a)','extranjero(a)'=>'extranjero(a)'], null, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
 	</div>
 
 	<div class="form-group">
@@ -61,23 +97,18 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('telefono', 'Telefono')!!}
+	{!!Form::label('telefono', 'Telefono Casa')!!}
 	{!!Form::text('telefono',null,['class'=>'form-control','placeholder'=> '####-####', 'required'])!!}
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('carné', 'Carné')!!}
-	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carné'])!!}
+	{!!Form::label('telefono2', 'Telefono Oficina')!!}
+	{!!Form::text('telefono2',null,['class'=>'form-control','placeholder'=> '####-####', 'required'])!!}
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('nivel_id', 'Nivel')!!}
-	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required', 'id'=>'Nivel'])!!}
-	</div>
-
-	<div class="form-group">
-	{!!Form::label('grado_id', 'Grado')!!}
-	{!!Form::select('grado_id', $grados, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Grado', 'required'])!!}
+	{!!Form::label('telefono3', 'Telefono Celular')!!}
+	{!!Form::text('telefono3',null,['class'=>'form-control','placeholder'=> '####-####', 'required'])!!}
 	</div>
 
 	<div class="form-group">

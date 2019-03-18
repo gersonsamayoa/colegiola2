@@ -19,6 +19,21 @@
 </div>
 
 <div class="form-group">
+	{!!Form::label('jornada', 'Jornada')!!}
+	{!!Form::select('jornada', ['Matutina'=>'Matutina','Vespertina'=>'Vespertina'], $grados->jornada, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
+</div>
+
+<div class="form-group">
+{!!Form::label('inscripcion', 'Costo Inscripción')!!}
+{!!Form::number('inscripcion',$grados->inscripcion,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
+</div>
+
+<div class="form-group">
+{!!Form::label('mensualidad', 'Costo Mensualidad')!!}
+{!!Form::number('mensualidad',$grados->mensualidad,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
+</div>
+
+<div class="form-group">
 {!!Form::label('nivel_id', 'Nivel')!!}
 {!!Form::select('nivel_id', $niveles, $grados->nivel_id, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required'])!!}
 </div>
