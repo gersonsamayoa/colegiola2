@@ -17,7 +17,7 @@
         </td>
         <td width="85%" align="center">
         <h1>Colegio Técnico de Computación CTS </h1>
-         <p>Colonia Vista Hermosa, Chiquimulilla, Santa Rosa <br> Ciclo 2,018 <br> Tel. 78851522 </p>
+         <p>Colonia Vista Hermosa, Chiquimulilla, Santa Rosa <br> Ciclo 2,019 <br> Tel. 78851522 </p>
         </td>
       </tr>
       </table>
