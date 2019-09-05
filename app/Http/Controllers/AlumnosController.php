@@ -92,7 +92,7 @@ class AlumnosController extends Controller
         $codigo_grado=$grado->codigo_grado;
         $alumno->carnet= $codigo_grado . date("y") . '00' . $alumno->correlativo; //generamos el carnet
 
-        dd($alumno->carnet);
+        dd($alumno->carnet); //prueba de carnet generado
 
         if ($nombres->all() OR $apellidos->all())
         {
