@@ -26,11 +26,12 @@
     <tr>
       <th>No.</th>
       <th  width="230px">Curso</th>
-        <th  width="75px">Bim1</th>
-        <th  width="75px">Bim2</th>
-        <th  width="75px">Bim3</th>
-        <th  width="75px">Bim4</th>
-        <th  width="75px">Promedio</th>
+        <th  width="65px">Bim1</th>
+        <th  width="65px">Bim2</th>
+        <th  width="65px">Bim3</th>
+        <th  width="65px">Bim4</th>
+        <th  width="65px">Promedio</th>
+         <th  width="65px">Promedio Aprox.</th>
       </tr>
   </thead>
   <tbody>
@@ -44,7 +45,8 @@
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
               @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
-          <td>{{round($alumno_curso->promedio)}}</td>
+          <td>{{round($alumno_curso->promedio,2)}}</td>
+          <td>{{round($alumno_curso->promedio,0)}}</td>
         </tr>
       @endforeach
       <tr>
@@ -54,7 +56,8 @@
           <td>{{ round($totalbim2) }}</td>
           <td>{{ round($totalbim3) }}</td>
           <td>{{ round($totalbim4) }}</td>
-          <td><strong>{{round($totalpromedio)}}</strong></td>
+          <td><strong>{{round($totalpromedio,2)}}</strong></td>
+          <td><strong>{{round($totalpromedio,0)}}</strong></td>
       </tr>
     </tbody>
   </table>
@@ -72,10 +75,11 @@
     <tr>
       <th>No.</th>
       <th  width="300px">Curso</th>
-        <th  width="75px">Bim1</th>
-        <th  width="75px">Bim2</th>
-        <th  width="75px">Bim3</th>
-        <th  width="75px">Promedio</th>
+        <th  width="65px">Bim1</th>
+        <th  width="65px">Bim2</th>
+        <th  width="65px">Bim3</th>
+        <th  width="65px">Promedio</th>
+        <th  width="65px">Promedio Aprox.</th>
       </tr>
   </thead>
   <tbody>
@@ -88,7 +92,8 @@
               @if($alumno_curso->bim1<60)<td><font color='red'>{{$alumno_curso->bim1}}</font></td>@else<td>{{$alumno_curso->bim1}}</td>@endif
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
-          <td>{{round($alumno_curso->promedio)}}</td>
+          <td>{{round($alumno_curso->promedio,2)}}</td>
+          <td>{{round($alumno_curso->promedio,0)}}</td>
         </tr>
       @endforeach
       <tr>
@@ -97,7 +102,8 @@
           <td>{{ round($totalbim1) }}</td>
           <td>{{ round($totalbim2) }}</td>
           <td>{{ round($totalbim3) }}</td>
-          <td><strong>{{round($totalpromedio)}}</strong></td>
+          <td><strong>{{round($totalpromedio,2)}}</strong></td>
+          <td><strong>{{round($totalpromedio, 0)}}</strong></td>
       </tr>
     </tbody>
   </table>
