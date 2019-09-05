@@ -32,6 +32,7 @@
         <th  width="75px">Bim3</th>
         <th  width="75px">Bim4</th>
         <th  width="75px">Promedio</th>
+        <th  width="75px">Promedio Aprox.</th>
       </tr>
   </thead>
   <tbody>
@@ -46,6 +47,7 @@
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
               @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
           <td>{{round($alumno_curso->promedio,2)}}</td>
+          <td>{{round($alumno_curso->promedio,0)}}</td>
         </tr>
       @endforeach
       <tr>
@@ -56,6 +58,7 @@
           <td>{{ round($totalbim3,2) }}</td>
           <td>{{ round($totalbim4,2) }}</td>
           <td><strong>{{round($totalpromedio,2)}}</strong></td>
+          <td><strong>{{round($totalpromedio,0)}}</strong></td>
       </tr>
     </tbody>
   </table>

@@ -35,6 +35,7 @@
           <th>Bim3</th>
           <th>Bim4</th>
           <th>Promedio</th>
+           <th>Promedio Aprox.</th>
         </tr>
     </thead>
   <tbody>
@@ -48,6 +49,7 @@
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
               @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
               <td>{{round($alumno_curso->promedio,2)}}</td>
+              <td>{{round($alumno_curso->promedio,0)}}</td>
               <?php
               $totalbim1=$totalbim1+$alumno_curso->bim1;
               $totalbim2=$totalbim2+$alumno_curso->bim2;
@@ -66,6 +68,7 @@
         <td>{{ round($totalbim3/$totalcursos,2) }}</td>
         <td>{{ round($totalbim4/$totalcursos,2) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos,2)}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos,0)}}</strong></td>
       </tr>
           <?php
               $totalbim1=0;
@@ -113,6 +116,7 @@
             <th>Bim2</th>
             <th>Bim3</th>
             <th>Promedio</th>
+            <th>Promedio Aprox.</th>
         </tr>
   </thead>
   <tbody>
@@ -125,6 +129,7 @@
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
           <td>{{round($alumno_curso->promedio,2)}}</td>
+          <td>{{round($alumno_curso->promedio,0)}}</td>
           <?php
           $totalbim1=$totalbim1+$alumno_curso->bim1;
           $totalbim2=$totalbim2+$alumno_curso->bim2;
@@ -141,6 +146,7 @@
         <td>{{ round($totalbim2/$totalcursos,2) }}</td>
         <td>{{ round($totalbim3/$totalcursos,2) }}</td>
         <td><strong>{{round($totalpromedio/$totalcursos,2)}}</strong></td>
+        <td><strong>{{round($totalpromedio/$totalcursos,0)}}</strong></td>
       </tr>
         <?php
           $totalbim1=0;
