@@ -31,11 +31,6 @@
 	</div>
 
 	<div class="form-group">
-	{!!Form::label('carné', 'Carné')!!}
-	{!!Form::text('carnet',null,['class'=>'form-control','placeholder'=> 'Carné'])!!}
-	</div>
-
-	<div class="form-group">
 	{!!Form::label('nivel_id', 'Nivel')!!}
 	{!!Form::select('Nivel', $niveles, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required', 'id'=>'Nivel'])!!}
 	</div>
@@ -43,11 +38,6 @@
 	<div class="form-group">
 	{!!Form::label('grado_id', 'Grado')!!}
 	{!!Form::select('grado_id', $grados, null, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Grado', 'required'])!!}
-	</div>
-
-	<div class="form-group">
-	{!!Form::label('alumnonuevo','Es alumno Nuevo:')!!}
-	{!!Form::select('alumnonuevo', ['si'=>'Si','no'=>'No'], null, ['class'=>'form-control','placeholder'=>'Selecciona una opción...', 'required'])!!}
 	</div>
 
 	<h3 align="center">Datos del Encargado</h3>

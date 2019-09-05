@@ -16,6 +16,7 @@ class AgregarCamposGrado extends Migration
             $table->string('jornada', 120)->after('cantidadbimestres');
             $table->integer('inscripcion')->after('jornada');
             $table->integer('mensualidad')->after('inscripcion');
+            $table->string('codigo_grado')->after('mensualidad');
           
         });
     }
@@ -31,6 +32,7 @@ class AgregarCamposGrado extends Migration
             $table->dropColumn('jornada');
             $table->dropColumn('inscripcion');
             $table->dropColumn('mensualidad');
+            $table->dropColumn('codigo_grado');
         });
     }
 }

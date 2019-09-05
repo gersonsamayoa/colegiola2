@@ -34,6 +34,11 @@
 </div>
 
 <div class="form-group">
+{!!Form::label('codigo_grado', 'Codigo Grado')!!}
+{!!Form::number('codigo_grado',null,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
+</div>
+
+<div class="form-group">
 {!!Form::label('nivel_id', 'Nivel')!!}
 {!!Form::select('nivel_id', $niveles, $niveles2->id, ['class'=>'form-control', 'placeholder'=> 'Seleccione un Nivel', 'required'])!!}
 </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\ciclo;
+use App\alumno;
 
 class CiclosController extends Controller
 {
@@ -40,6 +41,8 @@ class CiclosController extends Controller
     public function store(Request $request)
     {
       $ciclos1=ciclo::where('activo', 1)->get();
+       $totalalumnos=alumno::all(); /*Se cuenta total de alumnos*/
+       $ultimoAgregado=$totalalumnos->last(); /*se obtiene el ultimo agregado a la tabla*/
       
       if($ciclos1 and $request->activo){
         flash('No es posible guardar ciclo activo ya existe un ciclo Activo')->error()->important();
@@ -48,6 +51,8 @@ class CiclosController extends Controller
       else{
           $ciclos=new ciclo($request->all());
           $ciclos->save();
+          $ultimoAgregado->correlativo=0; //reiniciamos el correlativo
+          $ultimoAgregado->save(); //se guarda correlativo en el ultimo registro de la tabla
           flash('Ciclo Guardado Exitosamente')->success()->important();
           return redirect()->route('admin.ciclos.index');
          }

@@ -84,6 +84,15 @@ class AlumnosController extends Controller
         $apellidos=alumno::where('apellidos', $request->apellidos)->where('grado_id', $request->grado_id)->get();
         $totalalumnos=alumno::all(); /*Se cuenta total de alumnos*/
         $ultimoAgregado=$totalalumnos->last(); /*se obtiene el ultimo agregado a la tabla*/
+        $alumno= new alumno($request->all()); //Creamos al alumno
+        $alumno->fecha=$hoy; 
+        $alumno->correlativo=$ultimoAgregado->correlativo+1;
+        $alumno->alumnonuevo="si";
+        $grado=grado::find($request->grado_id); //buscamos el grado para obtener el codigo de grado
+        $codigo_grado=$grado->codigo_grado;
+        $alumno->carnet= $codigo_grado . date("y") . '00' . $alumno->correlativo; //generamos el carnet
+
+        dd($alumno->carnet);
 
         if ($nombres->all() OR $apellidos->all())
         {

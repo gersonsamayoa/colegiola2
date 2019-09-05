@@ -37,6 +37,7 @@ class AgregarCamponuevoAlumno extends Migration
             $table->dropColumn('nacionalidadencargado');
             $table->dropColumn('telefono2');
             $table->dropColumn('telefono3');
+            $table->dropColumn('correlativo');
         });
     }
 }

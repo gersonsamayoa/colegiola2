@@ -12,6 +12,7 @@
 			<th>Nivel</th>
 			<th>Ciclo</th>
 			<th>Jornada</th>
+			<th>Codigo Grado</th>
 			<th>Operaciones</th>
 		</thead>
 		<tbody>
@@ -28,6 +29,7 @@
 						@endif
 					</td>
 					<td>{{$grado->jornada}}</td>
+					<td>{{$grado->codigo_grado}}</td>
 					<td>
 					@if(Auth::user()->admin() OR Auth::user()->secretaria())
 					<a href="{{route('admin.grados.edit', $grado->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">
