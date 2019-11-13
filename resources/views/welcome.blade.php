@@ -6,7 +6,7 @@
     background-position: center bottom;
     -webkit-background-size: cover;
     background-size: cover; text-shadow: 2px 2px 5px black; height: 325px; padding-top: 2cm;" >
-  <h1 class="text-center"><span style="color:#ffffff;">Bienvenidos a Colegio CTS 2.0</span></h1>
+  <h1 class="text-center"><span style="color:#ffffff;">Bienvenidos a Colegio CTS 3.0</span></h1>
   <p class="text-center" style="color:#00FFAA">Sistema de Control de Pagos y Calificaciones</p>
  </div>
  <div class="row">

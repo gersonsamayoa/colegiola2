@@ -22,7 +22,7 @@
 					</td>
 					<td>
 						<a href="{{route('admin.ciclos.edit', $ciclo->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar"></a>
-					 	<!--<a href="{{route('admin.ciclos.destroy', $ciclo->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>-->
+						<!--<a href="{{route('admin.ciclos.destroy', $ciclo->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>-->
 					</td>
 				</tr>
 			@endforeach

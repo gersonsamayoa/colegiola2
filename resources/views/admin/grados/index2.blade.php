@@ -6,14 +6,14 @@
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Grado</th>
-			<th>Nombre</th>
-			<th>Cantidad<br> Bimestres</th>
-			<th>Nivel</th>
-			<th>Ciclo</th>
-			<th>Jornada</th>
-			<th>Codigo Grado</th>
-			<th>Operaciones</th>
+			<th class="col-sm-1">Grado</th>
+			<th class="col-sm-3">Nombre</th>
+			<th class="col-sm-1">Cantidad<br> Bimestres</th>
+			<th class="col-sm-1">Nivel</th>
+			<th class="col-sm-1">Ciclo</th>
+			<th class="col-sm-1">Jornada</th>
+			<th class="col-sm-1">Codigo Nivel</th>
+			<th class="col-sm-3">Operaciones</th>
 		</thead>
 		<tbody>
 			@foreach($grados as $grado)
@@ -35,7 +35,7 @@
 					<a href="{{route('admin.grados.edit', $grado->id)}}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar">
 					</a> 
 					@endif
-					<!--<a href="{{route('admin.grados.destroy', $grado->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>-->
+					<a href="{{route('admin.grados.destroy', $grado->id)}}" onclick="return confirm ('Seguro que deseas elimnarlo?')" class="btn btn-danger glyphicon glyphicon-remove" title="Eliminar"></a>
 					@if(Auth::user()->admin() OR Auth::user()->secretaria())
 					<a href="{{route('admin.grados.cursos.show', $grado->id)}}" class="btn btn-warning glyphicon glyphicon-book" title="Cursos"></a>
 					@endif

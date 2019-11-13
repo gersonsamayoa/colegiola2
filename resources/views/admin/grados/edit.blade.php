@@ -34,7 +34,7 @@
 </div>
 
 <div class="form-group">
-{!!Form::label('codigo_grado', 'Codigo Grado')!!}
+{!!Form::label('codigo_grado', 'Codigo Nivel')!!}
 {!!Form::number('codigo_grado',$grados->codigo_grado,['class'=>'form-control','placeholder'=> 'Nombre', 'required'])!!}
 </div>
 

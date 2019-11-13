@@ -33,11 +33,11 @@
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td valing="top" align="right">
-        <font size="1"><i>Correlativo Interno Contrato No.<u>{{str_pad($alumnos->correlativo, 5 , 0, STR_PAD_LEFT)}}</u></i></font><br>
-        <font size="1"><i>Aprobado y registrado según Resolución DIACO: DDC-____-2017</i></font></td>
+        <font size="1"><i>Correlativo Interno Contrato No.<u>2020-{{str_pad($alumnos->correlativo, 5 , 0, STR_PAD_LEFT)}}</u></i></font><br>
+        <font size="1"><i>Aprobado y registrado según Resolución DIACO: DDC-1080-2017</i></font></td>
       </tr>
       </table>
-      <p align="justify">En el munipio de Chiquimulilla, del departamento de Santa Rosa, el día <u>{{date('d', strtotime($alumnos->fecha))}}</u> del mes de <u>{{$nombreMes}}</u> del año de <u>{{date('Y', strtotime($alumnos->fecha))}}</u> NOSOTROS: Luis Estuardo Gudiel Robledo, de <u>35</u> años de edad, casado, guatemalteco, Ingeniero en Sistemas, de este domicilio, me identifico con Documento Personal de Identificación, Código Único de Identificación 2295 90152 0101, extendido por el Registro Nacional de las Personas de la República de Guatemala, actuando en mi calidad de propietario del centro educativo denominado COLEGIO TÉCNICO DE COMPUTACIÓN "C.T.S", ubicado en Colonia Vista Hermosa, de este municipio, lo que acredito con: Resolución No. SAC-DTP 016-2014, de fecha 7 de noviembre del 2014, emitida por la Dirección Departamental de Educación de Santa Rosa: Y por la otra parte:</p>
+      <p align="justify">En el munipio de Chiquimulilla, del departamento de Santa Rosa, el día <u>{{date('d', strtotime($alumnos->fecha))}}</u> del mes de <u>{{$nombreMes}}</u> del año de <u>{{date('Y', strtotime($alumnos->fecha))}}</u> NOSOTROS: Luis Estuardo Gudiel Robledo, de <u>48</u> años de edad, casado, guatemalteco, Ingeniero en Sistemas, de este domicilio, me identifico con Documento Personal de Identificación, Código Único de Identificación 2295 90152 0101, extendido por el Registro Nacional de las Personas de la República de Guatemala, actuando en mi calidad de propietario del centro educativo denominado COLEGIO TÉCNICO DE COMPUTACIÓN "C.T.S", ubicado en Colonia Vista Hermosa, de este municipio, lo que acredito con: Resolución No. SAC-DTP 016-2014, de fecha 7 de noviembre del 2014, emitida por la Dirección Departamental de Educación de Santa Rosa: Y por la otra parte:</p>
 
       <p align="center"><b> (DATOS DEL REPRESENTANTE DEL EDUCANDO)</b></p>
       <table width="100%" border-bottom="1px" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #000000">
@@ -224,10 +224,10 @@
 
       <b>SEGUNDA: <u>VOLUNTARIEDAD EN LA CONTRATACIÓN DEL SERVICIO.</u></b> Manifiesta el Representante del Educando que, conociendo la amplia oferta de instituciones privadas que prestan servicios educativos, de manera voluntaria y espontánea ha elegido al Centro Educativo para la educación académica del educando.<br><br>
 
-      <b>TERCERA: PLAZO.</b> El servicio educativo convenido en este contrato será válido para el ciclo escolar del año <u>2019</u>, durante su vigencia no puede ser modificada ninguna de sus cláusulas, las que deberán cumplirse a cabalidad. El Representante del Educando y el Centro Educativo podrán suscribir un nuevo contrato para el ciclo escolar inmediato siguiente, en caso acuerden la continuidad del educando.<br><br>
+      <b>TERCERA: PLAZO.</b> El servicio educativo convenido en este contrato será válido para el ciclo escolar del año <u>2020</u>, durante su vigencia no puede ser modificada ninguna de sus cláusulas, las que deberán cumplirse a cabalidad. El Representante del Educando y el Centro Educativo podrán suscribir un nuevo contrato para el ciclo escolar inmediato siguiente, en caso acuerden la continuidad del educando.<br><br>
       
 
-      <b>CUARTA: DERECHOS DEL EDUCANDO Y SU REPRESENTANTE.</b> El Educando y su Representante como usuarios del servicio educativo contratado, tendrán derecho a:<br><br>
+      <b>CUARTA: DERECHOS DEL EDUCANDO Y SU REPRESENTANTE.</b> El Educando y su Representante como usuarios del servicio educativo contratado, tendrán derecho a:<br><br><br>
 
      <b>a.</b> <u>La protección a la vida, salud y seguridad en la adquisición, consumo y uso de bienes y servicios:</u> Las  instalaciones del  Centro Educativo están dotadas de todos los servicios básicos, condiciones higiénicas y adecuadas para que los educandos no corran ninguna clase de riesgo que ponga en peligro su integridad física, siempre y cuando hagan uso correcto de las mismas. <br><br>
       
@@ -315,7 +315,7 @@
             Q. 402.00<br>
             Q. 402.00<br>
             Q. 402.00<br>
-            Q. 402.00  </b>
+            Q. 402.00</b>
           </td>
         </tr>
       </table>
@@ -369,7 +369,12 @@
             <td width="50%" align="center" valign="top"><br>f._____________________________<br> Representante del Educando </td>
           </tr>
         </table>
-
+        <br><br><br>
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+        <td width="100%" align="center"> <img src="http://colegio.cts.edu.gt/img/firmascontrato.png"></td>
+        </tr>
+        </table>
        
 
 

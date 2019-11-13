@@ -30,7 +30,7 @@ class TrasladosController extends Controller
         $gradoanterior=$request->grado_id;
 
        /*Grados ciclo anterior*/
-      $grados=grado::select(DB::raw('concat (grado, " ", nombre) as fullgrado, id'))->where('ciclo_id', $cicloanterior->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
+      $grados=grado::select(DB::raw('concat (grado, " ", nombre," ", jornada) as fullgrado, id'))->where('ciclo_id', $cicloanterior->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
 
       /*Grados nuevo ciclo*/
       $grados2=grado::select(DB::raw('concat (grado, " ", nombre, " Jornada ", jornada) as fullgrado, id'))->where('ciclo_id', $ciclos->id)->orderBy('nombre','ASC')->orderBy('grado', 'ASC')->lists('fullgrado', 'id');
@@ -84,7 +84,7 @@ class TrasladosController extends Controller
 
  
         for ($i=0; $i<$cantidad ; $i++) { 
-             $totalalumnos=alumno::all(); /*Se cuenta total de alumnos*/
+             $totalalumnos=alumno::all(); /*Se obtiene el total de alumnos*/
              $ultimoAgregado=$totalalumnos->last(); /*se obtiene el ultimo agregado a la tabla*/
             $alumnos=alumno::where('id', $request->id_alumno[$i])->first();
             /*Se busca el alumno dentro de los alumnos ya en grado nuevo por medio de su id*/

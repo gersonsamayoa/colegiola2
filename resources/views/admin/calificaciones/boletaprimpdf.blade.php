@@ -26,13 +26,13 @@
   <thead>
     <tr>
       <th>No.</th>
-      <th  width="230px">Curso</th>
-        <th  width="75px">Bim1</th>
-        <th  width="75px">Bim2</th>
-        <th  width="75px">Bim3</th>
-        <th  width="75px">Bim4</th>
-        <th  width="75px">Promedio</th>
-        <th  width="75px">Promedio Aprox.</th>
+      <th  width="330px">Curso</th>
+        <th  width="">Bim1</th>
+        <th  width="">Bim2</th>
+        <th  width="">Bim3</th>
+        <th  width="">Bim4</th>
+        <th  width="">Promedio</th>
+        <th  width="">Promedio Aprox.</th>
       </tr>
   </thead>
   <tbody>
@@ -46,8 +46,8 @@
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
               @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
-          <td>{{round($alumno_curso->promedio,2)}}</td>
-          <td>{{round($alumno_curso->promedio,0)}}</td>
+              @if(round($alumno_curso->promedio,2)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,2)}}</td> @endif
+           @if(round($alumno_curso->promedio,0)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,0)}}</td> @endif
         </tr>
       @endforeach
       <tr>

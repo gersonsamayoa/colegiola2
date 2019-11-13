@@ -48,8 +48,8 @@
               @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
               @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
               @if($alumno_curso->bim4<60)<td><font color='red'>{{$alumno_curso->bim4}}</font></td>@else<td>{{$alumno_curso->bim4}}</td>@endif
-              <td>{{round($alumno_curso->promedio,2)}}</td>
-              <td>{{round($alumno_curso->promedio,0)}}</td>
+              @if(round($alumno_curso->promedio,2)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,2)}}</td> @endif
+              @if(round($alumno_curso->promedio,0)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,0)}}</td> @endif
               <?php
               $totalbim1=$totalbim1+$alumno_curso->bim1;
               $totalbim2=$totalbim2+$alumno_curso->bim2;
@@ -126,10 +126,10 @@
           <td>{{ $contador }}</td> <?php $contador++; ?>
           <td>{{$alumno_curso->curso->nombre}}</td>
            @if($alumno_curso->bim1<60)<td><font color='red'>{{$alumno_curso->bim1}}</font></td>@else<td>{{$alumno_curso->bim1}}</td>@endif
-              @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
-              @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
-          <td>{{round($alumno_curso->promedio,2)}}</td>
-          <td>{{round($alumno_curso->promedio,0)}}</td>
+           @if($alumno_curso->bim2<60)<td><font color='red'>{{$alumno_curso->bim2}}</font></td>@else<td>{{$alumno_curso->bim2}}</td>@endif
+           @if($alumno_curso->bim3<60)<td><font color='red'>{{$alumno_curso->bim3}}</font></td>@else<td>{{$alumno_curso->bim3}}</td>@endif
+           @if(round($alumno_curso->promedio,2)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,2)}}</td> @endif
+           @if(round($alumno_curso->promedio,0)<60)<td><font color='red'>{{round($alumno_curso->promedio,2)}}</font></td>@else <td>{{round($alumno_curso->promedio,0)}}</td> @endif
           <?php
           $totalbim1=$totalbim1+$alumno_curso->bim1;
           $totalbim2=$totalbim2+$alumno_curso->bim2;
